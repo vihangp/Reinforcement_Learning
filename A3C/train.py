@@ -16,8 +16,9 @@ game = "Qbert-v0"
 num_cores = multiprocessing.cpu_count()
 print("Num Cores", num_cores)
 
-with tf.device("/cpu:0"):
 
+with tf.device("/cpu:0"):
+    tf.reset_default_graph()
 
     with tf.variable_scope("global"):
 
@@ -41,3 +42,5 @@ with tf.device("/cpu:0"):
             t.start()
 
         coord.join(threads)
+
+
