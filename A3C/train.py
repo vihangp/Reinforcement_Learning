@@ -13,7 +13,12 @@ game = "Qbert-v0"
 # is sampled from {2,3,4}
 # action space: 6 for Qbert
 
+env = gym.envs.make(game)
+num_actions = env.action_space.n
+env.close()
+
 num_cores = multiprocessing.cpu_count()
+t_max = 5
 print("Num Cores", num_cores)
 
 
@@ -22,14 +27,17 @@ with tf.device("/cpu:0"):
 
     with tf.variable_scope("global"):
 
+        global_network = PolicyValueNetwork(num_actions)
+
         workers = []
         for i in range(num_cores):
-            worke = Worker(game, "worker_{}".format(i))
+            worke = Worker(game, "worker_{}".format(i), t_max, num_actions, global_network)
             workers.append(worke)
 
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         coord = tf.train.Coordinator()
+        merge = tf.summary.merge_all()
         writer = tf.summary.FileWriter(logdir="logdir", graph= sess.graph)
 
         threads = []
