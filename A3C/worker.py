@@ -81,49 +81,37 @@ class Worker():
 
                 sess.run(self.copy_network)
 
-                if self.steps_worker < 4:
-                    # Select an random action
-                    action = self.env.action_space.sample()
-                    # Interact with the environment
-                    observation, reward, self.done, info = self.env.step(action)
-                    # process the observation
-                    proccessed_state = sess.run([self.w_network.proc_state], {self.w_network.observation: observation})
-                    # reshape from [1,84,84,1] to [84,84]
+
+                t_start = self.steps_worker
+                t_state = 1
+                if self.done:
+                    observation = self.env.reset()
+                    proccessed_state = sess.run([self.w_network.proc_state],
+                                                {self.w_network.observation: observation})
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
-                    # append the processed state to the end of the list
+                    self.state.clear()
+                    self.state += 4 * proccessed_state
+
+                while (self.steps_worker - t_start <= self.t_max) or (t_state != 0):
+
+                    action_prob, value = sess.run([self.w_network.policy, self.w_network.value],
+                                           {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
+                    action = np.random.choice(np.arange(self.num_actions), p = action_prob)
+                    observation, reward, self.done, info = self.env.step(action)
+                    proccessed_state = sess.run([self.w_network.proc_state], {self.w_network.observation: observation})
+                    proccessed_state = np.reshape(proccessed_state, [84, 84])
+                    # pop's the item for a given index
+                    self.state.pop(0)
+                    self.action.append(action)
                     self.state.append(proccessed_state)
-                    self.steps_worker +=1
-                else:
-                    t_start = self.steps_worker
-                    t_state = 1
+                    self.reward.append(reward)
+                    self.state_buffer.append(self.state)
+                    self.value_state.append(np.reshape(value,[1]))
+                    self.steps_worker += 1
+
                     if self.done:
-                        observation = self.env.reset()
-                        proccessed_state = sess.run([self.w_network.proc_state],
-                                                    {self.w_network.observation: observation})
-                        proccessed_state = np.reshape(proccessed_state, [84, 84])
-                        self.state.clear()
-                        self.state += 4 * proccessed_state
-
-                    while (self.steps_worker - t_start <= self.t_max) or (t_state != 0):
-
-                        action_prob, value = sess.run([self.w_network.policy, self.w_network.value],
-                                               {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
-                        action = np.random.choice(np.arange(self.num_actions), p = action_prob)
-                        observation, reward, self.done, info = self.env.step(action)
-                        proccessed_state = sess.run([self.w_network.proc_state], {self.w_network.observation: observation})
-                        proccessed_state = np.reshape(proccessed_state, [84, 84])
-                        # pop's the item for a given index
-                        self.state.pop(0)
-                        self.action.append(action)
-                        self.state.append(proccessed_state)
-                        self.reward.append(reward)
-                        self.state_buffer.append(self.state)
-                        self.value_state.append(np.reshape(value,[1]))
-                        self.steps_worker += 1
-
-                        if self.done:
-                            #observation = self.env.reset()
-                            t_start = 0
+                        #observation = self.env.reset()
+                        t_start = 0
 
 
                     reward_array = np.array(self.reward)
