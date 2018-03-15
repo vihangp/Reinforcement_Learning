@@ -38,6 +38,7 @@ class Worker():
         self.t_max = t_max
         self.global_network = global_network
         self.done = []
+        self.r_return = []
 
         # Initialise the environment
         self.env = gym.envs.make(self.game)
@@ -90,19 +91,26 @@ class Worker():
                 else:
                     self.state_buffer.append(self.state)
 
+                # interact with the environment for t_max steps or till terminal step
                 for t in range(self.t_max):
+                    # select action
                     action_prob, value = sess.run([self.w_network.policy, self.w_network.value],
                                                   {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
                     action = np.random.choice(np.arange(self.num_actions), p=action_prob)
+                    # pass action
                     observation, reward, self.done, info = self.env.step(action)
+                    # process the new state
                     proccessed_state = sess.run([self.w_network.proc_state], {self.w_network.observation: observation})
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
+
                     # pop's the item for a given index
                     self.state.pop(0)
                     self.state.append(proccessed_state)
+
                     self.value_state.append(np.reshape(value, [1]))
                     self.reward.append(reward)
                     self.action.append(action)
+
                     self.state_buffer.append(self.state)
                     self.steps_worker += 1
 
@@ -112,27 +120,22 @@ class Worker():
                         self.reward.append(np.reshape(value, [1]))
 
                     if self.done:
-                        t_state = 0
                         break
 
-                #reward_array = np.array(self.reward)
-                #print(reward_array)
-                #print(reward_array[len(self.reward)-1])
-                # calculate the advantage
-                #return_tmax = np.sum(reward_array * self.discount)
-                #advantage = return_tmax - self.value_state[0]
-
-                #if threading.current_thread().name == "Worker_1":
-
-                r_return = [self.reward[len(self.reward) - 1]]
+                self.r_return = [self.reward[len(self.reward) - 1]]
+                if threading.current_thread().name == "Worker_1":
+                    print(self.r_return)
 
                 for t in range(self.t_max):
-                    r_return.append(self.reward[len(self.reward) - 2 - t] + self.discount * r_return[0])
+                    self.r_return.append(self.reward[len(self.reward) - 2 - t] + self.discount * self.r_return[t])
+
+                self.r_return.pop(0)
 
                 self.state_buffer.clear()
                 self.reward.clear()
                 self.value_state.clear()
                 self.action.clear()
+                self.r_return.clear()
 
                 if self.steps_worker > 400:
                     coord.request_stop()
