@@ -11,7 +11,6 @@ import itertools
 
 
 def copy_network(from_scope, to_scope):
-
     global_val = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, from_scope)
     local_val = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, to_scope)
 
@@ -52,12 +51,12 @@ class Worker():
         # Cannot change uninitialised graph concurrently.
         self.copy_network = copy_network("global", self.id)
 
-        self.discount = np.array([pow(gamma, 0),pow(gamma, 1),pow(gamma, 2),pow(gamma, 3),pow(gamma, 4)])
+        self.discount = gamma
 
     def play(self, coord, sess):
         with sess.as_default(), sess.graph.as_default():
 
-            observation = self.env.reset()
+            # observation = self.env.reset()
 
             # if threading.current_thread().name == "Worker_1":
             #     values_global = sess.run(self.global_network.variables_names)
@@ -74,55 +73,67 @@ class Worker():
             #         # print("here 2")
             #     print("here now")
 
-
             while not coord.should_stop():
 
+                sess.run(self.copy_network)
                 t = 0
 
-                sess.run(self.copy_network)
-
-
-                t_start = self.steps_worker
-                t_state = 1
-                if self.done:
+                if self.done or self.steps_worker == 0:
+                    print(threading.current_thread().name, ": starting a new episode")
                     observation = self.env.reset()
                     proccessed_state = sess.run([self.w_network.proc_state],
                                                 {self.w_network.observation: observation})
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
                     self.state.clear()
-                    self.state += 4 * proccessed_state
+                    self.state += 4 * [proccessed_state]
+                    self.state_buffer.append(self.state)
+                else:
+                    self.state_buffer.append(self.state)
 
-                while (self.steps_worker - t_start <= self.t_max) or (t_state != 0):
-
+                for t in range(self.t_max):
                     action_prob, value = sess.run([self.w_network.policy, self.w_network.value],
-                                           {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
-                    action = np.random.choice(np.arange(self.num_actions), p = action_prob)
+                                                  {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
+                    action = np.random.choice(np.arange(self.num_actions), p=action_prob)
                     observation, reward, self.done, info = self.env.step(action)
                     proccessed_state = sess.run([self.w_network.proc_state], {self.w_network.observation: observation})
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
                     # pop's the item for a given index
                     self.state.pop(0)
-                    self.action.append(action)
                     self.state.append(proccessed_state)
+                    self.value_state.append(np.reshape(value, [1]))
                     self.reward.append(reward)
+                    self.action.append(action)
                     self.state_buffer.append(self.state)
-                    self.value_state.append(np.reshape(value,[1]))
                     self.steps_worker += 1
 
+                    if t == (self.t_max - 1):
+                        value = sess.run([self.w_network.value],
+                                         {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
+                        self.reward.append(np.reshape(value, [1]))
+
                     if self.done:
-                        #observation = self.env.reset()
-                        t_start = 0
+                        t_state = 0
+                        break
 
+                #reward_array = np.array(self.reward)
+                #print(reward_array)
+                #print(reward_array[len(self.reward)-1])
+                # calculate the advantage
+                #return_tmax = np.sum(reward_array * self.discount)
+                #advantage = return_tmax - self.value_state[0]
 
-                    reward_array = np.array(self.reward)
-                    #calculate the advantage
-                    return_tmax = np.sum(reward_array * self.discount)
-                    advantage = return_tmax - self.value_state[0]
+                #if threading.current_thread().name == "Worker_1":
 
-                    self.state_buffer.clear()
-                    self.reward.clear()
-                    self.value_state.clear()
-                    self.action.clear()
+                r_return = [self.reward[len(self.reward) - 1]]
+
+                for t in range(self.t_max):
+                    r_return.append(self.reward[len(self.reward) - 2 - t] + self.discount * r_return[0])
+
+                self.state_buffer.clear()
+                self.reward.clear()
+                self.value_state.clear()
+                self.action.clear()
+
                 if self.steps_worker > 400:
                     coord.request_stop()
                     return
