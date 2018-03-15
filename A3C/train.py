@@ -20,7 +20,7 @@ env.close()
 num_cores = multiprocessing.cpu_count()
 t_max = 5
 print("Num Cores", num_cores)
-
+gamma = 0.99
 
 with tf.device("/cpu:0"):
     tf.reset_default_graph()
@@ -30,7 +30,7 @@ with tf.device("/cpu:0"):
 
     workers = []
     for i in range(num_cores):
-        worke = Worker(game, "worker_{}".format(i+1), t_max, num_actions, global_network)
+        worke = Worker(game, "worker_{}".format(i+1), t_max, num_actions, global_network, gamma)
         workers.append(worke)
 
     with tf.Session() as sess:

@@ -24,8 +24,9 @@ def copy_network(from_scope, to_scope):
 
 
 class Worker():
-    def __init__(self, game, id, t_max, num_actions, global_network):
+    def __init__(self, game, id, t_max, num_actions, global_network, gamma):
 
+        self.action = []
         self.value_state = []
         self.state_buffer = []
         self.state = []
@@ -37,6 +38,7 @@ class Worker():
         self.id = id
         self.t_max = t_max
         self.global_network = global_network
+        self.done = []
 
         # Initialise the environment
         self.env = gym.envs.make(self.game)
@@ -49,6 +51,8 @@ class Worker():
 
         # Cannot change uninitialised graph concurrently.
         self.copy_network = copy_network("global", self.id)
+
+        self.discount = np.array([pow(gamma, 0),pow(gamma, 1),pow(gamma, 2),pow(gamma, 3),pow(gamma, 4)])
 
     def play(self, coord, sess):
         with sess.as_default(), sess.graph.as_default():
@@ -69,24 +73,7 @@ class Worker():
             #         print(v)
             #         # print("here 2")
             #     print("here now")
-            #
-            #     sess.run(copy_network('global', self.id))
-            #
-            #     values_global = sess.run(self.global_network.variables_names)
-            #     for k, v in zip(self.global_network.variables_names, values_global):
-            #         print("Variable: ", k)
-            #         print("Shape: ", v.shape)
-            #         print(v)
-            #
-            #     values_local = sess.run(self.w_network.variables_names)
-            #     for k, v in zip(self.w_network.variables_names, values_local):
-            #         print("Variable: ", k)
-            #         print("Shape: ", v.shape)
-            #         print(v)
-            #
-            #         # print(values_local)
-            #         # print(values_global)
-            #         # sess.run(copy_network(self.global_network.variables_names, self.w_network.variables_names))
+
 
             while not coord.should_stop():
 
@@ -98,39 +85,57 @@ class Worker():
                     # Select an random action
                     action = self.env.action_space.sample()
                     # Interact with the environment
-                    observation, reward, done, info = self.env.step(action)
+                    observation, reward, self.done, info = self.env.step(action)
                     # process the observation
                     proccessed_state = sess.run([self.w_network.proc_state], {self.w_network.observation: observation})
                     # reshape from [1,84,84,1] to [84,84]
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
                     # append the processed state to the end of the list
                     self.state.append(proccessed_state)
-                    self.reward.append(reward)
                     self.steps_worker +=1
                 else:
-                    for t in range(self.t_max):
-                        action_prob = sess.run([self.w_network.policy],
+                    t_start = self.steps_worker
+                    t_state = 1
+                    if self.done:
+                        observation = self.env.reset()
+                        proccessed_state = sess.run([self.w_network.proc_state],
+                                                    {self.w_network.observation: observation})
+                        proccessed_state = np.reshape(proccessed_state, [84, 84])
+                        self.state.clear()
+                        self.state += 4 * proccessed_state
+
+                    while (self.steps_worker - t_start <= self.t_max) or (t_state != 0):
+
+                        action_prob, value = sess.run([self.w_network.policy, self.w_network.value],
                                                {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
-                        action = np.argmax(action_prob, axis=1)
-                        observation, reward, done, info = self.env.step(action)
+                        action = np.random.choice(np.arange(self.num_actions), p = action_prob)
+                        observation, reward, self.done, info = self.env.step(action)
                         proccessed_state = sess.run([self.w_network.proc_state], {self.w_network.observation: observation})
                         proccessed_state = np.reshape(proccessed_state, [84, 84])
                         # pop's the item for a given index
                         self.state.pop(0)
-                        self.reward.pop(0)
-                        #self.value_state.pop(0)
+                        self.action.append(action)
                         self.state.append(proccessed_state)
                         self.reward.append(reward)
                         self.state_buffer.append(self.state)
-                        #self.value_state.append(value)
+                        self.value_state.append(np.reshape(value,[1]))
                         self.steps_worker += 1
 
-                        if done:
-                            observation = self.env.reset()
+                        if self.done:
+                            #observation = self.env.reset()
+                            t_start = 0
+
+
+                    reward_array = np.array(self.reward)
+                    #calculate the advantage
+                    return_tmax = np.sum(reward_array * self.discount)
+                    advantage = return_tmax - self.value_state[0]
 
                     self.state_buffer.clear()
-
-                if self.steps_worker > 100:
+                    self.reward.clear()
+                    self.value_state.clear()
+                    self.action.clear()
+                if self.steps_worker > 400:
                     coord.request_stop()
                     return
 
