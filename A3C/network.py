@@ -26,7 +26,7 @@ class PolicyValueNetwork():
 
         with tf.variable_scope("hidden_layers"):
             # Placeholder for stacked processed states
-            self.state = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.float16)
+            self.state = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.float32)
 
             # First conv layer with 16 fliters, 8x8 size of filter, 4 stride of the filter, with ReLu
             self.conv1 = tf.contrib.layers.conv2d(self.state, 16, 8, 4, activation_fn=tf.nn.relu, trainable=True)
@@ -40,6 +40,11 @@ class PolicyValueNetwork():
             # Fully connected layer with 256 units and ReLu
             self.fc1 = tf.contrib.layers.fully_connected(self.conv2_flat, 256, activation_fn=tf.nn.relu, trainable=True)
 
+            # summaries
+            #tf.contrib.layers.summarize_activation(self.conv1)
+            #tf.contrib.layers.summarize_activation(self.conv2)
+            #tf.contrib.layers.summarize_activation(self.fc1)
+
         # Network for policy (state-action function)
         with tf.variable_scope("policy_net"):
             # fully connected layer with number of outputs = number of actions
@@ -52,12 +57,52 @@ class PolicyValueNetwork():
         with tf.variable_scope("value_net"):
             self.value = tf.contrib.layers.fully_connected(self.fc1, 1, activation_fn=None, trainable=True)
 
-            # Calculate loss for optimization
-            # ...
+        with tf.variable_scope("loss_calculation"):
+            self.advantage = tf.placeholder(shape=[None, None], dtype=tf.float32)
+            self.actions = tf.placeholder(shape=[None, None], dtype=tf.int32)
+            self.actions = tf.squeeze(self.actions)
+            self.actions_onehot = tf.one_hot(self.actions, num_actions, dtype=tf.float32)
+            self.reward = tf.placeholder(shape=[None, None], dtype=tf.float32)
 
-        # with tf.variable_scope("loss_calculation"):
+            # policy network loss
 
-        self.variables_names = [v.name for v in tf.trainable_variables(scope=scope_input)]
+            self.entropy = - tf.reduce_sum(self.state_action * tf.log(self.state_action))
+            # adding a small value to avoid NaN's
+            self.log_policy = self.state_action * self.actions_onehot
+            self.log_policy = tf.squeeze(tf.log(tf.reduce_sum(self.log_policy, axis=2, keepdims=False) + 1e-13))
+
+            self.policy_batch_loss = -(self.advantage * self.log_policy)
+            self.policy_loss = tf.reduce_sum(self.policy_batch_loss, name="loss")
+
+            # value network loss
+            self.value_batch_loss = tf.squared_difference(tf.squeeze(self.value), self.reward)
+            self.value_loss = tf.reduce_sum(self.value_batch_loss)
+
+            # total loss
+            self.loss = 0.5 * self.value_loss + self.policy_loss - self.entropy * 0.01
+
+        with tf.variable_scope("optimization"):
+            self.optimizer = tf.train.RMSPropOptimizer(0.00025, 0.99, 0.0, 1e-6)
+            self.gradients = self.optimizer.compute_gradients(self.loss)
+            self.gradients = [[grad, var] for grad, var in self.gradients if grad is not None]
+            self.gradients_apply = self.optimizer.apply_gradients(self.gradients,
+                                                                  global_step=tf.train.get_global_step())
+
+        # summary
+        tf.summary.scalar("Total_loss", self.loss)
+        tf.summary.scalar("Entropy", self.entropy)
+        tf.summary.scalar("Policy loss", self.policy_loss)
+        tf.summary.scalar("Value loss", self.value_loss)
+        #tf.summary.scalar("Advantage", self.advantage)
+        #tf.summary.scalar("N-step Return", self.reward)
+
+        var_scope_name = tf.get_variable_scope().name
+        summary_ops = tf.get_collection(tf.GraphKeys.SUMMARIES)
+        sumaries = [s for s in summary_ops if "global" in s.name]
+        sumaries = [s for s in summary_ops if var_scope_name in s.name]
+        self.summaries = tf.summary.merge(sumaries)
+
+            # self.variables_names = [v.name for v in tf.trainable_variables(scope=scope_input)]
 
 
 def variable_summaries(var):

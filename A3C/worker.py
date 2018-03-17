@@ -3,6 +3,7 @@ import threading
 import numpy as np
 from A3C.network import PolicyValueNetwork
 import gym
+import operator
 from matplotlib import pyplot as plt
 import collections
 import os
@@ -21,9 +22,19 @@ def copy_network(from_scope, to_scope):
 
     return copy_val
 
+def make_train_op(local_estimator, global_estimator):
+
+  local_grads, _ = zip(*local_estimator.gradients)
+  # Clip gradients
+  local_grads, _ = tf.clip_by_global_norm(local_grads, 5.0)
+  _, global_vars = zip(*global_estimator.gradients)
+  local_global_grads_and_vars = list(zip(local_grads, global_vars))
+  return global_estimator.optimizer.apply_gradients(local_global_grads_and_vars,
+          global_step=tf.train.get_global_step())
+
 
 class Worker():
-    def __init__(self, game, id, t_max, num_actions, global_network, gamma):
+    def __init__(self, game, id, t_max, num_actions, global_network, gamma, summary_writer):
 
         self.action = []
         self.value_state = []
@@ -39,6 +50,8 @@ class Worker():
         self.global_network = global_network
         self.done = []
         self.r_return = []
+        self.writer = summary_writer
+        self.global_step = tf.train.get_global_step()
 
         # Initialise the environment
         self.env = gym.envs.make(self.game)
@@ -51,6 +64,8 @@ class Worker():
 
         # Cannot change uninitialised graph concurrently.
         self.copy_network = copy_network("global", self.id)
+
+        self.grad_apply = make_train_op(self.w_network, self.global_network)
 
         self.discount = gamma
 
@@ -79,6 +94,7 @@ class Worker():
                 sess.run(self.copy_network)
                 t = 0
 
+                # create a state buffer from a single state and append it to state buffer
                 if self.done or self.steps_worker == 0:
                     print(threading.current_thread().name, ": starting a new episode")
                     observation = self.env.reset()
@@ -89,6 +105,7 @@ class Worker():
                     self.state += 4 * [proccessed_state]
                     self.state_buffer.append(self.state)
                 else:
+                    # append the last stop state to state buffer
                     self.state_buffer.append(self.state)
 
                 # interact with the environment for t_max steps or till terminal step
@@ -103,6 +120,9 @@ class Worker():
                     proccessed_state = sess.run([self.w_network.proc_state], {self.w_network.observation: observation})
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
 
+                    # if threading.current_thread().name == "Worker_1":
+                    #    print(action)
+
                     # pop's the item for a given index
                     self.state.pop(0)
                     self.state.append(proccessed_state)
@@ -114,6 +134,7 @@ class Worker():
                     self.state_buffer.append(self.state)
                     self.steps_worker += 1
 
+                    # give return the value of the last state
                     if t == (self.t_max - 1):
                         value = sess.run([self.w_network.value],
                                          {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
@@ -123,13 +144,35 @@ class Worker():
                         break
 
                 self.r_return = [self.reward[len(self.reward) - 1]]
-                if threading.current_thread().name == "Worker_1":
-                    print(self.r_return)
+                num_steps = len(self.state_buffer)
 
-                for t in range(self.t_max):
+                # number of steps may not always be equal to t_max
+                for t in range(num_steps - 1):
                     self.r_return.append(self.reward[len(self.reward) - 2 - t] + self.discount * self.r_return[t])
-
+                # removing the value of the last state
                 self.r_return.pop(0)
+                # reversing the return list to match the indexes of other lists: index order (t+4 -> t)
+                self.r_return.reverse()
+                # remove the last state from the state buffer, as it will not be used
+                self.state_buffer.pop(num_steps - 1)
+                num_steps -= 1
+
+                # calculating advantage
+                advantage = list(map(operator.sub,self.r_return, self.value_state ))
+
+                feed_dict = {
+                    self.w_network.advantage: np.reshape(advantage, [1, num_steps]),
+                    self.w_network.actions: np.reshape(self.action, [1, num_steps]),
+                    self.w_network.state: np.reshape(self.state_buffer, [num_steps, 84, 84, 4]),
+                    self.w_network.reward: np.reshape(self.r_return, [1, num_steps])
+                }
+
+                _, summaries, global_step= sess.run([self.grad_apply,
+                           self.w_network.summaries,
+                           self.global_step], feed_dict)
+
+                self.writer.add_summary(summaries, global_step)
+                self.writer.flush()
 
                 self.state_buffer.clear()
                 self.reward.clear()
@@ -137,7 +180,7 @@ class Worker():
                 self.action.clear()
                 self.r_return.clear()
 
-                if self.steps_worker > 400:
+                if self.steps_worker > 2000:
                     coord.request_stop()
                     return
 
