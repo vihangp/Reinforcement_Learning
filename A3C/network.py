@@ -50,7 +50,7 @@ class PolicyValueNetwork():
             # fully connected layer with number of outputs = number of actions
             self.fc2 = tf.contrib.layers.fully_connected(self.fc1, num_actions, activation_fn=None, trainable=True)
             # Soft max over the outputs
-            self.state_action = tf.contrib.layers.softmax(self.fc2)
+            self.state_action = tf.contrib.layers.softmax(self.fc2) + 1e-13
             # squeeze to remove all the 1's from the shape
             self.policy = tf.squeeze(self.state_action)
 
@@ -63,6 +63,9 @@ class PolicyValueNetwork():
             self.actions = tf.squeeze(self.actions)
             self.actions_onehot = tf.one_hot(self.actions, num_actions, dtype=tf.float32)
             self.reward = tf.placeholder(shape=[None, None], dtype=tf.float32)
+            self.mean_return = tf.reduce_mean(self.reward, name="mean_return")
+            self.mean_abs_reward = tf.Variable(0, name= "mean_5_reward", dtype=tf.float32)
+            self.mean_100_reward = tf.Variable(0, name= "mean_100_reward", dtype=tf.float32)
 
             # policy network loss
 
@@ -89,12 +92,13 @@ class PolicyValueNetwork():
                                                                   global_step=tf.train.get_global_step())
 
         # summary
-        tf.summary.scalar("Total_loss", self.loss)
-        tf.summary.scalar("Entropy", self.entropy)
-        tf.summary.scalar("Policy loss", self.policy_loss)
-        tf.summary.scalar("Value loss", self.value_loss)
-        #tf.summary.scalar("Advantage", self.advantage)
-        #tf.summary.scalar("N-step Return", self.reward)
+        #tf.summary.scalar("Total_loss", self.loss)
+        #tf.summary.scalar("Entropy", self.entropy)
+        #tf.summary.scalar("Policy loss", self.policy_loss)
+        #tf.summary.scalar("Value loss", self.value_loss)
+        #tf.summary.scalar(self.mean_return.op.name, self.mean_return)
+        tf.summary.scalar(self.mean_abs_reward.op.name, self.mean_abs_reward)
+        tf.summary.scalar(self.mean_100_reward.op.name, self.mean_100_reward)
 
         var_scope_name = tf.get_variable_scope().name
         summary_ops = tf.get_collection(tf.GraphKeys.SUMMARIES)

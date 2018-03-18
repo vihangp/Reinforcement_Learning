@@ -52,6 +52,11 @@ class Worker():
         self.r_return = []
         self.writer = summary_writer
         self.global_step = tf.train.get_global_step()
+        self.mean_100_reward = 0
+        self.episode_reward = []
+        self.mean_episode_reward = []
+        self.episode_count = 0
+        self.mean_reward = 0 # 5 step mean reward
 
         # Initialise the environment
         self.env = gym.envs.make(self.game)
@@ -96,7 +101,6 @@ class Worker():
 
                 # create a state buffer from a single state and append it to state buffer
                 if self.done or self.steps_worker == 0:
-                    print(threading.current_thread().name, ": starting a new episode")
                     observation = self.env.reset()
                     proccessed_state = sess.run([self.w_network.proc_state],
                                                 {self.w_network.observation: observation})
@@ -129,19 +133,28 @@ class Worker():
 
                     self.value_state.append(np.reshape(value, [1]))
                     self.reward.append(reward)
+                    self.episode_reward.append(reward)
                     self.action.append(action)
-
                     self.state_buffer.append(self.state)
                     self.steps_worker += 1
 
                     # give return the value of the last state
-                    if t == (self.t_max - 1):
+                    if self.done:
+                        self.mean_reward = np.mean(self.reward)
+                        self.episode_count += 1
+                        self.mean_episode_reward.append(np.mean(self.episode_reward))
+                        self.episode_reward.clear()
+                        if self.episode_count % 100:
+                            self.mean_100_reward = np.mean(self.mean_episode_reward)
+                            self.mean_episode_reward.clear()
+                            if threading.current_thread().name == "Worker_1":
+                                print("100 episode Mean reward:", self.mean_100_reward)
+                        break
+                    elif t == (self.t_max - 1):
+                        self.mean_reward = np.mean(self.reward)
                         value = sess.run([self.w_network.value],
                                          {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
                         self.reward.append(np.reshape(value, [1]))
-
-                    if self.done:
-                        break
 
                 self.r_return = [self.reward[len(self.reward) - 1]]
                 num_steps = len(self.state_buffer)
@@ -160,14 +173,17 @@ class Worker():
                 # calculating advantage
                 advantage = list(map(operator.sub,self.r_return, self.value_state ))
 
+                # popping the value reward from reward buffer
                 feed_dict = {
                     self.w_network.advantage: np.reshape(advantage, [1, num_steps]),
                     self.w_network.actions: np.reshape(self.action, [1, num_steps]),
                     self.w_network.state: np.reshape(self.state_buffer, [num_steps, 84, 84, 4]),
-                    self.w_network.reward: np.reshape(self.r_return, [1, num_steps])
+                    self.w_network.reward: np.reshape(self.r_return, [1, num_steps]),
+                    self.w_network.mean_abs_reward: self.mean_reward,
+                    self.w_network.mean_100_reward: self.mean_100_reward
                 }
 
-                _, summaries, global_step= sess.run([self.grad_apply,
+                mean_return, _, summaries, global_step= sess.run([self.w_network.mean_return,self.grad_apply,
                            self.w_network.summaries,
                            self.global_step], feed_dict)
 
@@ -180,7 +196,7 @@ class Worker():
                 self.action.clear()
                 self.r_return.clear()
 
-                if self.steps_worker > 2000:
+                if self.steps_worker > 20000:
                     coord.request_stop()
                     return
 

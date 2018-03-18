@@ -57,6 +57,7 @@ with tf.device("/cpu:0"):
             print("Loading model checkpoint: {}".format(latest_checkpoint))
             saver.restore(sess, latest_checkpoint)
 
+        writer.add_graph(graph=sess.graph)
 
         threads = []
         i = 1

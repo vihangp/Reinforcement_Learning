@@ -2,6 +2,183 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e9718d3-ab2c-4942-976b-fa1ae6563222" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520679899.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520699331.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520699469.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520699979.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520700077.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520700266.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520700320.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520700379.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520700423.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520701680.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520701720.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520701861.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520701903.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520702589.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520702676.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520702826.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520702873.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520702905.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520703274.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520703542.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520703764.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520703986.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520704102.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520704214.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520704569.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520704602.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520704956.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520705063.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520705164.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520705375.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706050.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706156.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706209.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706245.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706308.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706320.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706332.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706345.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706566.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706664.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706700.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706774.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520706865.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520790057.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520790700.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520790865.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520790902.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520791438.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520791536.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520791685.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520791743.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520792195.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520793664.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520793743.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520794385.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520794523.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520794598.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520794729.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520794973.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520795065.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520795234.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520795269.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520795448.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520795509.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520795696.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520795896.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520795935.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520795969.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520796579.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520796619.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520796667.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520796813.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520796837.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520796906.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520796961.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520797037.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520797370.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520884884.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520885036.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520952704.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520952806.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520952862.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520952893.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520953150.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520953313.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520954051.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520954834.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520954911.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520955036.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520955434.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520955618.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520955721.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520956054.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520956135.Vihangs-MacBook-Pro.local" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520957707.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520957842.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520957979.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958297.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958323.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958384.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958433.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958466.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958493.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958523.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958541.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958579.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958627.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958928.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520958988.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520959087.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520959121.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520962672.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520962735.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520963125.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1520963145.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521015573.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521015791.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521015822.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521020134.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521034077.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521034106.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521035402.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521063779.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521063985.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521064117.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521064142.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521064164.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521065126.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521065159.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521065257.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521065304.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521065332.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521065367.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521065451.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521065505.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521065649.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521065818.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521066004.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521066136.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521066422.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521066458.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521103894.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521103972.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521104367.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521104662.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521104789.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521104859.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521104950.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521105190.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521105288.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521114818.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521114909.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521114944.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521115164.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521115366.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521115594.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521115687.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521123097.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521125014.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521125061.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521125083.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521125201.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521125282.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521125340.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521125377.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521125436.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521125596.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521125659.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521131053.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521131080.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521131734.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521131750.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521133691.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C/logdir/events.out.tfevents.1521133773.vihangs-mbp.mobile.usilu.net" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C/network.py" afterPath="$PROJECT_DIR$/A3C/network.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C/train.py" afterPath="$PROJECT_DIR$/A3C/train.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C/worker.py" afterPath="$PROJECT_DIR$/A3C/worker.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,7 +194,7 @@
         <entry file="file://$PROJECT_DIR$/A3C/Workers_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -28,8 +205,8 @@
       <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/A3C/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="28" column="66" lean-forward="true" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
+            <state relative-caret-position="437">
+              <caret line="44" column="43" lean-forward="true" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -40,8 +217,8 @@
       <file leaf-file-name="worker.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/A3C/worker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="138" column="0" lean-forward="true" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+            <state relative-caret-position="399">
+              <caret line="151" column="29" lean-forward="true" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -52,8 +229,8 @@
       <file leaf-file-name="network.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/A3C/network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+            <state relative-caret-position="288">
+              <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -112,11 +289,6 @@
             <path>
               <item name="Reinforcement_Learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="Reinforcement_Learning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Reinforcement_Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Reinforcement_Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="DQN" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -254,7 +426,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521133589042</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Nearly done">
+      <created>1521248497876</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1521248497876</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -263,21 +442,23 @@
     </todo-panel>
     <todo-panel id="all">
       <are-packages-shown value="true" />
+      <are-modules-shown value="true" />
+      <flatten-packages value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13662376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2167991" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40024185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40024185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -286,7 +467,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -299,7 +479,8 @@
     <MESSAGE value="updates" />
     <MESSAGE value="Reset state is multiplied before the first action" />
     <MESSAGE value="fixed while loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed while loop" />
+    <MESSAGE value="Nearly done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nearly done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -408,20 +589,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb" />
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb" />
     <entry file="file://$PROJECT_DIR$/A3C/Workers_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -462,20 +631,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb" />
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb" />
     <entry file="file://$PROJECT_DIR$/A3C/Workers_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -516,20 +673,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb" />
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb" />
     <entry file="file://$PROJECT_DIR$/A3C/Workers_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -570,20 +715,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb" />
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb" />
     <entry file="file://$PROJECT_DIR$/A3C/Workers_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -624,20 +757,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb" />
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb" />
     <entry file="file://$PROJECT_DIR$/A3C/Workers_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -668,20 +789,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb" />
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb" />
     <entry file="file://$PROJECT_DIR$/A3C/Workers_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -692,13 +801,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libr/plotting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-551">
-          <caret line="17" column="20" lean-forward="false" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/libr/plotting.py" />
     <entry file="file://$USER_HOME$/tensorflow/lib/python3.6/site-packages/tensorflow/python/framework/ops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -706,50 +809,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A3C/Workers_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A3C/network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A3C/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="28" column="66" lean-forward="true" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Network.ipynb" />
+    <entry file="file://$PROJECT_DIR$/DQN/Deep Q Learning Solution.ipynb" />
     <entry file="file://$USER_HOME$/tensorflow/lib/python3.6/site-packages/numpy/core/fromnumeric.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -758,10 +819,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/A3C/Workers_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C/network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="44" column="43" lean-forward="true" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/A3C/worker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="138" column="0" lean-forward="true" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+        <state relative-caret-position="399">
+          <caret line="151" column="29" lean-forward="true" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
