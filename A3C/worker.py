@@ -4,11 +4,9 @@ import numpy as np
 from A3C.network import PolicyValueNetwork
 import gym
 import operator
-from matplotlib import pyplot as plt
 import collections
 import os
 import sys
-import itertools
 
 
 def copy_network(from_scope, to_scope):
