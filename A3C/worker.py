@@ -207,7 +207,7 @@ class Worker():
                 self.action.clear()
                 self.r_return.clear()
 
-                if self.steps_worker > 200:
+                if self.steps_worker > 1000000:
                     coord.request_stop()
                     return
 
