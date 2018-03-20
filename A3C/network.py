@@ -52,7 +52,7 @@ class PolicyValueNetwork():
             # fully connected layer with number of outputs = number of actions
             self.fc2 = tf.contrib.layers.fully_connected(self.fc1, num_actions, activation_fn=None, trainable=True)
             # Soft max over the outputs
-            self.state_action = tf.contrib.layers.softmax(self.fc2) + 1e-13
+            self.state_action = tf.contrib.layers.softmax(self.fc2) + 1e-8
             # squeeze to remove all the 1's from the shape
             self.policy = tf.squeeze(self.state_action)
 
@@ -71,17 +71,18 @@ class PolicyValueNetwork():
 
             # policy network loss
 
-            self.entropy = - tf.reduce_sum(self.state_action * tf.log(self.state_action))
+            self.entropy = - tf.reduce_mean(self.state_action * tf.log(self.state_action))
             # adding a small value to avoid NaN's
-            self.log_policy = self.state_action * self.actions_onehot
-            self.log_policy = tf.squeeze(tf.log(tf.reduce_sum(self.log_policy, axis=2, keepdims=False) + 1e-13))
+            self.log_policy_1 = self.state_action * self.actions_onehot
+            self.log_policy_2 = tf.reduce_sum(self.log_policy_1, axis=2, keepdims=False)
+            self.log_policy = tf.squeeze(tf.log(self.log_policy_2))
 
             self.policy_batch_loss = -(self.advantage * self.log_policy)
-            self.policy_loss = tf.reduce_sum(self.policy_batch_loss, name="loss")
+            self.policy_loss = tf.reduce_mean(self.policy_batch_loss, name="loss")
 
             # value network loss
             self.value_batch_loss = tf.squared_difference(tf.squeeze(self.value), self.reward)
-            self.value_loss = tf.reduce_sum(self.value_batch_loss)
+            self.value_loss = tf.reduce_mean(self.value_batch_loss)
 
             # total loss
             self.loss = 0.5 * self.value_loss + self.policy_loss - self.entropy * 0.01

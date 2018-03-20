@@ -20,15 +20,15 @@ def copy_network(from_scope, to_scope):
 
     return copy_val
 
-def make_train_op(local_estimator, global_estimator):
 
-  local_grads, _ = zip(*local_estimator.gradients)
-  # Clip gradients
-  local_grads, _ = tf.clip_by_global_norm(local_grads, 5.0)
-  _, global_vars = zip(*global_estimator.gradients)
-  local_global_grads_and_vars = list(zip(local_grads, global_vars))
-  return global_estimator.optimizer.apply_gradients(local_global_grads_and_vars,
-          global_step=tf.train.get_global_step())
+def make_train_op(local_estimator, global_estimator):
+    local_grads, _ = zip(*local_estimator.gradients)
+    # Clip gradients
+    local_grads, _ = tf.clip_by_global_norm(local_grads, 5.0)
+    _, global_vars = zip(*global_estimator.gradients)
+    local_global_grads_and_vars = list(zip(local_grads, global_vars))
+    return global_estimator.optimizer.apply_gradients(local_global_grads_and_vars,
+                                                      global_step=tf.train.get_global_step())
 
 
 class Worker():
@@ -54,7 +54,7 @@ class Worker():
         self.episode_reward = []
         self.mean_episode_reward = []
         self.episode_count = 0
-        self.mean_reward = 0 # 5 step mean reward
+        self.mean_reward = 0  # 5 step mean reward
 
         # Initialise the environment
         self.env = gym.envs.make(self.game)
@@ -128,7 +128,6 @@ class Worker():
                     # pop's the item for a given index
                     self.state.pop(0)
                     self.state.append(proccessed_state)
-
                     self.value_state.append(np.reshape(value, [1]))
                     self.reward.append(reward)
                     self.episode_reward.append(reward)
@@ -167,7 +166,7 @@ class Worker():
                 num_steps -= 1
 
                 # calculating advantage
-                advantage = list(map(operator.sub,self.r_return, self.value_state ))
+                advantage = list(map(operator.sub, self.r_return, self.value_state))
 
                 # popping the value reward from reward buffer
                 feed_dict = {
@@ -179,13 +178,28 @@ class Worker():
                     self.w_network.mean_100_reward: self.mean_100_reward
                 }
 
-                mean_return, _, summaries, global_step= sess.run([self.w_network.mean_return,self.grad_apply,
-                           self.w_network.summaries,
-                           self.global_step], feed_dict)
+                mean_return, _, summaries, global_step, state_action, actions_onehot, log_pol, log_pol2, entropy = sess.run(
+                    [self.w_network.mean_return, self.grad_apply,
+                     self.w_network.summaries,
+                     self.global_step, self.w_network.state_action, self.w_network.actions_onehot,
+                     self.w_network.log_policy_1, self.w_network.log_policy_2,
+                     self.w_network.entropy], feed_dict)
 
                 if threading.current_thread().name == "Worker_1":
                     self.writer.add_summary(summaries, global_step)
                     self.writer.flush()
+                    # print("sa:",np.shape(state_action))
+                    # print("entropy", np.shape(entropy))
+                    # print("a_o",np.shape(actions_onehot))
+                    # print("lp", np.shape(log_pol))
+                    # print("lp2", np.shape(log_pol2))
+                    # print("a",np.shape(self.action))
+                    # print("s_a_v:",state_action)
+                    # print("entropy_v", entropy)
+                    # print("a_o_v",actions_onehot)
+                    # print("lp", log_pol)
+                    # print("lp2", log_pol2)
+                    # print("a_v",self.action)
 
                 self.state_buffer.clear()
                 self.reward.clear()
@@ -193,7 +207,7 @@ class Worker():
                 self.action.clear()
                 self.r_return.clear()
 
-                if self.steps_worker > 20000:
+                if self.steps_worker > 200:
                     coord.request_stop()
                     return
 
