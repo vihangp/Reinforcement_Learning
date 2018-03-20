@@ -28,6 +28,8 @@ class PolicyValueNetwork():
             # Placeholder for stacked processed states
             self.state = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.float32)
 
+            self.state = self.state/255.0
+
             # First conv layer with 16 fliters, 8x8 size of filter, 4 stride of the filter, with ReLu
             self.conv1 = tf.contrib.layers.conv2d(self.state, 16, 8, 4, activation_fn=tf.nn.relu, trainable=True)
 
@@ -41,9 +43,9 @@ class PolicyValueNetwork():
             self.fc1 = tf.contrib.layers.fully_connected(self.conv2_flat, 256, activation_fn=tf.nn.relu, trainable=True)
 
             # summaries
-            #tf.contrib.layers.summarize_activation(self.conv1)
-            #tf.contrib.layers.summarize_activation(self.conv2)
-            #tf.contrib.layers.summarize_activation(self.fc1)
+            tf.contrib.layers.summarize_activation(self.conv1)
+            tf.contrib.layers.summarize_activation(self.conv2)
+            tf.contrib.layers.summarize_activation(self.fc1)
 
         # Network for policy (state-action function)
         with tf.variable_scope("policy_net"):
@@ -97,7 +99,7 @@ class PolicyValueNetwork():
         #tf.summary.scalar("Policy loss", self.policy_loss)
         #tf.summary.scalar("Value loss", self.value_loss)
         #tf.summary.scalar(self.mean_return.op.name, self.mean_return)
-        tf.summary.scalar(self.mean_abs_reward.op.name, self.mean_abs_reward)
+        #tf.summary.scalar(self.mean_abs_reward.op.name, self.mean_abs_reward)
         tf.summary.scalar(self.mean_100_reward.op.name, self.mean_100_reward)
 
         var_scope_name = tf.get_variable_scope().name

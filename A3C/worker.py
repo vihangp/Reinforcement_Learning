@@ -138,15 +138,13 @@ class Worker():
 
                     # give return the value of the last state
                     if self.done:
-                        self.mean_reward = np.mean(self.reward)
+                        self.mean_reward = np.sum(self.reward)
                         self.episode_count += 1
-                        self.mean_episode_reward.append(np.mean(self.episode_reward))
+                        self.mean_episode_reward.append(np.sum(self.episode_reward))
                         self.episode_reward.clear()
                         if self.episode_count % 100:
                             self.mean_100_reward = np.mean(self.mean_episode_reward)
                             self.mean_episode_reward.clear()
-                            if threading.current_thread().name == "Worker_1":
-                                print("100 episode Mean reward:", self.mean_100_reward)
                         break
                     elif t == (self.t_max - 1):
                         self.mean_reward = np.mean(self.reward)
@@ -185,8 +183,9 @@ class Worker():
                            self.w_network.summaries,
                            self.global_step], feed_dict)
 
-                self.writer.add_summary(summaries, global_step)
-                self.writer.flush()
+                if threading.current_thread().name == "Worker_1":
+                    self.writer.add_summary(summaries, global_step)
+                    self.writer.flush()
 
                 self.state_buffer.clear()
                 self.reward.clear()
