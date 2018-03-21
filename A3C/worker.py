@@ -98,7 +98,7 @@ class Worker():
                 t = 0
 
                 # create a state buffer from a single state and append it to state buffer
-                if self.done or self.steps_worker == 0:
+                if self.done or self.steps_worker == 0 or lives != 4:
                     observation = self.env.reset()
                     proccessed_state = sess.run([self.w_network.proc_state],
                                                 {self.w_network.observation: observation})
@@ -106,6 +106,7 @@ class Worker():
                     self.state.clear()
                     self.state += 4 * [proccessed_state]
                     self.state_buffer.append(self.state)
+                    lives = self.env.env.ale.lives()
                 else:
                     # append the last stop state to state buffer
                     self.state_buffer.append(self.state)
@@ -118,13 +119,16 @@ class Worker():
                     action = np.random.choice(np.arange(self.num_actions), p=action_prob)
                     # pass action
                     observation, reward, self.done, info = self.env.step(action)
+                    lives = self.env.env.ale.lives()
                     # process the new state
                     proccessed_state = sess.run([self.w_network.proc_state], {self.w_network.observation: observation})
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
 
-                    # if threading.current_thread().name == "Worker_1":
-                    #    print(action)
-
+                    # reward clipping
+                    if reward > 0:
+                        reward = 1
+                    elif reward < 0:
+                        reward = -1
                     # pop's the item for a given index
                     self.state.pop(0)
                     self.state.append(proccessed_state)
@@ -136,7 +140,7 @@ class Worker():
                     self.steps_worker += 1
 
                     # give return the value of the last state
-                    if self.done:
+                    if self.done or lives != 4:
                         self.mean_reward = np.sum(self.reward)
                         self.episode_count += 1
                         self.mean_episode_reward.append(np.sum(self.episode_reward))
@@ -207,7 +211,7 @@ class Worker():
                 self.action.clear()
                 self.r_return.clear()
 
-                if self.steps_worker > 1000000:
+                if self.steps_worker > 4000000:
                     coord.request_stop()
                     return
 
@@ -224,3 +228,9 @@ def variable_summaries(var):
         tf.summary.scalar('max', tf.reduce_max(var))
         tf.summary.scalar('min', tf.reduce_min(var))
         tf.summary.histogram('histogram', var)
+
+        # To Do
+        # 1) Set Repeat frames to 4
+        # 2) Reset episode after on life is lost - done
+        # 3) Clip rewards to [0,1] - done
+        # 4) Anneal learning rate
