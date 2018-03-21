@@ -102,18 +102,12 @@ class Worker():
                 if self.done or self.steps_worker == 0 or (c_lives!=lives):
                     if self.done or self.steps_worker == 0:
                         observation = self.env.reset()
-                        if threading.current_thread().name == "Worker_1" and self.steps_worker > 5:
-                            print("reset")
                     proccessed_state = sess.run([self.w_network.proc_state],
                                                 {self.w_network.observation: observation})
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
                     self.state.clear()
                     self.state += 4 * [proccessed_state]
                     self.state_buffer.append(self.state)
-                    if threading.current_thread().name == "Worker_1" and self.steps_worker >5:
-                        print(c_lives)
-                        print(lives)
-                        print(self.done)
                 else:
                     # append the last stop state to state buffer
                     self.state_buffer.append(self.state)
@@ -219,7 +213,7 @@ class Worker():
                 self.action.clear()
                 self.r_return.clear()
 
-                if self.steps_worker > 1500:
+                if self.steps_worker > 4000000:
                     coord.request_stop()
                     return
 
