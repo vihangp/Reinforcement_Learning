@@ -9,6 +9,8 @@ import numpy as np
 import os
 
 game = "Qbert-v0"
+#game = "Pong-v0"
+#game = "Breakout-v0"
 #game = "CartPole-v0"
 # observation/state array shape: (210,160,3)
 # every action is performed for a duration of k frames, where k
@@ -16,7 +18,7 @@ game = "Qbert-v0"
 # action space: 6 for Qbert
 # 0,1,2,3,4,5 : possible actions
 
-env = gym.envs.make(game)
+env = gym.make(game)
 num_actions = env.action_space.n
 env.close()
 

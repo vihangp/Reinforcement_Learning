@@ -43,9 +43,9 @@ class PolicyValueNetwork():
             self.fc1 = tf.contrib.layers.fully_connected(self.conv2_flat, 256, activation_fn=tf.nn.relu, trainable=True)
 
             # summaries
-            tf.contrib.layers.summarize_activation(self.conv1)
-            tf.contrib.layers.summarize_activation(self.conv2)
-            tf.contrib.layers.summarize_activation(self.fc1)
+            #tf.contrib.layers.summarize_activation(self.conv1)
+            #tf.contrib.layers.summarize_activation(self.conv2)
+            #tf.contrib.layers.summarize_activation(self.fc1)
 
         # Network for policy (state-action function)
         with tf.variable_scope("policy_net"):
@@ -95,10 +95,10 @@ class PolicyValueNetwork():
                                                                   global_step=tf.train.get_global_step())
 
         # summary
-        #tf.summary.scalar("Total_loss", self.loss)
-        #tf.summary.scalar("Entropy", self.entropy)
-        #tf.summary.scalar("Policy loss", self.policy_loss)
-        #tf.summary.scalar("Value loss", self.value_loss)
+        tf.summary.scalar("Total_loss", self.loss)
+        tf.summary.scalar("Entropy", self.entropy)
+        tf.summary.scalar("Policy loss", self.policy_loss)
+        tf.summary.scalar("Value loss", self.value_loss)
         #tf.summary.scalar(self.mean_return.op.name, self.mean_return)
         #tf.summary.scalar(self.mean_abs_reward.op.name, self.mean_abs_reward)
         tf.summary.scalar(self.mean_100_reward.op.name, self.mean_100_reward)

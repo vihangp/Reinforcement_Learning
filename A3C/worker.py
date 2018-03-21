@@ -57,7 +57,7 @@ class Worker():
         self.mean_reward = 0  # 5 step mean reward
 
         # Initialise the environment
-        self.env = gym.envs.make(self.game)
+        self.env = gym.make(self.game)
         # Size of the action space
         self.num_actions = num_actions
 
@@ -96,17 +96,24 @@ class Worker():
 
                 sess.run(self.copy_network)
                 t = 0
-
+                # if self.steps_worker < 100000:
+                #     lives = 4
                 # create a state buffer from a single state and append it to state buffer
-                if self.done or self.steps_worker == 0 or lives != 4:
-                    observation = self.env.reset()
+                if self.done or self.steps_worker == 0 or (c_lives!=lives):
+                    if self.done or self.steps_worker == 0:
+                        observation = self.env.reset()
+                        if threading.current_thread().name == "Worker_1" and self.steps_worker > 5:
+                            print("reset")
                     proccessed_state = sess.run([self.w_network.proc_state],
                                                 {self.w_network.observation: observation})
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
                     self.state.clear()
                     self.state += 4 * [proccessed_state]
                     self.state_buffer.append(self.state)
-                    lives = self.env.env.ale.lives()
+                    if threading.current_thread().name == "Worker_1" and self.steps_worker >5:
+                        print(c_lives)
+                        print(lives)
+                        print(self.done)
                 else:
                     # append the last stop state to state buffer
                     self.state_buffer.append(self.state)
@@ -114,6 +121,7 @@ class Worker():
                 # interact with the environment for t_max steps or till terminal step
                 for t in range(self.t_max):
                     # select action
+                    c_lives = self.env.env.ale.lives()
                     action_prob, value = sess.run([self.w_network.policy, self.w_network.value],
                                                   {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
                     action = np.random.choice(np.arange(self.num_actions), p=action_prob)
@@ -129,6 +137,7 @@ class Worker():
                         reward = 1
                     elif reward < 0:
                         reward = -1
+
                     # pop's the item for a given index
                     self.state.pop(0)
                     self.state.append(proccessed_state)
@@ -140,7 +149,7 @@ class Worker():
                     self.steps_worker += 1
 
                     # give return the value of the last state
-                    if self.done or lives != 4:
+                    if self.done or (c_lives != lives):
                         self.mean_reward = np.sum(self.reward)
                         self.episode_count += 1
                         self.mean_episode_reward.append(np.sum(self.episode_reward))
@@ -182,12 +191,11 @@ class Worker():
                     self.w_network.mean_100_reward: self.mean_100_reward
                 }
 
-                mean_return, _, summaries, global_step, state_action, actions_onehot, log_pol, log_pol2, entropy = sess.run(
+                mean_return, _, summaries, global_step = sess.run(
                     [self.w_network.mean_return, self.grad_apply,
                      self.w_network.summaries,
-                     self.global_step, self.w_network.state_action, self.w_network.actions_onehot,
-                     self.w_network.log_policy_1, self.w_network.log_policy_2,
-                     self.w_network.entropy], feed_dict)
+                     self.global_step,
+                     ], feed_dict)
 
                 if threading.current_thread().name == "Worker_1":
                     self.writer.add_summary(summaries, global_step)
@@ -211,7 +219,7 @@ class Worker():
                 self.action.clear()
                 self.r_return.clear()
 
-                if self.steps_worker > 4000000:
+                if self.steps_worker > 1500:
                     coord.request_stop()
                     return
 
