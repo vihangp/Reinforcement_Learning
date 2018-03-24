@@ -46,7 +46,7 @@ class Worker():
         self.id = id
         self.t_max = t_max
         self.global_network = global_network
-        self.done = []
+        self.done = False
         self.r_return = []
         self.writer = summary_writer
         self.global_step = tf.train.get_global_step()
@@ -107,10 +107,10 @@ class Worker():
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
                     self.state.clear()
                     self.state += 4 * [proccessed_state]
-                    self.state_buffer.append(self.state)
+                    self.state_buffer.append(self.state[:])
                 else:
                     # append the last stop state to state buffer
-                    self.state_buffer.append(self.state)
+                    self.state_buffer.append(self.state[:])
 
                 # interact with the environment for t_max steps or till terminal step
                 for t in range(self.t_max):
@@ -139,7 +139,7 @@ class Worker():
                     self.reward.append(reward)
                     self.episode_reward.append(reward)
                     self.action.append(action)
-                    self.state_buffer.append(self.state)
+                    self.state_buffer.append(self.state[:])
                     self.steps_worker += 1
 
                     # give return the value of the last state
@@ -164,6 +164,7 @@ class Worker():
                 # number of steps may not always be equal to t_max
                 for t in range(num_steps - 1):
                     self.r_return.append(self.reward[len(self.reward) - 2 - t] + self.discount * self.r_return[t])
+
                 # removing the value of the last state
                 self.r_return.pop(0)
                 # reversing the return list to match the indexes of other lists: index order (t+4 -> t)
@@ -188,24 +189,30 @@ class Worker():
                 mean_return, _, summaries, global_step = sess.run(
                     [self.w_network.mean_return, self.grad_apply,
                      self.w_network.summaries,
-                     self.global_step,
-                     ], feed_dict)
+                     self.global_step], feed_dict)
 
                 if threading.current_thread().name == "Worker_1":
                     self.writer.add_summary(summaries, global_step)
                     self.writer.flush()
                     # print("sa:",np.shape(state_action))
-                    # print("entropy", np.shape(entropy))
+                    #print("entropy_1", np.shape(entropy_1))
+                    #print("entropy_2", np.shape(entropy_2))
                     # print("a_o",np.shape(actions_onehot))
                     # print("lp", np.shape(log_pol))
                     # print("lp2", np.shape(log_pol2))
                     # print("a",np.shape(self.action))
                     # print("s_a_v:",state_action)
-                    # print("entropy_v", entropy)
+                    #print("entropy_1_v", entropy_1)
+                    #print("entropy_2_v", entropy_2)
                     # print("a_o_v",actions_onehot)
                     # print("lp", log_pol)
                     # print("lp2", log_pol2)
                     # print("a_v",self.action)
+                    print(id(self.state_buffer[0]))
+                    print(id(self.state_buffer[1]))
+                    print(id(self.state_buffer[2]))
+                    print(id(self.state_buffer[3]))
+
 
                 self.state_buffer.clear()
                 self.reward.clear()
@@ -213,7 +220,7 @@ class Worker():
                 self.action.clear()
                 self.r_return.clear()
 
-                if self.steps_worker > 4000000:
+                if self.steps_worker > 2000:
                     coord.request_stop()
                     return
 
