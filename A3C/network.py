@@ -88,7 +88,7 @@ class PolicyValueNetwork():
             self.loss = 0.5 * self.value_loss + self.policy_loss - self.entropy * 0.01
 
         with tf.variable_scope("optimization"):
-            self.optimizer = tf.train.RMSPropOptimizer(0.0001, 0.99, 0.0, 1e-6)
+            self.optimizer = tf.train.RMSPropOptimizer(0.00025, 0.99, 0.0, 1e-6)
             self.gradients = self.optimizer.compute_gradients(self.loss)
             self.gradients = [[grad, var] for grad, var in self.gradients if grad is not None]
             self.gradients_apply = self.optimizer.apply_gradients(self.gradients,
