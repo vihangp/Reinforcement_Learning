@@ -52,40 +52,48 @@ class PolicyValueNetwork():
             # fully connected layer with number of outputs = number of actions
             self.fc2 = tf.contrib.layers.fully_connected(self.fc1, num_actions, activation_fn=None, trainable=True)
             # Soft max over the outputs
-            self.state_action = tf.contrib.layers.softmax(self.fc2) + 1e-8
+            self.state_action = tf.contrib.layers.softmax(self.fc2) + 1e-20
             # squeeze to remove all the 1's from the shape
             self.policy = tf.squeeze(self.state_action)
 
         with tf.variable_scope("value_net"):
             self.value = tf.contrib.layers.fully_connected(self.fc1, 1, activation_fn=None, trainable=True)
+            self.value_transpose = tf.transpose(self.value)
 
         with tf.variable_scope("loss_calculation"):
             self.advantage = tf.placeholder(shape=[None, None], dtype=tf.float32)
             self.actions = tf.placeholder(shape=[None, None], dtype=tf.int32)
             self.actions = tf.squeeze(self.actions)
-            self.actions_onehot = tf.one_hot(self.actions, num_actions, dtype=tf.float32)
+            self.actions_onehot = tf.squeeze(tf.one_hot(self.actions, num_actions, dtype=tf.float32))
             self.reward = tf.placeholder(shape=[None, None], dtype=tf.float32)
             self.mean_return = tf.reduce_mean(self.reward, name="mean_return")
             self.mean_abs_reward = tf.Variable(0, name= "mean_5_reward", dtype=tf.float32)
             self.mean_100_reward = tf.Variable(0, name= "mean_100_reward", dtype=tf.float32)
 
             # policy network loss
+            #self.entropy = - tf.reduce_mean(self.state_action * tf.log(self.state_action))
+            self.entropy = - tf.reduce_sum(self.state_action * tf.log(self.state_action),1)
 
-            self.entropy = - tf.reduce_mean(self.state_action * tf.log(self.state_action))
             # adding a small value to avoid NaN's
-            self.log_policy_1 = self.state_action * self.actions_onehot
-            self.log_policy_2 = tf.reduce_sum(self.log_policy_1, axis=2, keepdims=False)
-            self.log_policy = tf.squeeze(tf.log(self.log_policy_2))
+            #self.action_prob = self.state_action * self.actions_onehot
+            #self.log_policy_2 = tf.reduce_sum(self.log_policy_1, axis=2, keepdims=False)
+            #self.log_policy = tf.squeeze(tf.log(self.log_policy_2))
 
-            self.policy_batch_loss = -(self.advantage * self.log_policy)
-            self.policy_loss = tf.reduce_mean(self.policy_batch_loss, name="loss")
+            self.log_pi = tf.log(self.state_action)
+            self.log_prob_actions = tf.reduce_sum(tf.multiply(self.log_pi , self.actions_onehot),1)
+            self.policy_loss = -tf.reduce_sum(self.log_prob_actions * self.advantage + 0.01 * self.entropy)
+
+            #self.policy_batch_loss = -(self.advantage * self.log_policy)
+            #self.policy_loss = tf.reduce_mean(self.policy_batch_loss, name="loss")
 
             # value network loss
-            self.value_batch_loss = tf.squared_difference(tf.squeeze(self.value), self.reward)
-            self.value_loss = tf.reduce_mean(self.value_batch_loss)
+            #self.value_batch_loss = tf.squared_difference(tf.squeeze(self.value), self.reward)
+            #self.value_loss = tf.reduce_mean(self.value_batch_loss)
+            self.value_loss = 0.5 * tf.nn.l2_loss(self.reward - self.value_transpose)
 
             # total loss
-            self.loss = 0.5 * self.value_loss + self.policy_loss - self.entropy * 0.01
+            #self.loss = 0.5 * self.value_loss + self.policy_loss - self.entropy * 0.01
+            self.loss = self.value_loss + self.policy_loss
 
         with tf.variable_scope("optimization"):
             self.optimizer = tf.train.RMSPropOptimizer(0.00025, 0.99, 0.0, 1e-6)

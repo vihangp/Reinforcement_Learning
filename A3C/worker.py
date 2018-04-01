@@ -186,33 +186,44 @@ class Worker():
                     self.w_network.mean_100_reward: self.mean_100_reward
                 }
 
-                mean_return, _, summaries, global_step = sess.run(
-                    [self.w_network.mean_return, self.grad_apply,
-                     self.w_network.summaries,
-                     self.global_step], feed_dict)
+                # mean_return, _, summaries, global_step = sess.run(
+                #     [self.w_network.mean_return, self.grad_apply,
+                #      self.w_network.summaries,
+                #      self.global_step], feed_dict)
+
+                entropy_1, log_pi,o_action, log_pi_a, adv, prob_advnt,value_loss,rew = sess.run(
+                    [self.w_network.entropy,
+                     self.w_network.log_pi,
+                     self.w_network.actions_onehot,
+                     self.w_network.log_prob_actions,
+                     self.w_network.advantage,
+                     self.w_network.policy_loss,
+                     self.w_network.value_loss,
+                     self.w_network.reward], feed_dict
+                )
+
 
                 if threading.current_thread().name == "Worker_1":
-                    self.writer.add_summary(summaries, global_step)
-                    self.writer.flush()
+                    #self.writer.add_summary(summaries, global_step)
+                    #self.writer.flush()
                     # print("sa:",np.shape(state_action))
                     #print("entropy_1", np.shape(entropy_1))
                     #print("entropy_2", np.shape(entropy_2))
-                    # print("a_o",np.shape(actions_onehot))
-                    # print("lp", np.shape(log_pol))
-                    # print("lp2", np.shape(log_pol2))
-                    # print("a",np.shape(self.action))
-                    # print("s_a_v:",state_action)
+                    #print("l_p",np.shape(log_pi))
+                    #print("a_o", np.shape(o_action))
+                    #print("l_p_a", np.shape(log_pi_a))
+                    #print("a",np.shape(adv))
+                    #print("p_advnt:", np.shape(prob_advnt))
+                    #print("v_l", np.shape(value_loss))
+                    #print("r",np.shape(rew))
+                    #print("r", np.shape(self.r_return))
+                    #print("l_p_a", log_pi_a)
+                    #print("a",adv)
                     #print("entropy_1_v", entropy_1)
-                    #print("entropy_2_v", entropy_2)
-                    # print("a_o_v",actions_onehot)
-                    # print("lp", log_pol)
-                    # print("lp2", log_pol2)
-                    # print("a_v",self.action)
-                    print(id(self.state_buffer[0]))
-                    print(id(self.state_buffer[1]))
-                    print(id(self.state_buffer[2]))
-                    print(id(self.state_buffer[3]))
-
+                    #print("p_advnt", prob_advnt)
+                    #print("v_l", value_loss)
+                    #print("r", rew)
+                    #print("r",self.r_return)
 
                 self.state_buffer.clear()
                 self.reward.clear()
@@ -243,3 +254,9 @@ def variable_summaries(var):
         # 2) Reset episode after on life is lost - done
         # 3) Clip rewards to [0,1] - done
         # 4) Anneal learning rate
+        # 5) Check Return and state appending
+        # 6) Local steps variable
+        # 7) Global steps variable
+        # 8) Initializing the network
+        # 9) Return calculations
+
