@@ -51,7 +51,7 @@ class Worker():
         self.writer = summary_writer
         self.global_step = tf.train.get_global_step()
         self.mean_100_reward = 0
-        self.episode_reward = []
+        self.episode_reward = 0
         self.mean_episode_reward = []
         self.episode_count = 0
         self.mean_reward = 0  # 5 step mean reward
@@ -75,23 +75,6 @@ class Worker():
     def play(self, coord, sess):
         with sess.as_default(), sess.graph.as_default():
 
-            # observation = self.env.reset()
-
-            # if threading.current_thread().name == "Worker_1":
-            #     values_global = sess.run(self.global_network.variables_names)
-            #     for k, v in zip(self.global_network.variables_names, values_global):
-            #         print("Variable: ", k)
-            #         print("Shape: ", v.shape)
-            #         print(v)
-            #
-            #     values_local = sess.run(self.w_network.variables_names)
-            #     for k, v in zip(self.w_network.variables_names, values_local):
-            #         print("Variable: ", k)
-            #         print("Shape: ", v.shape)
-            #         print(v)
-            #         # print("here 2")
-            #     print("here now")
-
             while not coord.should_stop():
 
                 sess.run(self.copy_network)
@@ -99,9 +82,9 @@ class Worker():
                 # if self.steps_worker < 100000:
                 #     lives = 4
                 # create a state buffer from a single state and append it to state buffer
-                if self.done or self.steps_worker == 0 or (c_lives!=lives):
-                    if self.done or self.steps_worker == 0:
-                        observation = self.env.reset()
+                if self.done or self.steps_worker == 0 or (c_lives != lives):
+                    #if self.done or self.steps_worker == 0:
+                    observation = self.env.reset()
                     proccessed_state = sess.run([self.w_network.proc_state],
                                                 {self.w_network.observation: observation})
                     proccessed_state = np.reshape(proccessed_state, [84, 84])
@@ -117,7 +100,7 @@ class Worker():
                     # select action
                     c_lives = self.env.env.ale.lives()
                     action_prob, value = sess.run([self.w_network.policy, self.w_network.value],
-                                                  {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
+                                                  {self.w_network.state_u: np.reshape(self.state, [1, 84, 84, 4])})
                     action = np.random.choice(np.arange(self.num_actions), p=action_prob)
                     # pass action
                     observation, reward, self.done, info = self.env.step(action)
@@ -137,25 +120,27 @@ class Worker():
                     self.state.append(proccessed_state)
                     self.value_state.append(np.reshape(value, [1]))
                     self.reward.append(reward)
-                    self.episode_reward.append(reward)
+                    self.episode_reward += reward
                     self.action.append(action)
                     self.state_buffer.append(self.state[:])
                     self.steps_worker += 1
 
-                    # give return the value of the last state
+                    # return the value of the last state
                     if self.done or (c_lives != lives):
-                        self.mean_reward = np.sum(self.reward)
                         self.episode_count += 1
-                        self.mean_episode_reward.append(np.sum(self.episode_reward))
-                        self.episode_reward.clear()
-                        if self.episode_count % 100:
-                            self.mean_100_reward = np.mean(self.mean_episode_reward)
-                            self.mean_episode_reward.clear()
+                        if threading.current_thread().name == "Worker_1":
+                            summaries, global_step = sess.run(
+                                [self.w_network.summaries,
+                                 self.global_step],feed_dict = {self.w_network.episode_reward: self.episode_reward}
+                            )
+                            self.writer.add_summary(summaries, global_step)
+                            self.writer.flush()
+                        self.episode_reward = 0
                         break
                     elif t == (self.t_max - 1):
                         self.mean_reward = np.mean(self.reward)
                         value = sess.run([self.w_network.value],
-                                         {self.w_network.state: np.reshape(self.state, [1, 84, 84, 4])})
+                                         {self.w_network.state_u: np.reshape(self.state, [1, 84, 84, 4])})
                         self.reward.append(np.reshape(value, [1]))
 
                 self.r_return = [self.reward[len(self.reward) - 1]]
@@ -180,50 +165,16 @@ class Worker():
                 feed_dict = {
                     self.w_network.advantage: np.reshape(advantage, [1, num_steps]),
                     self.w_network.actions: np.reshape(self.action, [1, num_steps]),
-                    self.w_network.state: np.reshape(self.state_buffer, [num_steps, 84, 84, 4]),
-                    self.w_network.reward: np.reshape(self.r_return, [1, num_steps]),
-                    self.w_network.mean_abs_reward: self.mean_reward,
-                    self.w_network.mean_100_reward: self.mean_100_reward
+                    self.w_network.state_u: np.reshape(self.state_buffer, [num_steps, 84, 84, 4]),
+                    self.w_network.reward: np.reshape(self.r_return, [1, num_steps])
                 }
 
-                # mean_return, _, summaries, global_step = sess.run(
-                #     [self.w_network.mean_return, self.grad_apply,
-                #      self.w_network.summaries,
-                #      self.global_step], feed_dict)
-
-                entropy_1, log_pi,o_action, log_pi_a, adv, prob_advnt,value_loss,rew = sess.run(
-                    [self.w_network.entropy,
-                     self.w_network.log_pi,
-                     self.w_network.actions_onehot,
-                     self.w_network.log_prob_actions,
-                     self.w_network.advantage,
-                     self.w_network.policy_loss,
-                     self.w_network.value_loss,
-                     self.w_network.reward], feed_dict
-                )
-
+                # calculating and applying the gradients
+                _ = sess.run(
+                    [self.grad_apply], feed_dict)
 
                 if threading.current_thread().name == "Worker_1":
-                    #self.writer.add_summary(summaries, global_step)
-                    #self.writer.flush()
-                    # print("sa:",np.shape(state_action))
-                    #print("entropy_1", np.shape(entropy_1))
-                    #print("entropy_2", np.shape(entropy_2))
-                    #print("l_p",np.shape(log_pi))
-                    #print("a_o", np.shape(o_action))
-                    #print("l_p_a", np.shape(log_pi_a))
-                    #print("a",np.shape(adv))
-                    #print("p_advnt:", np.shape(prob_advnt))
-                    #print("v_l", np.shape(value_loss))
-                    #print("r",np.shape(rew))
-                    #print("r", np.shape(self.r_return))
-                    #print("l_p_a", log_pi_a)
-                    #print("a",adv)
-                    #print("entropy_1_v", entropy_1)
-                    #print("p_advnt", prob_advnt)
-                    #print("v_l", value_loss)
-                    #print("r", rew)
-                    #print("r",self.r_return)
+                    print(self.action)
 
                 self.state_buffer.clear()
                 self.reward.clear()
@@ -235,28 +186,14 @@ class Worker():
                     coord.request_stop()
                     return
 
-
-def variable_summaries(var):
-    """Attach a lot of summaries to a Tensor (for TensorBoard visualization)."""
-
-    with tf.name_scope('summaries'):
-        mean = tf.reduce_mean(var)
-        tf.summary.scalar('mean', mean)
-        with tf.name_scope('stddev'):
-            stddev = tf.sqrt(tf.reduce_mean(tf.square(var - mean)))
-        tf.summary.scalar('stddev', stddev)
-        tf.summary.scalar('max', tf.reduce_max(var))
-        tf.summary.scalar('min', tf.reduce_min(var))
-        tf.summary.histogram('histogram', var)
-
         # To Do
         # 1) Set Repeat frames to 4
-        # 2) Reset episode after on life is lost - done
-        # 3) Clip rewards to [0,1] - done
         # 4) Anneal learning rate
         # 5) Check Return and state appending
         # 6) Local steps variable
         # 7) Global steps variable
         # 8) Initializing the network
         # 9) Return calculations
-
+        # 10) Saving Weights and reloading weights
+        # 11) Keep printing summary after some interval
+        # 12) Action repeat to calculate initial 4 frames

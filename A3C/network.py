@@ -26,9 +26,9 @@ class PolicyValueNetwork():
 
         with tf.variable_scope("hidden_layers"):
             # Placeholder for stacked processed states
-            self.state = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.float32)
+            self.state_u = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.float32)
 
-            self.state = self.state/255.0
+            self.state = tf.to_float(self.state_u)/255.0
 
             # First conv layer with 16 fliters, 8x8 size of filter, 4 stride of the filter, with ReLu
             self.conv1 = tf.contrib.layers.conv2d(self.state, 16, 8, 4, activation_fn=tf.nn.relu, trainable=True)
@@ -66,33 +66,22 @@ class PolicyValueNetwork():
             self.actions = tf.squeeze(self.actions)
             self.actions_onehot = tf.squeeze(tf.one_hot(self.actions, num_actions, dtype=tf.float32))
             self.reward = tf.placeholder(shape=[None, None], dtype=tf.float32)
-            self.mean_return = tf.reduce_mean(self.reward, name="mean_return")
-            self.mean_abs_reward = tf.Variable(0, name= "mean_5_reward", dtype=tf.float32)
-            self.mean_100_reward = tf.Variable(0, name= "mean_100_reward", dtype=tf.float32)
+
+            #logging
+            self.episode_reward = tf.Variable(0, name="episode_reward", dtype=tf.float32)
 
             # policy network loss
-            #self.entropy = - tf.reduce_mean(self.state_action * tf.log(self.state_action))
             self.entropy = - tf.reduce_sum(self.state_action * tf.log(self.state_action),1)
 
             # adding a small value to avoid NaN's
-            #self.action_prob = self.state_action * self.actions_onehot
-            #self.log_policy_2 = tf.reduce_sum(self.log_policy_1, axis=2, keepdims=False)
-            #self.log_policy = tf.squeeze(tf.log(self.log_policy_2))
-
             self.log_pi = tf.log(self.state_action)
             self.log_prob_actions = tf.reduce_sum(tf.multiply(self.log_pi , self.actions_onehot),1)
             self.policy_loss = -tf.reduce_sum(self.log_prob_actions * self.advantage + 0.01 * self.entropy)
 
-            #self.policy_batch_loss = -(self.advantage * self.log_policy)
-            #self.policy_loss = tf.reduce_mean(self.policy_batch_loss, name="loss")
-
             # value network loss
-            #self.value_batch_loss = tf.squared_difference(tf.squeeze(self.value), self.reward)
-            #self.value_loss = tf.reduce_mean(self.value_batch_loss)
             self.value_loss = 0.5 * tf.nn.l2_loss(self.reward - self.value_transpose)
 
             # total loss
-            #self.loss = 0.5 * self.value_loss + self.policy_loss - self.entropy * 0.01
             self.loss = self.value_loss + self.policy_loss
 
         with tf.variable_scope("optimization"):
@@ -103,32 +92,14 @@ class PolicyValueNetwork():
                                                                   global_step=tf.train.get_global_step())
 
         # summary
-        tf.summary.scalar("Total_loss", self.loss)
-        tf.summary.scalar("Entropy", self.entropy)
-        tf.summary.scalar("Policy loss", self.policy_loss)
-        tf.summary.scalar("Value loss", self.value_loss)
-        #tf.summary.scalar(self.mean_return.op.name, self.mean_return)
-        #tf.summary.scalar(self.mean_abs_reward.op.name, self.mean_abs_reward)
-        tf.summary.scalar(self.mean_100_reward.op.name, self.mean_100_reward)
+        #tf.summary.scalar("Total_loss", self.loss)
+        #tf.summary.scalar("Entropy", self.entropy)
+        #tf.summary.scalar("Policy loss", self.policy_loss)
+        #tf.summary.scalar("Value loss", self.value_loss)
+        tf.summary.scalar(self.episode_reward.op.name, self.episode_reward)
 
         var_scope_name = tf.get_variable_scope().name
         summary_ops = tf.get_collection(tf.GraphKeys.SUMMARIES)
         sumaries = [s for s in summary_ops if "global" in s.name]
         sumaries = [s for s in summary_ops if var_scope_name in s.name]
         self.summaries = tf.summary.merge(sumaries)
-
-            # self.variables_names = [v.name for v in tf.trainable_variables(scope=scope_input)]
-
-
-def variable_summaries(var):
-    """Attach a lot of summaries to a Tensor (for TensorBoard visualization)."""
-
-    with tf.name_scope('summaries'):
-        mean = tf.reduce_mean(var)
-        tf.summary.scalar('mean', mean)
-        with tf.name_scope('stddev'):
-            stddev = tf.sqrt(tf.reduce_mean(tf.square(var - mean)))
-        tf.summary.scalar('stddev', stddev)
-        tf.summary.scalar('max', tf.reduce_max(var))
-        tf.summary.scalar('min', tf.reduce_min(var))
-        tf.summary.histogram('histogram', var)

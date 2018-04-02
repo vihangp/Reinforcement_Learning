@@ -47,9 +47,7 @@ with tf.device("/cpu:0"):
     for i in range(num_cores):
         worke = Worker(game, "worker_{}".format(i+1), t_max, num_actions, global_network, gamma, writer)
         workers.append(worke)
-
-    saver = tf.train.Saver(keep_checkpoint_every_n_hours=2.0, max_to_keep=10)
-
+    saver = tf.train.Saver( keep_checkpoint_every_n_hours=2.0, max_to_keep=10)
 
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
