@@ -7,6 +7,15 @@ from A3C.worker import Worker
 import tensorflow as tf
 import numpy as np
 import os
+import math
+import itertools
+
+
+def log_uniform(lo, hi, rate):
+    log_lo = math.log(lo)
+    log_hi = math.log(hi)
+    v = log_lo * (1 - rate) + log_hi * rate
+    return math.exp(v)
 
 game = "Qbert-v0"
 #game = "Pong-v0"
@@ -27,8 +36,16 @@ t_max = 5
 print("Num Cores", num_cores)
 gamma = 0.99
 DIR = "/A3C/"
+max_global_time_step = 16000
+alpha_low = 1e-4
+alpha_high = 1e-2
+alpha_log_rate = 0.4226
+clip_norm = 5.0
+global_counter = itertools.count()
 
 writer = tf.summary.FileWriter(logdir="logdir")
+initial_learning_rate = log_uniform(alpha_low,alpha_high,alpha_log_rate)
+#initial_learning_rate = 0.00025
 
 CHECKPOINT_DIR = os.path.join("checkpoints")
 if not os.path.exists(CHECKPOINT_DIR):
@@ -43,11 +60,14 @@ with tf.device("/cpu:0"):
     with tf.variable_scope("global"):
         global_network = PolicyValueNetwork(num_actions, "global")
 
+    global_counter = itertools.count()
+
     workers = []
     for i in range(num_cores):
-        worke = Worker(game, "worker_{}".format(i+1), t_max, num_actions, global_network, gamma, writer)
+        worke = Worker(game, "worker_{}".format(i+1), t_max, num_actions, global_network, gamma, writer,
+                       initial_learning_rate, max_global_time_step, clip_norm, global_counter)
         workers.append(worke)
-    saver = tf.train.Saver( keep_checkpoint_every_n_hours=2.0, max_to_keep=10)
+    saver = tf.train.Saver(keep_checkpoint_every_n_hours=2.0, max_to_keep=10)
 
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())

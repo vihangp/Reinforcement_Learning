@@ -7,6 +7,7 @@ import operator
 import collections
 import os
 import sys
+import itertools
 
 
 def copy_network(from_scope, to_scope):
@@ -21,10 +22,11 @@ def copy_network(from_scope, to_scope):
     return copy_val
 
 
-def make_train_op(local_estimator, global_estimator):
+# Include learning rate
+def make_train_op(local_estimator, global_estimator, clip_norm):
     local_grads, _ = zip(*local_estimator.gradients)
     # Clip gradients
-    local_grads, _ = tf.clip_by_global_norm(local_grads, 5.0)
+    local_grads, _ = tf.clip_by_global_norm(local_grads, clip_norm)
     _, global_vars = zip(*global_estimator.gradients)
     local_global_grads_and_vars = list(zip(local_grads, global_vars))
     return global_estimator.optimizer.apply_gradients(local_global_grads_and_vars,
@@ -32,35 +34,42 @@ def make_train_op(local_estimator, global_estimator):
 
 
 class Worker():
-    def __init__(self, game, id, t_max, num_actions, global_network, gamma, summary_writer):
+    def __init__(self, game, id, t_max, num_actions, global_network, gamma, summary_writer,
+                 learning_rate, max_global_time_step, clip_norm, global_counter):
 
         self.action = []
         self.value_state = []
         self.state_buffer = []
         self.state = []
         self.reward = []
+        self.r_return = []
+
         self.episode_state = []
         # current steps of the worker
         self.steps_worker = 0
+        self.episode_reward = 0
+        self.episode_count = 0
+
         self.game = game
         self.id = id
         self.t_max = t_max
-        self.global_network = global_network
+        self.num_actions = num_actions
+        self.initial_learning_rate = learning_rate
+        self.clip_norm = clip_norm
+        self.discount = gamma
+
         self.done = False
-        self.r_return = []
         self.writer = summary_writer
+
+        self.max_global_time_step = max_global_time_step
         self.global_step = tf.train.get_global_step()
-        self.mean_100_reward = 0
-        self.episode_reward = 0
-        self.mean_episode_reward = []
-        self.episode_count = 0
-        self.mean_reward = 0  # 5 step mean reward
+        self.global_counter = global_counter
+        self.local_counter = itertools.count()
 
         # Initialise the environment
         self.env = gym.make(self.game)
-        # Size of the action space
-        self.num_actions = num_actions
 
+        self.global_network = global_network
         # Worker network
         with tf.variable_scope(self.id):
             self.w_network = PolicyValueNetwork(self.num_actions, self.id)
@@ -68,12 +77,13 @@ class Worker():
         # Cannot change uninitialised graph concurrently.
         self.copy_network = copy_network("global", self.id)
 
-        self.grad_apply = make_train_op(self.w_network, self.global_network)
-
-        self.discount = gamma
+        self.grad_apply = make_train_op(self.w_network, self.global_network,
+                                        self.clip_norm)  # include learning rate as one of the input
 
     def play(self, coord, sess):
         with sess.as_default(), sess.graph.as_default():
+            learning_rate = self.initial_learning_rate
+            global_t = 0
 
             while not coord.should_stop():
 
@@ -83,7 +93,7 @@ class Worker():
                 #     lives = 4
                 # create a state buffer from a single state and append it to state buffer
                 if self.done or self.steps_worker == 0 or (c_lives != lives):
-                    #if self.done or self.steps_worker == 0:
+                    # if self.done or self.steps_worker == 0:
                     observation = self.env.reset()
                     proccessed_state = sess.run([self.w_network.proc_state],
                                                 {self.w_network.observation: observation})
@@ -123,7 +133,13 @@ class Worker():
                     self.episode_reward += reward
                     self.action.append(action)
                     self.state_buffer.append(self.state[:])
+
                     self.steps_worker += 1
+                    local_t = next(self.local_counter)
+                    global_t = next(self.global_counter)
+
+                    if local_t % 100 == 0:
+                        tf.logging.info("{}: local Step {}, global step {}".format(self.id, local_t, global_t))
 
                     # return the value of the last state
                     if self.done or (c_lives != lives):
@@ -131,7 +147,7 @@ class Worker():
                         if threading.current_thread().name == "Worker_1":
                             summaries, global_step = sess.run(
                                 [self.w_network.summaries,
-                                 self.global_step],feed_dict = {self.w_network.episode_reward: self.episode_reward}
+                                 self.global_step], feed_dict={self.w_network.episode_reward: self.episode_reward}
                             )
                             self.writer.add_summary(summaries, global_step)
                             self.writer.flush()
@@ -160,13 +176,18 @@ class Worker():
 
                 # calculating advantage
                 advantage = list(map(operator.sub, self.r_return, self.value_state))
+                learning_rate = self.anneal_learning_rate(global_t)
+                if threading.current_thread().name == "Worker_1":
+                    print(learning_rate)
 
                 # popping the value reward from reward buffer
                 feed_dict = {
                     self.w_network.advantage: np.reshape(advantage, [1, num_steps]),
                     self.w_network.actions: np.reshape(self.action, [1, num_steps]),
                     self.w_network.state_u: np.reshape(self.state_buffer, [num_steps, 84, 84, 4]),
-                    self.w_network.reward: np.reshape(self.r_return, [1, num_steps])
+                    self.w_network.reward: np.reshape(self.r_return, [1, num_steps]),
+                    self.w_network.learning_rate: learning_rate,
+                    self.global_network.learning_rate: learning_rate
                 }
 
                 # calculating and applying the gradients
@@ -179,16 +200,21 @@ class Worker():
                 self.action.clear()
                 self.r_return.clear()
 
-                if self.steps_worker > 2000:
+                if global_t > self.max_global_time_step:
                     coord.request_stop()
                     return
 
+    def anneal_learning_rate(self, global_time_step):
+        learning_rate = self.initial_learning_rate * (
+        self.max_global_time_step - global_time_step) / self.max_global_time_step
+        if learning_rate < 0.0:
+            learning_rate = 0.0
+        return learning_rate
+
+
         # To Do
         # 1) Set Repeat frames to 4
-        # 4) Anneal learning rate
         # 5) Check Return - Check one more time
-        # 6) Local steps variable
-        # 7) Global steps variable
         # 10) Saving Weights and reloading weights
         # 11) Keep printing summary after some interval
         # 12) Action repeat to calculate initial 4 frames
