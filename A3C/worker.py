@@ -129,7 +129,6 @@ class Worker():
                     if self.done or (c_lives != lives):
                         self.episode_count += 1
                         if threading.current_thread().name == "Worker_1":
-                            print(self.reward)
                             summaries, global_step = sess.run(
                                 [self.w_network.summaries,
                                  self.global_step],feed_dict = {self.w_network.episode_reward: self.episode_reward}
@@ -174,7 +173,6 @@ class Worker():
                 _ = sess.run(
                     [self.grad_apply], feed_dict)
 
-
                 self.state_buffer.clear()
                 self.reward.clear()
                 self.value_state.clear()
@@ -191,9 +189,6 @@ class Worker():
         # 5) Check Return - Check one more time
         # 6) Local steps variable
         # 7) Global steps variable
-        # 8) Initializing the network
-        # 9) Return calculations
         # 10) Saving Weights and reloading weights
         # 11) Keep printing summary after some interval
         # 12) Action repeat to calculate initial 4 frames
-        # 13) Check Advantage calculations

@@ -31,16 +31,16 @@ class PolicyValueNetwork():
             self.state = tf.to_float(self.state_u)/255.0
 
             # First conv layer with 16 fliters, 8x8 size of filter, 4 stride of the filter, with ReLu
-            self.conv1 = tf.contrib.layers.conv2d(self.state, 16, 8, 4, activation_fn=tf.nn.relu, trainable=True)
+            self.conv1 = tf.contrib.layers.conv2d(self.state, 16, 8, 4, activation_fn=tf.nn.relu, trainable=True, weights_initializer = tf.contrib.layers.xavier_initializer())
 
             # Second conv layer with 32 filters, 4x4 and stride of 2, with ReLu
-            self.conv2 = tf.contrib.layers.conv2d(self.conv1, 32, 4, 2, activation_fn=tf.nn.relu, trainable=True)
+            self.conv2 = tf.contrib.layers.conv2d(self.conv1, 32, 4, 2, activation_fn=tf.nn.relu, trainable=True, weights_initializer = tf.contrib.layers.xavier_initializer())
 
             # flatten conv output
             self.conv2_flat = tf.contrib.layers.flatten(self.conv2)
 
             # Fully connected layer with 256 units and ReLu
-            self.fc1 = tf.contrib.layers.fully_connected(self.conv2_flat, 256, activation_fn=tf.nn.relu, trainable=True)
+            self.fc1 = tf.contrib.layers.fully_connected(self.conv2_flat, 256, activation_fn=tf.nn.relu, trainable=True, weights_initializer = tf.contrib.layers.xavier_initializer())
 
             # summaries
             #tf.contrib.layers.summarize_activation(self.conv1)
@@ -50,14 +50,14 @@ class PolicyValueNetwork():
         # Network for policy (state-action function)
         with tf.variable_scope("policy_net"):
             # fully connected layer with number of outputs = number of actions
-            self.fc2 = tf.contrib.layers.fully_connected(self.fc1, num_actions, activation_fn=None, trainable=True)
+            self.fc2 = tf.contrib.layers.fully_connected(self.fc1, num_actions, activation_fn=None, trainable=True, weights_initializer = tf.contrib.layers.xavier_initializer())
             # Soft max over the outputs
             self.state_action = tf.contrib.layers.softmax(self.fc2) + 1e-20
             # squeeze to remove all the 1's from the shape
             self.policy = tf.squeeze(self.state_action)
 
         with tf.variable_scope("value_net"):
-            self.value = tf.contrib.layers.fully_connected(self.fc1, 1, activation_fn=None, trainable=True)
+            self.value = tf.contrib.layers.fully_connected(self.fc1, 1, activation_fn=None, trainable=True, weights_initializer = tf.contrib.layers.xavier_initializer())
             self.value_transpose = tf.transpose(self.value)
 
         with tf.variable_scope("loss_calculation"):
