@@ -67,28 +67,28 @@ with tf.device("/cpu:0"):
         worke = Worker(game, "worker_{}".format(i+1), t_max, num_actions, global_network, gamma, writer,
                        initial_learning_rate, max_global_time_step, clip_norm, global_counter)
         workers.append(worke)
-    saver = tf.train.Saver(keep_checkpoint_every_n_hours=2.0, max_to_keep=10)
+    saver = tf.train.Saver(keep_checkpoint_every_n_hours=0.1,max_to_keep=10)
 
-    with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
-        coord = tf.train.Coordinator()
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    coord = tf.train.Coordinator()
 
-        latest_checkpoint = tf.train.latest_checkpoint(CHECKPOINT_DIR)
-        if latest_checkpoint:
-            print("Loading model checkpoint: {}".format(latest_checkpoint))
-            saver.restore(sess, latest_checkpoint)
+    latest_checkpoint = tf.train.latest_checkpoint(CHECKPOINT_DIR)
+    if latest_checkpoint:
+        print("Loading model checkpoint: {}".format(latest_checkpoint))
+        saver.restore(sess, latest_checkpoint)
 
-        writer.add_graph(graph=sess.graph)
+    writer.add_graph(graph=sess.graph)
 
-        threads = []
-        i = 1
-        for worker in workers:
-            work = lambda worker=worker: worker.play(coord, sess)
-            t = threading.Thread(name="Worker_{}".format(i), target=work)
-            i = i + 1
-            threads.append(t)
-            t.start()
+    threads = []
+    i = 1
+    for worker in workers:
+        work = lambda worker=worker: worker.play(coord, sess)
+        t = threading.Thread(name="Worker_{}".format(i), target=work)
+        i = i + 1
+        threads.append(t)
+        t.start()
 
-        coord.join(threads)
+    coord.join(threads)
 
 

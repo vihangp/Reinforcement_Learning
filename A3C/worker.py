@@ -177,8 +177,6 @@ class Worker():
                 # calculating advantage
                 advantage = list(map(operator.sub, self.r_return, self.value_state))
                 learning_rate = self.anneal_learning_rate(global_t)
-                if threading.current_thread().name == "Worker_1":
-                    print(learning_rate)
 
                 # popping the value reward from reward buffer
                 feed_dict = {
@@ -213,8 +211,10 @@ class Worker():
 
 
         # To Do
-        # 1) Set Repeat frames to 4
         # 5) Check Return - Check one more time
         # 10) Saving Weights and reloading weights
         # 11) Keep printing summary after some interval
         # 12) Action repeat to calculate initial 4 frames
+        # 13) config file for flags or inputs
+        # 14) Make use of functions
+
