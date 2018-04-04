@@ -35,7 +35,7 @@ def make_train_op(local_estimator, global_estimator, clip_norm):
 
 class Worker():
     def __init__(self, game, id, t_max, num_actions, global_network, gamma, summary_writer,
-                 learning_rate, max_global_time_step, clip_norm, global_counter):
+                 learning_rate, max_global_time_step, clip_norm, global_counter, episode_counter):
 
         self.action = []
         self.value_state = []
@@ -48,7 +48,7 @@ class Worker():
         # current steps of the worker
         self.steps_worker = 0
         self.episode_reward = 0
-        self.episode_count = 0
+
 
         self.game = game
         self.id = id
@@ -65,6 +65,7 @@ class Worker():
         self.global_step = tf.train.get_global_step()
         self.global_counter = global_counter
         self.local_counter = itertools.count()
+        self.episode_counter = episode_counter
 
         # Initialise the environment
         self.env = gym.make(self.game)
@@ -80,10 +81,11 @@ class Worker():
         self.grad_apply = make_train_op(self.w_network, self.global_network,
                                         self.clip_norm)  # include learning rate as one of the input
 
-    def play(self, coord, sess):
+    def play(self, coord, sess, saver, CHECKPOINT_DIR):
         with sess.as_default(), sess.graph.as_default():
             learning_rate = self.initial_learning_rate
             global_t = 0
+            episode_count = 0
 
             while not coord.should_stop():
 
@@ -143,7 +145,7 @@ class Worker():
 
                     # return the value of the last state
                     if self.done or (c_lives != lives):
-                        self.episode_count += 1
+                        episode_count = next(self.episode_counter)
                         if threading.current_thread().name == "Worker_1":
                             summaries, global_step = sess.run(
                                 [self.w_network.summaries,
@@ -151,6 +153,9 @@ class Worker():
                             )
                             self.writer.add_summary(summaries, global_step)
                             self.writer.flush()
+                            if episode_count % 5 == 0:
+                                print("Global Episode Count:",episode_count)
+                                print("Global Steps",global_t)
                         self.episode_reward = 0
                         self.reward.append(0)
                         break
@@ -202,6 +207,11 @@ class Worker():
                     coord.request_stop()
                     return
 
+                if threading.current_thread().name == "Worker_1":
+                    if episode_count % 250 == 0 and episode_count != 0:
+                            saver.save(sess, CHECKPOINT_DIR + '/model-' + str(episode_count) + '.cptk')
+                            print("Saved Model")
+
     def anneal_learning_rate(self, global_time_step):
         learning_rate = self.initial_learning_rate * (
         self.max_global_time_step - global_time_step) / self.max_global_time_step
@@ -212,9 +222,9 @@ class Worker():
 
         # To Do
         # 5) Check Return - Check one more time
-        # 10) Saving Weights and reloading weights
-        # 11) Keep printing summary after some interval
         # 12) Action repeat to calculate initial 4 frames
         # 13) config file for flags or inputs
         # 14) Make use of functions
+        # 16) Make sure that weights are saved after 250 episodes
+        # 17) Make sure that experiments have config file which can be imported
 

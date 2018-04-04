@@ -40,17 +40,21 @@ max_global_time_step = 16000
 alpha_low = 1e-4
 alpha_high = 1e-2
 alpha_log_rate = 0.4226
-clip_norm = 5.0
+clip_norm = 40.0
 global_counter = itertools.count()
 
-writer = tf.summary.FileWriter(logdir="logdir")
-initial_learning_rate = log_uniform(alpha_low,alpha_high,alpha_log_rate)
-#initial_learning_rate = 0.00025
+tf.flags.DEFINE_string("model_dir", "experiments/exp1", "Directory to write Tensorboard summaries and videos to.")
+FLAGS = tf.flags.FLAGS
+MODEL_DIR = FLAGS.model_dir
 
-CHECKPOINT_DIR = os.path.join("checkpoints")
+CHECKPOINT_DIR = os.path.join(MODEL_DIR,"checkpoints")
+
 if not os.path.exists(CHECKPOINT_DIR):
   os.makedirs(CHECKPOINT_DIR)
 
+writer = tf.summary.FileWriter(os.path.join(MODEL_DIR, "train"))
+initial_learning_rate = log_uniform(alpha_low,alpha_high,alpha_log_rate)
+#initial_learning_rate = 0.00025
 
 with tf.device("/cpu:0"):
     tf.reset_default_graph()
@@ -61,13 +65,15 @@ with tf.device("/cpu:0"):
         global_network = PolicyValueNetwork(num_actions, "global")
 
     global_counter = itertools.count()
+    episode_counter = itertools.count()
+
 
     workers = []
     for i in range(num_cores):
         worke = Worker(game, "worker_{}".format(i+1), t_max, num_actions, global_network, gamma, writer,
-                       initial_learning_rate, max_global_time_step, clip_norm, global_counter)
+                       initial_learning_rate, max_global_time_step, clip_norm, global_counter, episode_counter)
         workers.append(worke)
-    saver = tf.train.Saver(keep_checkpoint_every_n_hours=0.1,max_to_keep=10)
+    saver = tf.train.Saver(max_to_keep=10)
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
@@ -83,7 +89,7 @@ with tf.Session() as sess:
     threads = []
     i = 1
     for worker in workers:
-        work = lambda worker=worker: worker.play(coord, sess)
+        work = lambda worker=worker: worker.play(coord, sess, saver, CHECKPOINT_DIR)
         t = threading.Thread(name="Worker_{}".format(i), target=work)
         i = i + 1
         threads.append(t)
