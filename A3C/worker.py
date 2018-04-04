@@ -83,6 +83,7 @@ class Worker():
             learning_rate = self.initial_learning_rate
             global_t = 0
             episode_count = 0
+            count = 0
 
             while not coord.should_stop():
 
@@ -143,6 +144,7 @@ class Worker():
                     # return the value of the last state
                     if self.done or (c_lives != lives):
                         episode_count = next(self.episode_counter)
+                        count +=1
                         if threading.current_thread().name == "Worker_1":
                             summaries, global_step = sess.run(
                                 [self.w_network.summaries,
@@ -150,7 +152,7 @@ class Worker():
                             )
                             self.writer.add_summary(summaries, global_step)
                             self.writer.flush()
-                            if episode_count % 5 == 0:
+                            if count % 5 == 0:
                                 print("Global Episode Count:",episode_count)
                                 print("Global Steps",global_t)
                         self.episode_reward = 0
@@ -205,7 +207,7 @@ class Worker():
                     return
 
                 if threading.current_thread().name == "Worker_1":
-                    if episode_count % 250 == 0 and episode_count != 0:
+                    if count % 50 == 0 and count != 0:
                             saver.save(sess, CHECKPOINT_DIR + '/model-' + str(episode_count) + '.cptk')
                             print("Saved Model")
 
