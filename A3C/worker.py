@@ -224,6 +224,5 @@ class Worker():
         # 12) Action repeat to calculate initial 4 frames
         # 13) config file for flags or inputs
         # 14) Make use of functions
-        # 16) Make sure that weights are saved after 250 episodes
         # 17) Make sure that experiments have config file which can be imported
 
