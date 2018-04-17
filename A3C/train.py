@@ -36,7 +36,7 @@ t_max = 5
 print("Num Cores", num_cores)
 gamma = 0.99
 DIR = "/A3C/"
-max_global_time_step = 320 * 1000000
+max_global_time_step = 16000 #320 * 1000000
 alpha_low = 1e-4
 alpha_high = 1e-2
 alpha_log_rate = 0.4226

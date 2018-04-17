@@ -108,6 +108,8 @@ class Worker():
                 # interact with the environment for t_max steps or till terminal step
                 for t in range(self.t_max):
                     # select action
+                    if threading.current_thread().name == "Worker_2":
+                        self.env.render()
                     c_lives = self.env.env.ale.lives()
                     action_prob, value = sess.run([self.w_network.policy, self.w_network.value],
                                                   {self.w_network.state_u: np.reshape(self.state, [1, 84, 84, 4])})
@@ -193,8 +195,8 @@ class Worker():
                 }
 
                 # calculating and applying the gradients
-                _ = sess.run(
-                    [self.grad_apply], feed_dict)
+                # _ = sess.run(
+                #     [self.grad_apply], feed_dict)
 
                 self.state_buffer.clear()
                 self.reward.clear()
