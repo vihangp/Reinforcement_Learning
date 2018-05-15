@@ -62,10 +62,10 @@ def parameter_server():
     sess.run(tf.global_variables_initializer())
     print("Parameter server: variables initialized")
 
-    for i in range(5):
-        val = sess.run(var)
-        print("Parameter server: var has value %.1f" % val)
-        sleep(1.0)
+    # for i in range(5):
+    #     val = sess.run(var)
+    #     print("Parameter server: var has value %.1f" % val)
+    #     sleep(1.0)
 
     print("Parameter server: blocking...")
     server.join()
