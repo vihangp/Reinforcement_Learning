@@ -99,24 +99,31 @@ def worker(worker_n):
 
     num_cores = multiprocessing.cpu_count()
 
-    workers = []
-    for i in range(num_cores):
-        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
-        workers.append(worker_object)
 
-    local_session = tf.Session
-    coord = tf.train.Coordinator()
+    local_graph = tf.Graph()
 
-    threads = []
-    i = 1
-    for worker in workers:
-        work = lambda worker=worker: worker.play(local_session, master_session, coord)
-        t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
-        i = i + 1
-        threads.append(t)
-        t.start()
+    with local_graph.as_default():
+        # A session initialised under this graph will be use this graph as default
+        # As we already have given the master_session the global_network, we dont have to worry about it anymore
+        workers = []
+        for i in range(num_cores):
+            worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
+            workers.append(worker_object)
 
-    coord.join(threads)
+        local_session = tf.Session()
+        local_session.run(tf.global_variables_initializer())
+        coord = tf.train.Coordinator()
+
+        threads = []
+        i = 1
+        for worker in workers:
+            work = lambda worker=worker: worker.play(local_session, master_session, coord)
+            t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
+            i = i + 1
+            threads.append(t)
+            t.start()
+
+        coord.join(threads)
 
     print("Worker %d: blocking..." % worker_n)
     server.join()
