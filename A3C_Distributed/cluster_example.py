@@ -49,12 +49,14 @@ cluster = tf.train.ClusterSpec({
 
 
 def parameter_server():
-    global_network = GlobalNetwork()
+    global_graph = tf.Graph()
+    with global_graph.as_default():
+        global_network = GlobalNetwork()
 
     server = tf.train.Server(cluster,
                              job_name=job_name,
                              task_index=0)
-    master_session = tf.Session(target=server.target)
+    master_session = tf.Session(target=server.target, graph=global_graph)
 
     print("Parameter server: waiting for cluster connection...")
     master_session.run(tf.report_uninitialized_variables())
@@ -88,6 +90,7 @@ def worker(worker_n):
                              task_index=worker_n)
     master_session = tf.Session(target=server.target)
 
+
     print("Worker %d: waiting for cluster connection..." % worker_n)
     master_session.run(tf.report_uninitialized_variables())
     print("Worker %d: cluster ready!" % worker_n)
@@ -105,7 +108,6 @@ def worker(worker_n):
         workers.append(worker_object)
 
     local_session = tf.Session
-
     coord = tf.train.Coordinator()
 
     threads = []

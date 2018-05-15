@@ -13,3 +13,16 @@ class GlobalNetwork():
 
         with tf.device("/job:ps/task:0"):
             self.var = tf.Variable(0.0, name='var')
+            #self.var2 = tf.Variable(0.0, name='var2')
+
+
+
+
+# class PolicyValueNetwork():
+#     def __init__(self):
+#         with tf.variable_scope("preprocessing"):
+#             self.observation = tf.placeholder(shape=[],dtype=tf.float32)
+#
+#
+#             self.proc_state = self.observation * self.observation
+
