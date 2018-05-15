@@ -17,7 +17,7 @@ class Worker():
 
         for i in range(5):
             print(self.thread_name, ": incrementing var")
-            local_var = master_session.run(self.global_network.var.assign_add(1.0))
+            master_session.run(self.global_network.var.assign_add(1.0))
             sleep(1.0)
 
 

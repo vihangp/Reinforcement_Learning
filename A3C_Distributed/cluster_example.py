@@ -49,14 +49,13 @@ cluster = tf.train.ClusterSpec({
 
 
 def parameter_server():
-    global_graph = tf.Graph()
-    with global_graph.as_default():
-        global_network = GlobalNetwork()
+
+    global_network = GlobalNetwork()
 
     server = tf.train.Server(cluster,
                              job_name=job_name,
                              task_index=0)
-    master_session = tf.Session(target=server.target, graph=global_graph)
+    master_session = tf.Session(target=server.target)
 
     print("Parameter server: waiting for cluster connection...")
     master_session.run(tf.report_uninitialized_variables())
