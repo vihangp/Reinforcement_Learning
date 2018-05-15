@@ -1,8 +1,8 @@
 import tensorflow as tf
 import multiprocessing
 from time import sleep
-from A3C_Distributed.network_test import GlobalNetwork
-from A3C_Distributed.worker_test import Worker
+from network_test import GlobalNetwork
+from worker_test import Worker
 import threading
 
 tf.app.flags.DEFINE_string("job_name", "", "Either 'ps' or 'worker'")
@@ -49,7 +49,6 @@ cluster = tf.train.ClusterSpec({
 
 
 def parameter_server():
-
     global_network = GlobalNetwork()
 
     server = tf.train.Server(cluster,
@@ -88,7 +87,6 @@ def worker(worker_n):
                              job_name="worker",
                              task_index=worker_n)
     master_session = tf.Session(target=server.target)
-
 
     print("Worker %d: waiting for cluster connection..." % worker_n)
     master_session.run(tf.report_uninitialized_variables())
