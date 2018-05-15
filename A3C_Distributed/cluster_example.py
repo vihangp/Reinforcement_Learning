@@ -2,6 +2,8 @@ import tensorflow as tf
 import multiprocessing
 from time import sleep
 from A3C_Distributed.network_test import GlobalNetwork
+from A3C_Distributed.worker_test import Worker
+import threading
 
 tf.app.flags.DEFINE_string("job_name", "", "Either 'ps' or 'worker'")
 tf.app.flags.DEFINE_integer("task_index", 0, "Index of task within the job")
@@ -9,7 +11,7 @@ tf.app.flags.DEFINE_integer("number_ps", 0, "Number of parameter servers")
 
 FLAGS = tf.app.flags.FLAGS
 job_name = FLAGS.job_name
-num_ps = FLAGS.number_pss
+num_ps = FLAGS.number_ps
 
 nodes_address = []
 ps_list = []
@@ -62,17 +64,17 @@ def parameter_server():
     master_session.run(tf.global_variables_initializer())
     print("Parameter server: variables initialized")
 
-    for i in range(5):
-        val = master_session.run(global_network.var)
-        print("Parameter server: var has value %.1f" % val)
-        sleep(1.0)
+    # for i in range(5):
+    #     val = master_session.run(global_network.var)
+    #     print("Parameter server: var has value %.1f" % val)
+    #     sleep(1.0)
 
-    # sleep(60)
-    # val = master_session.run(global_network.var)
-    # print("Parameter server: var has value %.1f" % val)
-    # sleep(60)
-    # val = master_session.run(global_network.var)
-    # print("Parameter server: var has value %.1f" % val)
+    sleep(60)
+    val = master_session.run(global_network.var)
+    print("Parameter server: var has value %.1f" % val)
+    sleep(60)
+    val = master_session.run(global_network.var)
+    print("Parameter server: var has value %.1f" % val)
 
     print("Parameter server: blocking...")
     server.join()
@@ -95,12 +97,27 @@ def worker(worker_n):
         sleep(1.0)
     print("Worker %d: variables initialized" % worker_n)
 
-    # num_cores = multiprocessing.cpu_count()
+    num_cores = multiprocessing.cpu_count()
 
-    for i in range(5):
-        print("Worker %d: incrementing var" % worker_n)
-        master_session.run(global_network.var.assign_add(1.0))
-        sleep(1.0)
+    workers = []
+    for i in range(num_cores):
+        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
+        workers.append(worker_object)
+
+    local_session = tf.Session
+
+    coord = tf.train.Coordinator()
+
+    threads = []
+    i = 1
+    for worker in workers:
+        work = lambda worker=worker: worker.play(local_session, master_session, coord)
+        t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
+        i = i + 1
+        threads.append(t)
+        t.start()
+
+    coord.join(threads)
 
     print("Worker %d: blocking..." % worker_n)
     server.join()

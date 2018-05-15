@@ -12,4 +12,4 @@ class GlobalNetwork():
     def __init__(self):
 
         with tf.device("/job:ps/task:0"):
-            var = tf.Variable(0.0, name='var')
+            self.var = tf.Variable(0.0, name='var')
