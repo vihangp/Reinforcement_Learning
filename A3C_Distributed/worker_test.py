@@ -12,7 +12,7 @@ class Worker():
     def play(self, local_session, master_session, coord):
 
         for i in range(5):
-            print("Worker %d: incrementing var" % self.thread_name)
+            print(self.thread_name,": incrementing var")
             master_session.run(self.global_network.var.assign_add(1.0))
             sleep(1.0)
 
