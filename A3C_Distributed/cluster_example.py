@@ -1,6 +1,7 @@
 import tensorflow as tf
-from multiprocessing import Process
+import multiprocessing
 from time import sleep
+from A3C_Distributed.network_test import GlobalNetwork
 
 tf.app.flags.DEFINE_string("job_name", "", "Either 'ps' or 'worker'")
 tf.app.flags.DEFINE_integer("task_index", 0, "Index of task within the job")
@@ -8,7 +9,7 @@ tf.app.flags.DEFINE_integer("number_ps", 0, "Number of parameter servers")
 
 FLAGS = tf.app.flags.FLAGS
 job_name = FLAGS.job_name
-num_ps = FLAGS.number_ps
+num_ps = FLAGS.number_pss
 
 nodes_address = []
 ps_list = []
@@ -46,52 +47,59 @@ cluster = tf.train.ClusterSpec({
 
 
 def parameter_server():
-    with tf.device("/job:ps/task:0"):
-        var = tf.Variable(0.0, name='var')
+    global_network = GlobalNetwork()
 
     server = tf.train.Server(cluster,
                              job_name=job_name,
                              task_index=0)
-    sess = tf.Session(target=server.target)
+    master_session = tf.Session(target=server.target)
 
     print("Parameter server: waiting for cluster connection...")
-    sess.run(tf.report_uninitialized_variables())
+    master_session.run(tf.report_uninitialized_variables())
     print("Parameter server: cluster ready!")
 
     print("Parameter server: initializing variables...")
-    sess.run(tf.global_variables_initializer())
+    master_session.run(tf.global_variables_initializer())
     print("Parameter server: variables initialized")
 
-    # for i in range(5):
-    #     val = sess.run(var)
-    #     print("Parameter server: var has value %.1f" % val)
-    #     sleep(1.0)
+    for i in range(5):
+        val = master_session.run(global_network.var)
+        print("Parameter server: var has value %.1f" % val)
+        sleep(1.0)
+
+    # sleep(60)
+    # val = master_session.run(global_network.var)
+    # print("Parameter server: var has value %.1f" % val)
+    # sleep(60)
+    # val = master_session.run(global_network.var)
+    # print("Parameter server: var has value %.1f" % val)
 
     print("Parameter server: blocking...")
     server.join()
 
 
 def worker(worker_n):
-    with tf.device("/job:ps/task:0"):
-        var = tf.Variable(0.0, name='var')
+    global_network = GlobalNetwork()
 
     server = tf.train.Server(cluster,
                              job_name="worker",
                              task_index=worker_n)
-    sess = tf.Session(target=server.target)
+    master_session = tf.Session(target=server.target)
 
     print("Worker %d: waiting for cluster connection..." % worker_n)
-    sess.run(tf.report_uninitialized_variables())
+    master_session.run(tf.report_uninitialized_variables())
     print("Worker %d: cluster ready!" % worker_n)
 
-    while sess.run(tf.report_uninitialized_variables()):
+    while master_session.run(tf.report_uninitialized_variables()):
         print("Worker %d: waiting for variable initialization..." % worker_n)
         sleep(1.0)
     print("Worker %d: variables initialized" % worker_n)
 
+    # num_cores = multiprocessing.cpu_count()
+
     for i in range(5):
         print("Worker %d: incrementing var" % worker_n)
-        sess.run(var.assign_add(1.0))
+        master_session.run(global_network.var.assign_add(1.0))
         sleep(1.0)
 
     print("Worker %d: blocking..." % worker_n)
