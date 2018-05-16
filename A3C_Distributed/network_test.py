@@ -12,6 +12,7 @@ class GlobalNetwork():
 
         with tf.device("/job:ps/task:0"):
             self.var = tf.Variable(0.0, name='var')
+            self.global_step = tf.contrib.framework.get_or_create_global_step()
 
 
 class PolicyValueNetwork():
