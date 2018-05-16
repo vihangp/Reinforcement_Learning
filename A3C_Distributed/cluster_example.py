@@ -64,11 +64,6 @@ def parameter_server():
     master_session.run(tf.global_variables_initializer())
     print("Parameter server: variables initialized")
 
-    # for i in range(5):
-    #     val = master_session.run(global_network.var)
-    #     print("Parameter server: var has value %.1f" % val)
-    #     sleep(1.0)
-
     sleep(60)
     val = master_session.run(global_network.var)
     print("Parameter server: var has value %.1f" % val)
@@ -82,6 +77,12 @@ def parameter_server():
 
 def worker(worker_n):
     global_network = GlobalNetwork()
+    num_cores = multiprocessing.cpu_count()
+
+    workers = []
+    for i in range(num_cores):
+        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
+        workers.append(worker_object)
 
     server = tf.train.Server(cluster,
                              job_name="worker",
@@ -97,26 +98,13 @@ def worker(worker_n):
         sleep(1.0)
     print("Worker %d: variables initialized" % worker_n)
 
-    num_cores = multiprocessing.cpu_count()
 
-
-    local_graph = tf.Graph()
-
-    # A session initialised under this graph will be use this graph as default
-    # As we already have given the master_session the global_network, we dont have to worry about it anymore
-    workers = []
-    for i in range(num_cores):
-        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, local_graph)
-        workers.append(worker_object)
-
-    local_session = tf.Session(graph=local_graph)
-    local_session.run(tf.local_variables_initializer())
     coord = tf.train.Coordinator()
 
     threads = []
     i = 1
     for worker in workers:
-        work = lambda worker=worker: worker.play(local_session, master_session, coord)
+        work = lambda worker=worker: worker.play(master_session, coord)
         t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
         i = i + 1
         threads.append(t)
