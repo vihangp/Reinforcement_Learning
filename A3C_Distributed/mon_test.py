@@ -49,6 +49,7 @@ cluster = tf.train.ClusterSpec({
 
 
 def parameter_server():
+    global_network = GlobalNetwork()
     server = tf.train.Server(cluster,
                              job_name=job_name,
                              task_index=0)
@@ -62,12 +63,12 @@ def worker(worker_n):
 
     hooks = [tf.train.StopAtStepHook(last_step=1000)]
     with tf.train.MonitoredTrainingSession(master=server.target,
-                                           is_chief=(FLAGS.task_index == 0),
+                                           is_chief=(worker_n == 0),
                                            hooks=hooks) as mon_sess:
 
         while not mon_sess.should_stop():
-            var = mon_sess.run(global_network.var.assign_add(1.0))
-            print(var)
+            var_val = mon_sess.run(var.assign_add(1.0))
+            print(var_val)
 
 
 if job_name == 'ps':
