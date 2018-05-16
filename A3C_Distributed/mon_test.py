@@ -67,7 +67,7 @@ def worker(worker_n):
                                            hooks=hooks) as mon_sess:
 
         while not mon_sess.should_stop():
-            var_val = mon_sess.run(var.assign_add(1.0))
+            var_val = mon_sess.run(global_network.var.assign_add(1.0))
             print(var_val)
 
 

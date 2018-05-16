@@ -195,8 +195,8 @@ class Worker():
                 }
 
                 # calculating and applying the gradients
-                # _ = sess.run(
-                #     [self.grad_apply], feed_dict)
+                _ = sess.run(
+                     [self.grad_apply], feed_dict)
 
                 self.state_buffer.clear()
                 self.reward.clear()
