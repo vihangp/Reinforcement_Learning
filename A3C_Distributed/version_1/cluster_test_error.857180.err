@@ -1,0 +1,16 @@
+2018-05-15 23:25:00.121607: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-05-15 23:25:00.123782: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-05-15 23:25:00.123824: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-05-15 23:25:00.124996: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:215] Initialize GrpcChannelCache for job ps -> {0 -> icsnode17.cluster.net:2222}
+2018-05-15 23:25:00.125024: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:215] Initialize GrpcChannelCache for job worker -> {0 -> localhost:2222, 1 -> icsnode18.cluster.net:2222}
+2018-05-15 23:25:00.127465: I tensorflow/core/distributed_runtime/rpc/grpc_server_lib.cc:333] Started server with target: grpc://localhost:2222
+2018-05-15 23:25:00.127656: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:215] Initialize GrpcChannelCache for job ps -> {0 -> localhost:2222}
+2018-05-15 23:25:00.127681: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:215] Initialize GrpcChannelCache for job worker -> {0 -> icsnode19.cluster.net:2222, 1 -> icsnode18.cluster.net:2222}
+2018-05-15 23:25:00.128032: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:215] Initialize GrpcChannelCache for job ps -> {0 -> icsnode17.cluster.net:2222}
+2018-05-15 23:25:00.128063: I tensorflow/core/distributed_runtime/rpc/grpc_channel.cc:215] Initialize GrpcChannelCache for job worker -> {0 -> icsnode19.cluster.net:2222, 1 -> localhost:2222}
+2018-05-15 23:25:00.130216: I tensorflow/core/distributed_runtime/rpc/grpc_server_lib.cc:333] Started server with target: grpc://localhost:2222
+2018-05-15 23:25:00.130224: I tensorflow/core/distributed_runtime/rpc/grpc_server_lib.cc:333] Started server with target: grpc://localhost:2222
+2018-05-15 23:25:00.172093: I tensorflow/core/distributed_runtime/master_session.cc:1024] Start master session d4ce714255404856 with config: 
+2018-05-15 23:25:00.172739: I tensorflow/core/distributed_runtime/master_session.cc:1024] Start master session d14bb52f7f4c4e62 with config: 
+2018-05-15 23:25:00.176980: I tensorflow/core/distributed_runtime/master_session.cc:1024] Start master session 5f719125e54b8593 with config: 
+slurmstepd: *** JOB 857180 ON icsnode17 CANCELLED AT 2018-05-15T23:29:20 ***

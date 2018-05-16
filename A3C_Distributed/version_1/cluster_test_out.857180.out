@@ -1,0 +1,273 @@
+Echo1
+Echo1
+Echo1
+Echo2
+Echo2
+Echo2
+17
+18
+19
+17 19
+Parameter Server
+17 19
+Worker
+17 19
+Worker
+<class 'str'> 17
+19
+Parameter Server added 0
+<class 'str'> 19
+19
+Worker Server index
+Worker Server added 0
+<class 'str'> 18
+19
+Worker Server added 1
+worker server
+<class 'str'> 17
+18
+Parameter Server added 0
+<class 'str'> 19
+18
+Worker Server added 0
+<class 'str'> 18
+18
+Worker Server index
+Worker Server added 1
+worker server
+<class 'str'> 17
+17
+Parameter Server index
+Parameter Server added 0
+<class 'str'> 19
+17
+Worker Server added 0
+<class 'str'> 18
+17
+Worker Server added 1
+parameter server
+Worker 0: waiting for cluster connection...
+Parameter server: waiting for cluster connection...
+Worker 1: waiting for cluster connection...
+Parameter server: cluster ready!
+Parameter server: initializing variables...
+Worker 0: cluster ready!
+Parameter server: variables initialized
+Worker 1: cluster ready!
+Worker 0: variables initialized
+worker_191 : incrementing var
+worker_192 : incrementing var
+worker_193 : incrementing var
+Worker 1: variables initialized
+worker_181 : incrementing var
+worker_194 : incrementing var
+worker_195 : incrementing var
+worker_196 : incrementing var
+worker_182 : incrementing var
+worker_197 : incrementing var
+worker_183 : incrementing var
+worker_184 : incrementing var
+worker_198 : incrementing var
+worker_199 : incrementing var
+worker_1910 : incrementing var
+worker_185 : incrementing var
+worker_1911 : incrementing var
+worker_186 : incrementing var
+worker_188 : incrementing var
+worker_1913 : incrementing var
+worker_189 : incrementing var
+worker_1914 : incrementing var
+worker_187 : incrementing var
+worker_1915 : incrementing var
+worker_1912 : incrementing var
+worker_1810 : incrementing var
+worker_1812 : incrementing var
+worker_1813 : incrementing var
+worker_1916 : incrementing var
+worker_1918 : incrementing var
+worker_1919 : incrementing var
+worker_1814 : incrementing var
+worker_1811 : incrementing var
+worker_1816 : incrementing var
+worker_1917 : incrementing var
+worker_1920 : incrementing var
+worker_1817 : incrementing var
+worker_1818 : incrementing var
+worker_1819 : incrementing var
+worker_1815 : incrementing var
+worker_1820 : incrementing var
+worker_191 : incrementing var
+worker_181 : incrementing var
+worker_182 : incrementing var
+worker_192 : incrementing var
+worker_184 : incrementing var
+worker_193 : incrementing var
+worker_194 : incrementing var
+worker_183 : incrementing var
+worker_197 : incrementing var
+worker_196 : incrementing var
+worker_1918 : incrementing var
+worker_1915 : incrementing var
+worker_1920 : incrementing var
+worker_199 : incrementing var
+worker_1916 : incrementing var
+worker_186 : incrementing var
+worker_1914 : incrementing var
+worker_1810 : incrementing var
+worker_188 : incrementing var
+worker_1913 : incrementing var
+worker_1812 : incrementing var
+worker_185 : incrementing var
+worker_1814 : incrementing var
+worker_1917 : incrementing var
+worker_195 : incrementing var
+worker_189 : incrementing var
+worker_1816 : incrementing var
+worker_1910 : incrementing var
+worker_1912 : incrementing var
+worker_1919 : incrementing var
+worker_1911 : incrementing var
+worker_198 : incrementing var
+worker_1820 : incrementing var
+worker_1819 : incrementing var
+worker_187 : incrementing var
+worker_1811 : incrementing var
+worker_1815 : incrementing var
+worker_1818 : incrementing var
+worker_1813 : incrementing var
+worker_1817 : incrementing var
+worker_191 : incrementing var
+worker_181 : incrementing var
+worker_182 : incrementing var
+worker_192 : incrementing var
+worker_184 : incrementing var
+worker_193 : incrementing var
+worker_194 : incrementing var
+worker_183 : incrementing var
+worker_197 : incrementing var
+worker_186 : incrementing var
+worker_196 : incrementing var
+worker_1810 : incrementing var
+worker_1918 : incrementing var
+worker_1917 : incrementing var
+worker_1913 : incrementing var
+worker_1916 : incrementing var
+worker_1912 : incrementing var
+worker_1910 : incrementing var
+worker_1915 : incrementing var
+worker_198 : incrementing var
+worker_199 : incrementing var
+worker_1911 : incrementing var
+worker_1919 : incrementing var
+worker_1914 : incrementing var
+worker_1920 : incrementing var
+worker_185 : incrementing var
+worker_195 : incrementing var
+worker_1811 : incrementing var
+worker_1816 : incrementing var
+worker_1812 : incrementing var
+worker_1817 : incrementing var
+worker_1813 : incrementing var
+worker_189 : incrementing var
+worker_187 : incrementing var
+worker_1814 : incrementing var
+worker_188 : incrementing var
+worker_1820 : incrementing var
+worker_1818 : incrementing var
+worker_1815 : incrementing var
+worker_1819 : incrementing var
+worker_191 : incrementing var
+worker_181 : incrementing var
+worker_182 : incrementing var
+worker_192 : incrementing var
+worker_184 : incrementing var
+worker_193 : incrementing var
+worker_194 : incrementing var
+worker_183 : incrementing var
+worker_197 : incrementing var
+worker_186 : incrementing var
+worker_196 : incrementing var
+worker_1810 : incrementing var
+worker_1918 : incrementing var
+worker_185 : incrementing var
+worker_1917 : incrementing var
+worker_1811 : incrementing var
+worker_1920 : incrementing var
+worker_195 : incrementing var
+worker_1919 : incrementing var
+worker_198 : incrementing var
+worker_1911 : incrementing var
+worker_1916 : incrementing var
+worker_1915 : incrementing var
+worker_199 : incrementing var
+worker_1910 : incrementing var
+worker_1912 : incrementing var
+worker_1914 : incrementing var
+worker_1913 : incrementing var
+worker_187 : incrementing var
+worker_1815 : incrementing var
+worker_1819 : incrementing var
+worker_1812 : incrementing var
+worker_1814 : incrementing var
+worker_189 : incrementing var
+worker_188 : incrementing var
+worker_1816 : incrementing var
+worker_1813 : incrementing var
+worker_1818 : incrementing var
+worker_1817 : incrementing var
+worker_1820 : incrementing var
+worker_191 : incrementing var
+worker_192 : incrementing var
+worker_181 : incrementing var
+worker_182 : incrementing var
+worker_184 : incrementing var
+worker_193 : incrementing var
+worker_194 : incrementing var
+worker_183 : incrementing var
+worker_197 : incrementing var
+worker_186 : incrementing var
+worker_196 : incrementing var
+worker_1810 : incrementing var
+worker_1918 : incrementing var
+worker_185 : incrementing var
+worker_1917 : incrementing var
+worker_1811 : incrementing var
+worker_1920 : incrementing var
+worker_195 : incrementing var
+worker_187 : incrementing var
+worker_1919 : incrementing var
+worker_1911 : incrementing var
+worker_1915 : incrementing var
+worker_199 : incrementing var
+worker_1913 : incrementing var
+worker_1912 : incrementing var
+worker_1914 : incrementing var
+worker_198 : incrementing var
+worker_1916 : incrementing var
+worker_1910 : incrementing var
+worker_1820 : incrementing var
+worker_1813 : incrementing var
+worker_1812 : incrementing var
+worker_1819 : incrementing var
+worker_1815 : incrementing var
+worker_188 : incrementing var
+worker_1816 : incrementing var
+worker_1818 : incrementing var
+worker_189 : incrementing var
+worker_1814 : incrementing var
+worker_1817 : incrementing var
+Worker 0: blocking...
+Worker 1: blocking...
+Parameter server: var has value 200.0
+Parameter server: var has value 200.0
+Parameter server: blocking...
+--------------------------------------------------------------------------
+ORTE has lost communication with its daemon located on node:
+
+  hostname:  icsnode18
+
+This is usually due to either a failure of the TCP network
+connection to the node, or possibly an internal failure of
+the daemon itself. We cannot recover from this failure, and
+therefore will terminate the job.
+--------------------------------------------------------------------------
