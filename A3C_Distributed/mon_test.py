@@ -48,8 +48,6 @@ cluster = tf.train.ClusterSpec({
 })
 
 
-
-
 def parameter_server():
     server = tf.train.Server(cluster,
                              job_name=job_name,
@@ -68,8 +66,8 @@ def worker(worker_n):
                                            hooks=hooks) as mon_sess:
 
         while not mon_sess.should_stop():
-            mon_sess.run(global_network.var.assign_add(1.0))
-            print("Worker %d: incrementing var" % worker_n)
+            var = mon_sess.run(global_network.var.assign_add(1.0))
+            print(var)
 
 
 if job_name == 'ps':
