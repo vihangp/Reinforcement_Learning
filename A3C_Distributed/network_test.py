@@ -12,6 +12,7 @@ class GlobalNetwork():
 
         with tf.device("/job:ps/task:0"):
             self.global_step = tf.train.get_or_create_global_step()
-            self.a = tf.placeholder(dtype=tf.float32, shape=[0], name="a")
-            self.b = tf.placeholder(dtype=tf.float32, shape=[0], name="b")
+            self.a = tf.placeholder(dtype=tf.float32, shape=[], name="a")
+            self.b = tf.get_variable("b", [1], initializer=tf.constant_initializer(0))
             self.c = self.b + self.a
+            self.b = self.c
