@@ -39,7 +39,9 @@ class PolicyValueNetwork():
         elif task_id == 4:
             worker_device = "/job:worker/task:4"
 
-        with tf.device("/job:worker/task:{}".format(task_id)):
+        #with tf.device("/job:worker/task:{}".format(task_id)):
+
+        with tf.device(worker_device):
             with tf.variable_scope("thread_name"):
 
                 self.local_var = tf.Variable(50, name='var')
