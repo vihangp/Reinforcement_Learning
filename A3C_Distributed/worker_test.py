@@ -13,13 +13,15 @@ class Worker():
         self.local_network = PolicyValueNetwork(self.thread_name, self.task_id)
 
 
-    def play(self,master_session, coord, supervisor):
+    def play(self,master_session, coord):
 
-        global_step = master_session.run(self.global_network.global_step)
-
-        while not master_session.should_stop() and (not self.num_global_steps or global_step < self.num_global_steps):
+        while not coord.should_stop():
 
             print(self.thread_name,": incrementing var")
             print(global_step)
-            _, global_step = master_session.run([self.global_network.var.assign_add(1.0), self.global_network.global_step])
+            _, global_step = master_session.run([self.global_network.var.assign_add(1.0), self.global_network.global_step.assign_add(1.0)])
             sleep(1.0)
+
+            if global_step > self.num_global_steps:
+                coord.request_stop()
+                return

@@ -74,36 +74,31 @@ def worker(worker_n):
     num_cores = multiprocessing.cpu_count()
     steps = 200
 
-    init_op = tf.global_variables_initializer()
-
     workers = []
     for i in range(num_cores):
         worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, steps)
         workers.append(worker_object)
 
-    # super = tf.train.Supervisor(is_chief=(worker_n == 0),
-    #                          init_op=init_op,
-    #                          global_step=global_network.global_step
-    #                          )
-    #
-    # with super.managed_session(server.target) as master_session, master_session.as_default():
 
     with tf.train.MonitoredTrainingSession(master=server.target,
                                                is_chief=(worker_n == 0)
                                                ) as master_session:
 
-        coord = tf.train.Coordinator()
+        while not master_session.should_stop():
 
-        threads = []
-        i = 1
-        for worker in workers:
-            work = lambda worker=worker: worker.play(master_session, coord, super)
-            t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
-            i = i + 1
-            threads.append(t)
-            t.start()
+            coord = tf.train.Coordinator()
 
-        coord.join(threads)
+            threads = []
+            i = 1
+            for worker in workers:
+                work = lambda worker=worker: worker.play(master_session, coord)
+                t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
+                i = i + 1
+                threads.append(t)
+                t.start()
+
+            coord.join(threads)
+
 
     # print("Worker %d: blocking..." % worker_n)
     # super.join()
