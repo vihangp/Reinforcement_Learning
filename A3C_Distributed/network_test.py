@@ -19,7 +19,8 @@ class GlobalNetwork():
         elif task_id == 4:
             worker_device = "/job:worker/task:4"
 
-        with tf.device(tf.train.replica_device_setter( worker_device=worker_device, cluster=cluster)):
+        #with tf.device(tf.train.replica_device_setter( worker_device=worker_device, cluster=cluster)):
+        with tf.device("/job:ps/task:0"):
 
             self.global_step = tf.train.get_or_create_global_step()
             self.a = tf.get_variable("a", [1], initializer=tf.constant_initializer(0))
