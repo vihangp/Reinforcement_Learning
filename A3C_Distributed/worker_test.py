@@ -23,7 +23,7 @@ class Worker():
             var_value = master_session.run(self.global_network.var)
             sleep(1.0)
             self.global_step = +1
-            logger(self.thread_name, ": incrementing var, current val", var_value)
+            tf.logging.info(self.thread_name, ": incrementing var, current val", var_value)
 
             if self.global_step > self.num_global_steps:
                 coord.request_stop()

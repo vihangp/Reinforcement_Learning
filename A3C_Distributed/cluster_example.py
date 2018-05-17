@@ -6,8 +6,6 @@ from worker_test import Worker
 import threading
 import os
 
-logger = tf.logging.getLogger(__name__)
-logger.setLevel(tf.logging.INFO)
 
 tf.app.flags.DEFINE_string("job_name", "", "Either 'ps' or 'worker'")
 tf.app.flags.DEFINE_integer("task_index", 0, "Index of task within the job")
@@ -102,7 +100,7 @@ def worker(worker_n):
             threads = []
             i = 1
             for worker in workers:
-                work = lambda worker=worker: worker.play(master_session, coord, logger)
+                work = lambda worker=worker: worker.play(master_session, coord)
                 t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
                 i = i + 1
                 threads.append(t)
