@@ -10,9 +10,10 @@ class Worker():
 
 
     def play(self, local_session, master_session, coord):
-
+        val = 0
         for i in range(5):
-            feed_dict = {self.global_network.a: i}
+            feed_dict = {self.global_network.a: 1,
+                         self.global_network.b: val}
             val = master_session.run([self.global_network.c], feed_dict)
             sleep(1.0)
             print(self.thread_name, ": incrementing var current val", val )
