@@ -17,7 +17,7 @@ class Worker():
 
         global_step = master_session.run(self.global_network.global_step)
 
-        while not supervisor.should_stop() and (not self.num_global_steps or global_step < self.num_global_steps):
+        while not master_session.should_stop() and (not self.num_global_steps or global_step < self.num_global_steps):
 
             print(self.thread_name,": incrementing var")
             print(global_step)

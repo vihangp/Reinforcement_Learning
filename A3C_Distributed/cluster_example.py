@@ -81,12 +81,16 @@ def worker(worker_n):
         worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, steps)
         workers.append(worker_object)
 
-    super = tf.train.Supervisor(is_chief=(worker_n == 0),
-                             init_op=init_op,
-                             global_step=global_network.global_step
-                             )
+    # super = tf.train.Supervisor(is_chief=(worker_n == 0),
+    #                          init_op=init_op,
+    #                          global_step=global_network.global_step
+    #                          )
+    #
+    # with super.managed_session(server.target) as master_session, master_session.as_default():
 
-    with super.managed_session(server.target) as master_session, master_session.as_default():
+    with tf.train.MonitoredTrainingSession(master=server.target,
+                                               is_chief=(worker_n == 0)
+                                               ) as master_session:
 
         coord = tf.train.Coordinator()
 
@@ -101,8 +105,8 @@ def worker(worker_n):
 
         coord.join(threads)
 
-    print("Worker %d: blocking..." % worker_n)
-    super.join()
+    # print("Worker %d: blocking..." % worker_n)
+    # super.join()
 
 
 if job_name == 'ps':
