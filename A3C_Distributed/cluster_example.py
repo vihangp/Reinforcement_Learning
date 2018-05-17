@@ -49,7 +49,7 @@ cluster = tf.train.ClusterSpec({
 
 
 def parameter_server():
-    global_network = GlobalNetwork()
+    #global_network = GlobalNetwork()
 
     server = tf.train.Server(cluster,
                              job_name=job_name,
@@ -69,12 +69,12 @@ def parameter_server():
     #     print("Parameter server: var has value %.1f" % val)
     #     sleep(1.0)
 
-    sleep(60)
-    val = master_session.run(global_network.var)
-    print("Parameter server: var has value %.1f" % val)
-    sleep(60)
-    val = master_session.run(global_network.var)
-    print("Parameter server: var has value %.1f" % val)
+    # sleep(60)
+    # val = master_session.run(global_network.var)
+    # print("Parameter server: var has value %.1f" % val)
+    # sleep(60)
+    # val = master_session.run(global_network.var)
+    # print("Parameter server: var has value %.1f" % val)
 
     print("Parameter server: blocking...")
     server.join()
