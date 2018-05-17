@@ -10,15 +10,13 @@ class Worker():
         self.global_network = global_network
         self.num_global_steps = steps
 
-        self.local_network = PolicyValueNetwork(self.thread_name, self.task_id)
+        #self.local_network = PolicyValueNetwork(self.thread_name, self.task_id)
         print("Initializing:", self.thread_name, " Task Id", self.task_id)
         self.global_step = 0
 
     def play(self, master_session, coord):
 
         while not coord.should_stop():
-
-            #_, global_step = master_session.run([self.global_network.var.assign_add(1.0), self.global_network.global_step.assign_add(1.0)])
 
             for i in range(10):
                 var_value = master_session.run(self.global_network.c)

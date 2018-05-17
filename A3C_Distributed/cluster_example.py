@@ -84,10 +84,7 @@ def worker(worker_n):
     num_cores = multiprocessing.cpu_count()
     steps = 200
 
-    workers = []
-    for i in range(num_cores):
-        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, steps)
-        workers.append(worker_object)
+
 
     server = tf.train.Server(cluster,
                              job_name="worker",
@@ -102,6 +99,11 @@ def worker(worker_n):
         print("Worker %d: waiting for variable initialization..." % worker_n)
         sleep(1.0)
     print("Worker %d: variables initialized" % worker_n)
+
+    workers = []
+    for i in range(num_cores):
+        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, steps)
+        workers.append(worker_object)
 
 
     coord = tf.train.Coordinator()
