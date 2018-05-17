@@ -74,10 +74,10 @@ def worker(worker_n):
     num_cores = multiprocessing.cpu_count()
     steps = 200
 
-    workers = []
-    for i in range(num_cores):
-        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, steps)
-        workers.append(worker_object)
+    # workers = []
+    # for i in range(num_cores):
+    #     worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, steps)
+    #     workers.append(worker_object)
 
     init_op = tf.global_variables_initializer()
 
@@ -94,18 +94,21 @@ def worker(worker_n):
 
         while not super.should_stop():
 
-            coord = tf.train.Coordinator()
+            var_value = master_session.run(global_network.var.assign_add(1.0))
+            print("Worker:", worker_n, ": incrementing var, current val", var_value)
 
-            threads = []
-            i = 1
-            for worker in workers:
-                work = lambda worker=worker: worker.play(master_session, coord)
-                t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
-                i = i + 1
-                threads.append(t)
-                t.start()
-
-            coord.join(threads)
+            # coord = tf.train.Coordinator()
+            #
+            # threads = []
+            # i = 1
+            # for worker in workers:
+            #     work = lambda worker=worker: worker.play(master_session, coord)
+            #     t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
+            #     i = i + 1
+            #     threads.append(t)
+            #     t.start()
+            #
+            # coord.join(threads)
 
     super.stop()
 
