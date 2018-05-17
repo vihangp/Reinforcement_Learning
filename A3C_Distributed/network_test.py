@@ -18,5 +18,5 @@ class GlobalNetwork():
             # self.b = self.c
 
             self.a = tf.Variable([1.0], dtype=tf.float32)
-            self.assign_double = tf.assign(self.a, 2 * self.a)
+            self.assign_double = tf.assign(self.a, 1+ self.a)
 
