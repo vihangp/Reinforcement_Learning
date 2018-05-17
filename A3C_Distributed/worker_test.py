@@ -19,6 +19,7 @@ class Worker():
         while not coord.should_stop():
 
             #_, global_step = master_session.run([self.global_network.var.assign_add(1.0), self.global_network.global_step.assign_add(1.0)])
+
             var_value = master_session.run(self.global_network.var.assign_add(1.0))
             sleep(1.0)
             self.global_step = +1

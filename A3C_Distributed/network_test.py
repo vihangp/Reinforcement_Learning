@@ -15,8 +15,9 @@ class GlobalNetwork():
                 cluster=cluster)):
 
             self.var = tf.Variable(0.0, name='var')
-            self.global_step = tf.Variable(0.0, name='global_step', trainable=False)
-
+            self.global_step = tf.get_variable('global_step', [],
+                                          initializer=tf.constant_initializer(0),
+                                          trainable=False)
 
 class PolicyValueNetwork():
     def __init__(self, thread_name, task_id):
