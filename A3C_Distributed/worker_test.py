@@ -14,7 +14,7 @@ class Worker():
         print("Initializing:", self.thread_name, " Task Id", self.task_id)
         self.global_step = 0
 
-    def play(self,master_session, coord):
+    def play(self, master_session, coord):
 
         while not coord.should_stop():
 
