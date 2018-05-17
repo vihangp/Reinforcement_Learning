@@ -10,7 +10,7 @@ class GlobalNetwork():
 
     def __init__(self, cluster, task_id):
 
-        worker_device = "/job:worker/task:{}/cpu:0".format(task_id)
+        worker_device = "/job:worker/task:{}".format(task_id)
         with tf.device(tf.train.replica_device_setter( worker_device=worker_device, cluster=cluster)):
 
             self.global_step = tf.train.get_or_create_global_step()
@@ -20,9 +20,9 @@ class GlobalNetwork():
 
 class PolicyValueNetwork():
     def __init__(self, thread_name, task_id):
-        worker_device = "/job:worker/task:{}/cpu:0".format(task_id)
+        worker_device = "/job:worker/task:{}".format(task_id)
 
-        with tf.device("/job:worker/task:{}/cpu:0".format(task_id)):
+        with tf.device("/job:worker/task:{}".format(task_id)):
             with tf.variable_scope("thread_name"):
 
                 self.local_var = tf.Variable(50, name='var')
