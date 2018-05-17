@@ -49,7 +49,7 @@ cluster = tf.train.ClusterSpec({
 
 
 def parameter_server():
-    #global_network = GlobalNetwork()
+    global_network = GlobalNetwork()
 
     server = tf.train.Server(cluster,
                              job_name=job_name,
