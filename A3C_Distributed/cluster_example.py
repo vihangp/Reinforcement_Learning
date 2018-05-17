@@ -90,7 +90,7 @@ def worker(worker_n):
     #                                            is_chief=(worker_n == 0)
     #                                            ) as master_session:
 
-    with super.managed_session(server.target) as master_sesion, master_sesion.as_default():
+    with super.managed_session(server.target) as master_session, master_session.as_default():
 
         while not super.should_stop():
 
@@ -107,7 +107,7 @@ def worker(worker_n):
 
             coord.join(threads)
 
-
+    super.stop()
 
     # print("Worker %d: blocking..." % worker_n)
     # super.join()
