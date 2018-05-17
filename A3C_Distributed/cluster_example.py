@@ -63,7 +63,7 @@ def worker(worker_n):
 
     workers = []
     for i in range(num_cores):
-        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, server)
+        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
         workers.append(worker_object)
 
 
