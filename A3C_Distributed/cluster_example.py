@@ -80,35 +80,35 @@ def worker(worker_n):
         worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, steps)
         workers.append(worker_object)
 
-    init_op = tf.global_variables_initializer()
+    # init_op = tf.global_variables_initializer()
+    #
+    # super = tf.train.Supervisor(is_chief=(worker_n == 0),
+    #                          global_step=global_network.global_step,
+    #                          init_op=init_op)
 
-    super = tf.train.Supervisor(is_chief=(worker_n == 0),
-                             global_step=global_network.global_step,
-                             init_op=init_op)
+    with tf.train.MonitoredTrainingSession(master=server.target,
+                                               is_chief=(worker_n == 0)
+                                               ) as master_session:
 
+    #with super.managed_session(server.target) as master_session, master_session.as_default():
 
-    # with tf.train.MonitoredTrainingSession(master=server.target,
-    #                                            is_chief=(worker_n == 0)
-    #                                            ) as master_session:
+    #    while not super.should_stop():
+        #while not master_session.should_stop():
 
-    with super.managed_session(server.target) as master_session, master_session.as_default():
+        coord = tf.train.Coordinator()
 
-        while not super.should_stop():
+        threads = []
+        i = 1
+        for worker in workers:
+            work = lambda worker=worker: worker.play(master_session, coord)
+            t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
+            i = i + 1
+            threads.append(t)
+            t.start()
 
-            coord = tf.train.Coordinator()
+        coord.join(threads)
 
-            threads = []
-            i = 1
-            for worker in workers:
-                work = lambda worker=worker: worker.play(master_session, coord)
-                t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
-                i = i + 1
-                threads.append(t)
-                t.start()
-
-            coord.join(threads)
-
-    super.stop()
+    #super.stop()
 
     # print("Worker %d: blocking..." % worker_n)
     # super.join()

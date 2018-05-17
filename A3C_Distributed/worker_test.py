@@ -14,16 +14,16 @@ class Worker():
         print("Initializing:", self.thread_name, " Task Id", self.task_id)
         self.global_step = 0
 
-    def play(self,master_session, coord, logger):
+    def play(self,master_session, coord):
 
         while not coord.should_stop():
 
             #_, global_step = master_session.run([self.global_network.var.assign_add(1.0), self.global_network.global_step.assign_add(1.0)])
 
-            var_value = master_session.run(self.global_network.var)
+            var_value = master_session.run(self.global_network.c)
             sleep(1.0)
             self.global_step = +1
-            tf.logging.info(self.thread_name, ": incrementing var, current val", var_value)
+            print(self.thread_name, ": incrementing var, current val", var_value)
 
             if self.global_step > self.num_global_steps:
                 coord.request_stop()
