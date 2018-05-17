@@ -4,6 +4,7 @@ from time import sleep
 from network_test import GlobalNetwork
 from worker_test import Worker
 import threading
+import os
 
 tf.app.flags.DEFINE_string("job_name", "", "Either 'ps' or 'worker'")
 tf.app.flags.DEFINE_integer("task_index", 0, "Index of task within the job")
@@ -12,6 +13,17 @@ tf.app.flags.DEFINE_integer("number_ps", 0, "Number of parameter servers")
 FLAGS = tf.app.flags.FLAGS
 job_name = FLAGS.job_name
 num_ps = FLAGS.number_ps
+
+tf.flags.DEFINE_string("model_dir", "experiments/cluster/exp1", "Directory to write Tensorboard summaries and videos to.")
+FLAGS = tf.flags.FLAGS
+MODEL_DIR = FLAGS.model_dir
+
+CHECKPOINT_DIR = os.path.join(MODEL_DIR,"checkpoints")
+
+if not os.path.exists(CHECKPOINT_DIR):
+  os.makedirs(CHECKPOINT_DIR)
+
+#writer = tf.summary.FileWriter(os.path.join(MODEL_DIR, "train"))
 
 nodes_address = []
 ps_list = []
@@ -60,40 +72,37 @@ def worker(worker_n):
 
     global_network = GlobalNetwork(cluster, worker_n)
     num_cores = multiprocessing.cpu_count()
+    steps = 200
+
+    init_op = tf.global_variables_initializer()
 
     workers = []
     for i in range(num_cores):
-        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
+        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, steps)
         workers.append(worker_object)
 
+    super = tf.train.Supervisor(is_chief=(worker_n == 0),
+                             init_op=init_op,
+                             global_step=global_network.global_step
+                             )
 
-    master_session = tf.Session(target=server.target)
+    with super.managed_session(server.target) as master_session, master_session.as_default():
 
-    print("Worker %d: waiting for cluster connection..." % worker_n)
-    master_session.run(tf.report_uninitialized_variables())
-    print("Worker %d: cluster ready!" % worker_n)
+        coord = tf.train.Coordinator()
 
-    while master_session.run(tf.report_uninitialized_variables()):
-        print("Worker %d: waiting for variable initialization..." % worker_n)
-        sleep(1.0)
-    print("Worker %d: variables initialized" % worker_n)
+        threads = []
+        i = 1
+        for worker in workers:
+            work = lambda worker=worker: worker.play(master_session, coord, super)
+            t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
+            i = i + 1
+            threads.append(t)
+            t.start()
 
-
-    coord = tf.train.Coordinator()
-
-    threads = []
-    i = 1
-    for worker in workers:
-        work = lambda worker=worker: worker.play(master_session, coord)
-        t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
-        i = i + 1
-        threads.append(t)
-        t.start()
-
-    coord.join(threads)
+        coord.join(threads)
 
     print("Worker %d: blocking..." % worker_n)
-    server.join()
+    super.join()
 
 
 if job_name == 'ps':
