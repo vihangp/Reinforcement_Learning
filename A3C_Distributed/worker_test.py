@@ -4,12 +4,12 @@ from time import sleep
 from network_test import PolicyValueNetwork
 
 class Worker():
-    def __init__(self, master_name, thread_name, global_network):
-        self.master_name = master_name
+    def __init__(self, task_id, thread_name, global_network, worker):
+        self.task_id = task_id
         self.thread_name = thread_name
         self.global_network = global_network
 
-        self.local_network = PolicyValueNetwork(self.thread_name, self.master_name)
+        self.local_network = PolicyValueNetwork(self.thread_name, self.task_id, worker)
 
 
     def play(self,master_session, coord):

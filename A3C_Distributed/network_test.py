@@ -8,16 +8,20 @@ class GlobalNetwork():
         number of actions in policy.
     """
 
-    def __init__(self):
+    def __init__(self, cluster, task_id):
+        worker_device = "/job:worker/task:{}/cpu:0".format(task_id)
+        with tf.device(tf.train.replica_device_setter(
+                worker_device=worker_device,
+                cluster=cluster)):
 
-        with tf.device("/job:ps/task:0"):
             self.var = tf.Variable(0.0, name='var')
-            self.global_step = tf.contrib.framework.get_or_create_global_step()
 
 
 class PolicyValueNetwork():
-    def __init__(self, thread_name, master_name):
-        with tf.device("/job:worker/task:%d" % master_name):
+    def __init__(self, thread_name, task_id):
+        worker_device = "/job:worker/task:{}/cpu:0".format(task_id)
 
-            with tf.variable_scope(thread_name):
+        with tf.device("/job:worker/task:{}/cpu:0".format(task_id)):
+            with tf.variable_scope("thread_name"):
+
                 self.local_var = tf.Variable(50, name='var')

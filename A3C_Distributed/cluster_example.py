@@ -49,44 +49,24 @@ cluster = tf.train.ClusterSpec({
 
 
 def parameter_server():
-    global_network = GlobalNetwork()
-
     server = tf.train.Server(cluster,
                              job_name=job_name,
                              task_index=0)
-    master_session = tf.Session(target=server.target)
-
-    print("Parameter server: waiting for cluster connection...")
-    master_session.run(tf.report_uninitialized_variables())
-    print("Parameter server: cluster ready!")
-
-    print("Parameter server: initializing variables...")
-    master_session.run(tf.global_variables_initializer())
-    print("Parameter server: variables initialized")
-
-    sleep(60)
-    val = master_session.run(global_network.var)
-    print("Parameter server: var has value %.1f" % val)
-    sleep(60)
-    val = master_session.run(global_network.var)
-    print("Parameter server: var has value %.1f" % val)
-
-    print("Parameter server: blocking...")
     server.join()
-
-
 def worker(worker_n):
-    global_network = GlobalNetwork()
+    server = tf.train.Server(cluster,
+                             job_name="worker",
+                             task_index=worker_n)
+
+    global_network = GlobalNetwork(cluster, worker_n)
     num_cores = multiprocessing.cpu_count()
 
     workers = []
     for i in range(num_cores):
-        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
+        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, server)
         workers.append(worker_object)
 
-    server = tf.train.Server(cluster,
-                             job_name="worker",
-                             task_index=worker_n)
+
     master_session = tf.Session(target=server.target)
 
     print("Worker %d: waiting for cluster connection..." % worker_n)
