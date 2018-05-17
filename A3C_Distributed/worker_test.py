@@ -14,7 +14,7 @@ class Worker():
         #self.local_network = PolicyValueNetwork(self.thread_name, self.task_id)
 
 
-    def play(self, local_session, master_session, coord):
+    def play(self, master_session, coord):
 
         while not coord.should_stop():
 
