@@ -20,7 +20,7 @@ class Worker():
 
             #_, global_step = master_session.run([self.global_network.var.assign_add(1.0), self.global_network.global_step.assign_add(1.0)])
 
-            var_value = master_session.run(self.global_network.var.assign_add(1.0))
+            var_value = master_session.run(self.global_network.var)
             sleep(1.0)
             self.global_step = +1
             print(self.thread_name, ": incrementing var, current val", var_value)

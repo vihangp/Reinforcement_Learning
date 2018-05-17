@@ -14,7 +14,7 @@ class GlobalNetwork():
                 worker_device=worker_device,
                 cluster=cluster)):
 
-            self.var = tf.Variable(0.0, name='var')
+            self.var = tf.Variable(50, name='var')
             self.global_step = tf.get_variable('global_step', [],
                                           initializer=tf.constant_initializer(0),
                                           trainable=False)
