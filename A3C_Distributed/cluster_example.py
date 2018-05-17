@@ -59,7 +59,7 @@ cluster = tf.train.ClusterSpec({
     "worker": workers_list,
     "ps": ps_list
 })
-
+print("Worker list", workers_list)
 
 def parameter_server():
     server = tf.train.Server(cluster,
