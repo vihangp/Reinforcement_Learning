@@ -55,6 +55,7 @@ def parameter_server():
                              job_name=job_name,
                              task_index=0)
     master_session = tf.Session(target=server.target)
+    sleep(60)
 
     print("Parameter server: waiting for cluster connection...")
     master_session.run(tf.report_uninitialized_variables())
