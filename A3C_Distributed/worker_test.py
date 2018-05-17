@@ -20,11 +20,14 @@ class Worker():
 
             #_, global_step = master_session.run([self.global_network.var.assign_add(1.0), self.global_network.global_step.assign_add(1.0)])
 
-            var_value = master_session.run(self.global_network.c)
-            sleep(1.0)
-            self.global_step = +1
-            print(self.thread_name, ": incrementing var, current val", var_value)
+            for i in range(10):
+                var_value = master_session.run(self.global_network.c)
+                sleep(1.0)
+                print(self.thread_name, ": incrementing var, current val", var_value)
 
-            if self.global_step > self.num_global_steps:
-                coord.request_stop()
-                return
+            # if self.global_step > self.num_global_steps:
+            #     coord.request_stop()
+            #     return
+
+            coord.request_stop()
+            return

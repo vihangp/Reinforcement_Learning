@@ -108,6 +108,9 @@ def worker(worker_n):
 
         coord.join(threads)
 
+        var = master_session(global_network.c)
+        print("Final output by worker",worker_n ,": ",var)
+
     #super.stop()
 
     # print("Worker %d: blocking..." % worker_n)
