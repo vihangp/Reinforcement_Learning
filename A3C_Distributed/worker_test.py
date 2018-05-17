@@ -12,6 +12,6 @@ class Worker():
     def play(self, local_session, master_session, coord):
 
         for i in range(5):
-            print(self.thread_name,": incrementing var")
-            master_session.run(self.global_network.c)
+            val = master_session.run([self.global_network.c], feed_dict = {self.global_network.a : i})
             sleep(1.0)
+            print(self.thread_name, ": incrementing var current val", val )
