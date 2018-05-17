@@ -11,7 +11,7 @@ class Worker():
         self.global_network = global_network
 
 
-        self.local_network = PolicyValueNetwork(self.thread_name, self.task_id)
+        #self.local_network = PolicyValueNetwork(self.thread_name, self.task_id)
 
 
     def play(self, local_session, master_session, coord):
