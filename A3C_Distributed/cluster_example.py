@@ -118,6 +118,9 @@ def worker(worker_n):
 
     coord.join(threads)
 
+    var = master_session.run(global_network.a)
+    print("Final Value:", var)
+
     print("Worker %d: blocking..." % worker_n)
     server.join()
 
