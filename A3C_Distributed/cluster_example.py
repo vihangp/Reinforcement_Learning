@@ -69,8 +69,8 @@ def worker(worker_n):
 
     local_session = tf.Session()
 
-    local_vars = [v for v in tf.all_variables() if not v.name.startswith("local")]
-    init_op = tf.initialize_variables(local_vars)
+    local_vars = [v for v in tf.global_variables if not v.name.startswith("local")]
+    init_op = tf.variables_initializer(local_vars)
 
     local_session.run(init_op)
 
