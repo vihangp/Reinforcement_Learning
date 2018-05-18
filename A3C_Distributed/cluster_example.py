@@ -97,7 +97,7 @@ def worker(worker_n):
             coord.join(threads)
 
             var = master_session.run(global_network.a)
-            print(worker_n, "Value:", var)s
+            print(worker_n, "Value:", var)
 
 
 
