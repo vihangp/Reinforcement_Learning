@@ -41,18 +41,18 @@ for i, node in enumerate(nodes_address[num_ps:]):
     print('Worker Server added ' + str(i))
     workers_list.append("icsnode" + node + ".cluster.net:2222")
 
-
 cluster = tf.train.ClusterSpec({
     "worker": workers_list,
     "ps": ps_list
 })
+# start a server for a specific task
+server = tf.train.Server(
+    cluster,
+    job_name=FLAGS.job_name,
+    task_index=worker_n)
 
 
 def parameter_server():
-
-    server = tf.train.Server(cluster,
-                             job_name=job_name,
-                             task_index=0)
 
     print("Parameter server: blocking...")
     server.join()
@@ -67,19 +67,21 @@ def worker(worker_n):
         worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
         workers.append(worker_object)
 
-    server = tf.train.Server(cluster,
-                             job_name="worker",
-                             task_index=worker_n)
+    # init_op = tf.global_variables_initializer()
+    #
+    # super = tf.train.Supervisor(is_chief=(worker_n == 0),
+    #                          global_step=global_network.global_step,
+    #                          init_op=init_op)
 
-    init_op = tf.global_variables_initializer()
 
-    super = tf.train.Supervisor(is_chief=(worker_n == 0),
-                             global_step=global_network.global_step,
-                             init_op=init_op)
 
-    with super.managed_session(server.target) as master_session, master_session.as_default():
+    #with super.managed_session(server.target) as master_session, master_session.as_default():
 
-        while not super.should_stop():
+    with tf.train.MonitoredTrainingSession(master=server.target,
+                                           is_chief=(worker_n == 0)) as master_session:
+        while not master_session.should_stop():
+
+        #while not super.should_stop():
             coord = tf.train.Coordinator()
 
             threads = []
@@ -96,7 +98,7 @@ def worker(worker_n):
             var = master_session.run(global_network.a)
             print("Final Value:", var)
 
-    super.stop()
+    #super.stop()
 
 
 
