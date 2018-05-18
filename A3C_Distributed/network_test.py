@@ -21,11 +21,9 @@ class GlobalNetwork():
 class PolicyValueNetwork():
     def __init__(self, thread_name, task_id):
 
-        with tf.device("/job:worker/task:%d" % task_id):
+        with tf.variable_scope("local"):
+            with tf.variable_scope(thread_name):
 
-            with tf.variable_scope("local"):
-                with tf.variable_scope(thread_name):
-
-                    self.local_var = tf.Variable(50, name='var')
+                self.local_var = tf.Variable(50, name='var')
 
 

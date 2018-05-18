@@ -79,36 +79,36 @@ def worker(worker_n):
     # with tf.train.MonitoredTrainingSession(master=server.target,
     #                                        is_chief=(worker_n == 0)) as master_session:
 
-    #while not master_session.should_stop():
+    while not master_session.should_stop():
 
-    workers = []
-    for i in range(num_cores):
-        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
-        workers.append(worker_object)
+        workers = []
+        for i in range(num_cores):
+            worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
+            workers.append(worker_object)
 
-    local_session = tf.Session()
+        local_session = tf.Session()
 
-    local_vars = [v for v in tf.all_variables() if not v.name.startswith("local")]
-    init_op = tf.initialize_variables(local_vars)
+        local_vars = [v for v in tf.all_variables() if not v.name.startswith("local")]
+        init_op = tf.initialize_variables(local_vars)
 
-    local_session.run(init_op)
+        local_session.run(init_op)
 
-    #while not super.should_stop():
-    coord = tf.train.Coordinator()
+        #while not super.should_stop():
+        coord = tf.train.Coordinator()
 
-    threads = []
-    i = 1
-    for worker in workers:
-        work = lambda worker=worker: worker.play(master_session, coord)
-        t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
-        i = i + 1
-        threads.append(t)
-        t.start()
+        threads = []
+        i = 1
+        for worker in workers:
+            work = lambda worker=worker: worker.play(master_session, coord)
+            t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
+            i = i + 1
+            threads.append(t)
+            t.start()
 
-    coord.join(threads)
+        coord.join(threads)
 
-    var = master_session.run(global_network.a)
-    print(worker_n, "Value:", var)
+        var = master_session.run(global_network.a)
+        print(worker_n, "Value:", var)
 
     #super.stop()
 
