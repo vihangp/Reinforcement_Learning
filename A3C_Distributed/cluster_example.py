@@ -71,13 +71,13 @@ def worker(worker_n):
     #                                         is_chief=(worker_n == 0)) as master_session:
 
         #while not master_session.should_stop():
-
+    graph = tf.Graph()
     workers = []
     for i in range(num_cores):
-        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
+        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network, graph)
         workers.append(worker_object)
 
-    local_session = tf.Session()
+    local_session = tf.Session(graph=graph)
 
     local_vars = [v for v in tf.local_variables() if not v.name.startswith("local")]
     init_op = tf.variables_initializer(local_vars)
