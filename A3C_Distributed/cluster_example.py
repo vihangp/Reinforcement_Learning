@@ -85,8 +85,6 @@ def worker(worker_n):
 
     while not master_session.should_stop():
 
-
-
     #while not super.should_stop():
         coord = tf.train.Coordinator()
 
