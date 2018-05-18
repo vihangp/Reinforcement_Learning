@@ -18,10 +18,10 @@ class Worker():
         while not coord.should_stop():
 
             for i in range(5):
-                master_session.run(self.local_network.assign_double)
+                master_session.run(self.global_network.assign_double)
                 sleep(1.0)
 
-            var = master_session.run(self.local_network.a)
+            var = master_session.run(self.global_network.a)
             print(self.thread_name, "Value:", var)
 
             coord.request_stop()
