@@ -23,8 +23,6 @@ class GlobalNetwork():
                     self.local_var = tf.Variable(50, name='var')
 
 
-
-
 class PolicyValueNetwork():
     def __init__(self, thread_name, task_id):
 

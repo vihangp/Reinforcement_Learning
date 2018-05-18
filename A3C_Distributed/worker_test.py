@@ -1,15 +1,15 @@
 import multiprocessing
 import tensorflow as tf
 from time import sleep
-from network_test import PolicyValueNetwork, GlobalNetwork
+from network_test import GlobalNetwork
 
 
 class Worker():
-    def __init__(self, task_id, thread_name):
+    def __init__(self, cluster, task_id, thread_name):
         self.task_id = task_id
         self.thread_name = thread_name
 
-        self.local_network = GlobalNetwork(self.thread_name, self.task_id)
+        self.local_network = GlobalNetwork(cluster, self.task_id, self.thread_name)
 
 
     def play(self, master_session, coord):

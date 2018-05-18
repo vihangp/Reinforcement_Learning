@@ -75,7 +75,7 @@ def worker(worker_n):
 
     workers = []
     for i in range(num_cores):
-        worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1))
+        worker_object = Worker(cluster, worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1))
         workers.append(worker_object)
 
 
