@@ -11,10 +11,11 @@ class GlobalNetwork():
     def __init__(self, cluster, task_id):
 
         worker_device = "/job:worker/task:{}".format(task_id)
-        # with tf.device(tf.train.replica_device_setter(worker_device="/job:worker/task:%d" % task_id,
-        #                                               cluster=cluster)):
-        with tf.device(tf.train.replica_device_setter(ps_device="/job:ps/task:0",
+        with tf.device(tf.train.replica_device_setter(worker_device="/job:worker/task:%d" % task_id,
                                                       cluster=cluster)):
+
+        # with tf.device(tf.train.replica_device_setter(ps_device="/job:ps/task:0",
+        #                                               cluster=cluster)):
 
             self.global_step = tf.train.get_or_create_global_step()
             self.a = tf.Variable([1.0], dtype=tf.float32)
