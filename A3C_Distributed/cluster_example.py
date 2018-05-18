@@ -73,9 +73,11 @@ def worker(worker_n):
     #
     #global_network = GlobalNetwork(cluster, worker_n)
 
+    global_network = GlobalNetwork(cluster, worker_n, self.thread_name)
+
     workers = []
     for i in range(num_cores):
-        worker_object = Worker(cluster, worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1))
+        worker_object = Worker(cluster, worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
         workers.append(worker_object)
 
 
