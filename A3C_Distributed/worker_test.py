@@ -5,11 +5,11 @@ from network_test import GlobalNetwork
 
 
 class Worker():
-    def __init__(self, cluster, task_id, thread_name, global_network):
+    def __init__(self, cluster, task_id, thread_name):
         self.task_id = task_id
         self.thread_name = thread_name
 
-        self.local_network = global_network
+        self.local_network = GlobalNetwork(cluster, self.task_id, self.thread_name)
 
 
     def play(self, master_session, coord):
