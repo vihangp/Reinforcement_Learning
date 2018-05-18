@@ -62,42 +62,43 @@ def worker(worker_n):
     global_network = GlobalNetwork(cluster, worker_n)
     num_cores = multiprocessing.cpu_count()
 
+
+
+    master_session = tf.train.MonitoredTrainingSession(master=server.target,
+                                           is_chief=(worker_n == 0))
+
+    # with tf.train.MonitoredTrainingSession(master=server.target,
+    #                                         is_chief=(worker_n == 0)) as master_session:
+
+        #while not master_session.should_stop():
+
     workers = []
     for i in range(num_cores):
         worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
         workers.append(worker_object)
 
+    local_session = tf.Session()
 
-    # master_session = tf.train.MonitoredTrainingSession(master=server.target,
-    #                                        is_chief=(worker_n == 0))
+    local_vars = [v for v in tf.local_variables() if not v.name.startswith("local")]
+    init_op = tf.variables_initializer(local_vars)
 
-    with tf.train.MonitoredTrainingSession(master=server.target,
-                                            is_chief=(worker_n == 0)) as master_session:
+    local_session.run(init_op)
 
-        while not master_session.should_stop():
+    coord = tf.train.Coordinator()
 
-            local_session = tf.Session()
+    threads = []
+    i = 1
+    for worker in workers:
+        work = lambda worker=worker: worker.play(master_session, coord)
+        t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
+        i = i + 1
+        threads.append(t)
+        t.start()
 
-            local_vars = [v for v in tf.local_variables() if not v.name.startswith("local")]
-            init_op = tf.variables_initializer(local_vars)
+    coord.join(threads)
 
-            local_session.run(init_op)
-
-            coord = tf.train.Coordinator()
-
-            threads = []
-            i = 1
-            for worker in workers:
-                work = lambda worker=worker: worker.play(master_session, coord)
-                t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
-                i = i + 1
-                threads.append(t)
-                t.start()
-
-            coord.join(threads)
-
-            var = master_session.run(global_network.a)
-            print(worker_n, "Value:", var)
+    var = master_session.run(global_network.a)
+    print(worker_n, "Value:", var)
 
 
 
