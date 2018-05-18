@@ -71,11 +71,12 @@ def worker(worker_n):
     #
     # local_session.run(tf.local_variables_initializer())
     #
-    #global_network = GlobalNetwork(cluster, worker_n)
+
+    global_network = GlobalNetwork(cluster, worker_n)
 
     workers = []
     for i in range(num_cores):
-        worker_object = Worker(cluster, worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1))
+        worker_object = Worker(cluster, worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
         workers.append(worker_object)
 
 
@@ -99,9 +100,6 @@ def worker(worker_n):
                 t.start()
 
             coord.join(threads)
-
-
-
 
 if job_name == 'ps':
     print('parameter server')
