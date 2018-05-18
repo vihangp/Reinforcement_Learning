@@ -5,7 +5,7 @@ from network_test import PolicyValueNetwork, GlobalNetwork
 
 
 class Worker():
-    def __init__(self, task_id, thread_name, graph):
+    def __init__(self, task_id, thread_name):
         self.task_id = task_id
         self.thread_name = thread_name
 
