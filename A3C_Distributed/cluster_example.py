@@ -49,40 +49,17 @@ cluster = tf.train.ClusterSpec({
 
 
 def parameter_server():
-    global_network = GlobalNetwork()
 
     server = tf.train.Server(cluster,
                              job_name=job_name,
                              task_index=0)
-    master_session = tf.Session(target=server.target)
-    sleep(60)
-
-    print("Parameter server: waiting for cluster connection...")
-    master_session.run(tf.report_uninitialized_variables())
-    print("Parameter server: cluster ready!")
-
-    print("Parameter server: initializing variables...")
-    master_session.run(tf.global_variables_initializer())
-    print("Parameter server: variables initialized")
-
-    # for i in range(5):
-    #     val = master_session.run(global_network.var)
-    #     print("Parameter server: var has value %.1f" % val)
-    #     sleep(1.0)
-
-    # sleep(60)
-    # val = master_session.run(global_network.var)
-    # print("Parameter server: var has value %.1f" % val)
-    # sleep(60)
-    # val = master_session.run(global_network.var)
-    # print("Parameter server: var has value %.1f" % val)
 
     print("Parameter server: blocking...")
     server.join()
 
 
 def worker(worker_n):
-    global_network = GlobalNetwork()
+    global_network = GlobalNetwork(cluster, worker_n)
     num_cores = multiprocessing.cpu_count()
 
     workers = []
@@ -93,37 +70,34 @@ def worker(worker_n):
     server = tf.train.Server(cluster,
                              job_name="worker",
                              task_index=worker_n)
-    master_session = tf.Session(target=server.target)
 
+    init_op = tf.global_variables_initializer()
 
-    print("Worker %d: waiting for cluster connection..." % worker_n)
-    master_session.run(tf.report_uninitialized_variables())
-    print("Worker %d: cluster ready!" % worker_n)
+    super = tf.train.Supervisor(is_chief=(worker_n == 0),
+                             global_step=global_network.global_step,
+                             init_op=init_op)
 
-    while master_session.run(tf.report_uninitialized_variables()):
-        print("Worker %d: waiting for variable initialization..." % worker_n)
-        sleep(1.0)
-    print("Worker %d: variables initialized" % worker_n)
+    with super.managed_session(server.target) as master_session, master_session.as_default():
 
+        while not super.should_stop():
+            coord = tf.train.Coordinator()
 
-    coord = tf.train.Coordinator()
+            threads = []
+            i = 1
+            for worker in workers:
+                work = lambda worker=worker: worker.play(master_session, coord)
+                t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
+                i = i + 1
+                threads.append(t)
+                t.start()
 
-    threads = []
-    i = 1
-    for worker in workers:
-        work = lambda worker=worker: worker.play(master_session, coord)
-        t = threading.Thread(name="worker_{}{}".format(FLAGS.task_index, i + 1), target=work)
-        i = i + 1
-        threads.append(t)
-        t.start()
+            coord.join(threads)
 
-    coord.join(threads)
+            var = master_session.run(global_network.a)
+            print("Final Value:", var)
 
-    var = master_session.run(global_network.a)
-    print("Final Value:", var)
+    super.stop()
 
-    print("Worker %d: blocking..." % worker_n)
-    server.join()
 
 
 if job_name == 'ps':
