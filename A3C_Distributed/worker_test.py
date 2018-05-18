@@ -5,21 +5,20 @@ from network_test import PolicyValueNetwork
 
 
 class Worker():
-    def __init__(self, task_id, thread_name, global_network, graph):
+    def __init__(self, task_id, thread_name, graph):
         self.task_id = task_id
         self.thread_name = thread_name
-        self.global_network = global_network
 
         with graph.as_default():
             self.local_network = PolicyValueNetwork(self.thread_name, self.task_id)
 
 
-    def play(self, master_session, coord):
+    def play(self, master_session, coord, global_network):
 
         while not coord.should_stop():
 
             for i in range(5):
-                master_session.run(self.global_network.assign_double)
+                master_session.run(global_network.assign_double)
                 sleep(1.0)
                 print(self.thread_name, ": incrementing var current val")
 
