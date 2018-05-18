@@ -67,12 +67,12 @@ def worker(worker_n):
         worker_object = Worker(worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), graph)
         workers.append(worker_object)
 
-    local_session = tf.Session()
+    local_session = tf.Session(graph=graph)
 
-    local_vars = [v for v in tf.local_variables() if not v.name.startswith("local")]
-    init_op = tf.variables_initializer(local_vars)
+    # local_vars = [v for v in tf.local_variables() if not v.name.startswith("local")]
+    # init_op = tf.variables_initializer(local_vars)
 
-    local_session.run(init_op)
+    local_session.run(tf.local_variables_initializer())
 
 
     global_network = GlobalNetwork(cluster, worker_n)
