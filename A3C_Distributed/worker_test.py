@@ -19,7 +19,7 @@ class Worker():
             for i in range(5):
                 master_session.run(self.local_network.assign_double)
                 var = master_session.run(self.local_network.a)
-                print(self.task_id, "Value:", var)
+                print(self.thread_name, "Value:", var)
                 sleep(1.0)
                 #print(self.thread_name, ": incrementing var current val")
 
