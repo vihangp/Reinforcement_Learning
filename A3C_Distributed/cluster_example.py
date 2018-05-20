@@ -95,11 +95,11 @@ def worker(worker_n):
     worker_object = Worker(game, worker_n, t_max, num_actions, global_network, gamma,
                    initial_learning_rate, max_global_time_step, clip_norm)
 
-    hooks = [tf.train.StopAtStepHook(last_step=1000000)]
+    hooks = [tf.train.StopAtStepHook(last_step=5000000)]
 
     with tf.train.MonitoredTrainingSession(master=server.target,
                                            is_chief=(worker_n == 0),
-                                           checkpoint_dir=MODEL_DIR, hooks=hooks, save_summaries_steps=1) as master_session:
+                                           checkpoint_dir=MODEL_DIR, hooks=hooks) as master_session:
         print("Worker on Node", FLAGS.node_index, "with Task ID", worker_n)
 
         worker_object.play(master_session)

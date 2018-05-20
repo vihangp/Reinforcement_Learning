@@ -45,6 +45,7 @@ class Worker():
         learning_rate = self.initial_learning_rate
         global_t = 0
         count = 0
+        episode = 0
 
         while not sess.should_stop():
 
@@ -98,7 +99,10 @@ class Worker():
                     count += 1
                     sess.run([self.global_network.episode_reward],
                              feed_dict={self.global_network.episode_reward: self.episode_reward})
-                    print(self.episode_reward)
+                    episode +=1
+                    if episode % 100 == 0:
+                        print("Task id",self.task_id,":",self.episode_reward)
+
                     self.episode_reward = 0
                     self.reward.append(0)
                     break
