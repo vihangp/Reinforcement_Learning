@@ -45,8 +45,8 @@ for i, node in enumerate(nodes_address[num_ps:]):
             worker_n = i * workers_per_node + j
             print(worker_n)
         print('Worker Server added ' + str(j))
-        print("icsnode" + node + ".cluster.net:222{}".format(j))
-        workers_list.append("icsnode" + node + ".cluster.net:222{}".format(j))
+        print("icsnode" + node + ".cluster.net:2222")
+        workers_list.append("icsnode" + node + ".cluster.net:2222")
 
 cluster = tf.train.ClusterSpec({
     "worker": workers_list,
