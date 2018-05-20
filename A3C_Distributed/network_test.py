@@ -21,9 +21,10 @@ class GlobalNetwork():
             #self.assign_double = tf.assign(self.a, self.b)
 
 
+
 class PolicyValueNetwork():
     def __init__(self, thread_name, task_id):
 
-        with tf.device("/job:worker/task:%d" % task_id):
-            #with tf.variable_scope(thread_name):
-            self.local_var = tf.Variable([task_id], name='var')
+        with tf.device("/cpu:0"):
+            with tf.variable_scope(thread_name):
+                self.local_var = tf.Variable([task_id], name='var')
