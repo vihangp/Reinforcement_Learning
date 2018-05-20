@@ -1,7 +1,7 @@
 import multiprocessing
 import tensorflow as tf
 from time import sleep
-from network_test import GlobalNetwork, PolicyValueNetwork
+from network_test import GlobalNetwork
 import gym
 import operator
 import numpy as np
