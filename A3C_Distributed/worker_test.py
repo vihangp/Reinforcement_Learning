@@ -34,7 +34,6 @@ class Worker():
         self.done = False
 
         self.max_global_time_step = max_global_time_step
-        self.global_step = tf.train.get_global_step()
 
         # Initialise the environment
         self.env = gym.make(self.game)

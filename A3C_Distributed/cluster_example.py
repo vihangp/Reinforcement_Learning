@@ -86,7 +86,7 @@ def worker(worker_n):
     clip_norm = 40.0
     initial_learning_rate = log_uniform(alpha_low, alpha_high, alpha_log_rate)
 
-    MODEL_DIR = 'experiments/exp1'
+    MODEL_DIR = 'experiments/exp8'
 
     CHECKPOINT_DIR = os.path.join(MODEL_DIR, "checkpoints")
 
@@ -98,9 +98,11 @@ def worker(worker_n):
     worker_object = Worker(game, worker_n, t_max, num_actions, global_network, gamma,
                    initial_learning_rate, max_global_time_step, clip_norm)
 
+    hooks = [tf.train.StopAtStepHook(last_step=1000000)]
 
     with tf.train.MonitoredTrainingSession(master=server.target,
-                                           is_chief=(worker_n == 0), checkpoint_dir=MODEL_DIR) as master_session:
+                                           is_chief=(worker_n == 0),
+                                           checkpoint_dir=MODEL_DIR, hooks=hooks) as master_session:
 
         worker_object.play(master_session)
 

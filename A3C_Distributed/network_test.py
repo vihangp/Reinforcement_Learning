@@ -94,5 +94,6 @@ class GlobalNetwork():
                 self.optimizer = tf.train.RMSPropOptimizer(self.learning_rate, 0.99, 0.0, 1e-6)
                 self.gradients = self.optimizer.compute_gradients(self.loss)
                 self.gradients = [[grad, var] for grad, var in self.gradients if grad is not None]
+                global_step = tf.contrib.framework.get_or_create_global_step()
                 self.gradients_apply = self.optimizer.apply_gradients(self.gradients,
-                                                                      global_step=tf.train.get_global_step())
+                                                                      global_step=global_step)
