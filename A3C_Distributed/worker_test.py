@@ -16,9 +16,9 @@ class Worker():
     def play(self, master_session):
 
         for i in range(5):
-            b = master_session.run(self.local_network.local_var)
-            feed_dict = {self.global_network.b: b}
-            master_session.run(self.global_network.assign_double, feed_dict)
+            #b = master_session.run(self.local_network.local_var)
+            #feed_dict = {self.global_network.b: b}
+            master_session.run(self.global_network.assign_double)
             sleep(1.0)
             print(self.task_id, ": Here")
 

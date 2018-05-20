@@ -30,9 +30,7 @@ for i, node in enumerate(nodes_address[:num_ps]):
     print(type(node), node)
     print(FLAGS.node_index)
     if node == str(FLAGS.node_index):
-        print('Parameter Server index')
         worker_n = i
-    print('Parameter Server added ' + str(i))
     ps_list.append("icsnode" + node + ".cluster.net:2222")
 
 
@@ -43,8 +41,6 @@ for i, node in enumerate(nodes_address[num_ps:]):
     for j in range(workers_per_node):
         if node == str(FLAGS.node_index) and j == FLAGS.task_index:
             worker_n = i * workers_per_node + j
-        print('Worker Server added ' + str(j))
-        print("icsnode" + node + ".cluster.net:222{}".format(j))
         workers_list.append("icsnode" + node + ".cluster.net:222{}".format(j))
 
 cluster = tf.train.ClusterSpec({
