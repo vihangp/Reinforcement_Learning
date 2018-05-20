@@ -43,7 +43,7 @@ for i, node in enumerate(nodes_address[num_ps:]):
     for j in range(workers_per_node):
         if node == str(FLAGS.node_index) and j == FLAGS.task_index:
             print('Worker Server index')
-            worker_n = i * 20 + j
+            worker_n = i * workers_per_node + j
         print('Worker Server added ' + str(i))
         workers_list.append("icsnode" + node + ".cluster.net:222{}".format(j))
 
