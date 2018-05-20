@@ -100,7 +100,7 @@ class Worker():
                     sess.run([self.global_network.episode_reward],
                              feed_dict={self.global_network.episode_reward: self.episode_reward})
                     episode +=1
-                    if episode % 100 == 0:
+                    if episode % 25 == 0:
                         print("Task id",self.task_id,":",self.episode_reward)
 
                     self.episode_reward = 0
