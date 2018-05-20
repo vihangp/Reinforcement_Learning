@@ -83,6 +83,7 @@ with tf.Session() as sess:
             # select action
             env.render()
             time.sleep(0.01)
+            c_lives = env.env.ale.lives()
             action_prob = sess.run([global_network.policy],
                                           {global_network.state_u: np.reshape(state, [1, 84, 84, 4])})
 
@@ -91,7 +92,7 @@ with tf.Session() as sess:
             #action = env.action_space.sample()
             # pass action
             observation, reward, done, info = env.step(action)
-
+            lives = env.env.ale.lives()
             # process the new state
             proccessed_state = sess.run([global_network.proc_state], {global_network.observation: observation})
             proccessed_state = np.reshape(proccessed_state, [84, 84])
@@ -108,7 +109,7 @@ with tf.Session() as sess:
             steps += 1
 
             # return the value of the last state
-            if done:
+            if done or (c_lives != lives):
                 print("Episode Done")
                 break
 

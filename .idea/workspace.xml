@@ -5,7 +5,9 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/A3C_Distributed/mon_test.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C/policy_render.py" afterPath="$PROJECT_DIR$/A3C/policy_render.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C_Distributed/.idea/workspace.xml" afterPath="$PROJECT_DIR$/A3C_Distributed/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C_Distributed/bash_test.sh" afterPath="$PROJECT_DIR$/A3C_Distributed/bash_test.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C_Distributed/cluster_example.py" afterPath="$PROJECT_DIR$/A3C_Distributed/cluster_example.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C_Distributed/network_test.py" afterPath="$PROJECT_DIR$/A3C_Distributed/network_test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C_Distributed/worker_test.py" afterPath="$PROJECT_DIR$/A3C_Distributed/worker_test.py" />
     </list>
@@ -17,12 +19,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="cluster_example.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/A3C_Distributed/cluster_example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="769">
-              <caret line="129" column="20" lean-forward="true" selection-start-line="129" selection-start-column="20" selection-end-line="129" selection-end-column="20" />
+            <state relative-caret-position="600">
+              <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -33,9 +35,11 @@
       <file leaf-file-name="worker_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/A3C_Distributed/worker_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="270">
               <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -43,8 +47,8 @@
       <file leaf-file-name="network_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/A3C_Distributed/network_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="285">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -82,14 +86,15 @@
         <option value="$PROJECT_DIR$/A3C/policy_render.py" />
         <option value="$PROJECT_DIR$/A3C_Distributed/mon_test.py" />
         <option value="$PROJECT_DIR$/A3C_Distributed/train.py" />
-        <option value="$PROJECT_DIR$/A3C_Distributed/cluster_example.py" />
         <option value="$PROJECT_DIR$/A3C_Distributed/network_test.py" />
+        <option value="$PROJECT_DIR$/A3C_Distributed/cluster_example.py" />
         <option value="$PROJECT_DIR$/A3C_Distributed/worker_test.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="855" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="901" />
+    <option name="width" value="539" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -110,8 +115,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -124,10 +127,18 @@
               <item name="Reinforcement_Learning" type="462c0819:PsiDirectoryNode" />
               <item name="A3C_Distributed" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Reinforcement_Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Reinforcement_Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="A3C_Distributed" type="462c0819:PsiDirectoryNode" />
+              <item name="version_1" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -260,350 +271,350 @@
       <option name="presentableId" value="Default" />
       <updated>1520163097131</updated>
     </task>
-    <task id="LOCAL-00036" summary="Printing and saving according to worker 1 count">
-      <created>1526403380606</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
+    <task id="LOCAL-00089" summary="Printing and saving according to worker 1 count">
+      <created>1526588629501</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
       <option name="project" value="LOCAL" />
-      <updated>1526403380606</updated>
+      <updated>1526588629501</updated>
     </task>
-    <task id="LOCAL-00037" summary="Printing and saving according to worker 1 count">
-      <created>1526405564456</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
+    <task id="LOCAL-00090" summary="Printing and saving according to worker 1 count">
+      <created>1526589810207</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
       <option name="project" value="LOCAL" />
-      <updated>1526405564456</updated>
+      <updated>1526589810208</updated>
     </task>
-    <task id="LOCAL-00038" summary="Printing and saving according to worker 1 count">
-      <created>1526406057403</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
+    <task id="LOCAL-00091" summary="Printing and saving according to worker 1 count">
+      <created>1526589949541</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
       <option name="project" value="LOCAL" />
-      <updated>1526406057403</updated>
+      <updated>1526589949542</updated>
     </task>
-    <task id="LOCAL-00039" summary="Printing and saving according to worker 1 count">
-      <created>1526415968627</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
+    <task id="LOCAL-00092" summary="Printing and saving according to worker 1 count">
+      <created>1526590175380</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
       <option name="project" value="LOCAL" />
-      <updated>1526415968627</updated>
+      <updated>1526590175380</updated>
     </task>
-    <task id="LOCAL-00040" summary="PS + Threading update">
-      <created>1526417621546</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
+    <task id="LOCAL-00093" summary="Printing and saving according to worker 1 count">
+      <created>1526591785573</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
       <option name="project" value="LOCAL" />
-      <updated>1526417621546</updated>
+      <updated>1526591785573</updated>
     </task>
-    <task id="LOCAL-00041" summary="Working Version 1">
-      <created>1526419707666</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
+    <task id="LOCAL-00094" summary="Printing and saving according to worker 1 count">
+      <created>1526592722124</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
       <option name="project" value="LOCAL" />
-      <updated>1526419707666</updated>
+      <updated>1526592722124</updated>
     </task>
-    <task id="LOCAL-00042" summary="Local graph added">
-      <created>1526420806327</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
+    <task id="LOCAL-00095" summary="Printing and saving according to worker 1 count">
+      <created>1526592855011</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
       <option name="project" value="LOCAL" />
-      <updated>1526420806327</updated>
+      <updated>1526592855011</updated>
     </task>
-    <task id="LOCAL-00043" summary="Printing and saving according to worker 1 count">
-      <created>1526421711212</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
+    <task id="LOCAL-00096" summary="Printing and saving according to worker 1 count">
+      <created>1526593021781</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
       <option name="project" value="LOCAL" />
-      <updated>1526421711212</updated>
+      <updated>1526593021781</updated>
     </task>
-    <task id="LOCAL-00044" summary="Printing and saving according to worker 1 count">
-      <created>1526480175881</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
+    <task id="LOCAL-00097" summary="Printing and saving according to worker 1 count">
+      <created>1526594340108</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
       <option name="project" value="LOCAL" />
-      <updated>1526480175881</updated>
+      <updated>1526594340108</updated>
     </task>
-    <task id="LOCAL-00045" summary="Printing and saving according to worker 1 count">
-      <created>1526500935783</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
+    <task id="LOCAL-00098" summary="Printing and saving according to worker 1 count">
+      <created>1526594494784</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
       <option name="project" value="LOCAL" />
-      <updated>1526500935783</updated>
+      <updated>1526594494784</updated>
     </task>
-    <task id="LOCAL-00046" summary="Printing and saving according to worker 1 count">
-      <created>1526505437511</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
+    <task id="LOCAL-00099" summary="Printing and saving according to worker 1 count">
+      <created>1526595020129</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
       <option name="project" value="LOCAL" />
-      <updated>1526505437511</updated>
+      <updated>1526595020129</updated>
     </task>
-    <task id="LOCAL-00047" summary="Printing and saving according to worker 1 count">
-      <created>1526505465334</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
+    <task id="LOCAL-00100" summary="Printing and saving according to worker 1 count">
+      <created>1526595275356</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
       <option name="project" value="LOCAL" />
-      <updated>1526505465334</updated>
+      <updated>1526595275356</updated>
     </task>
-    <task id="LOCAL-00048" summary="Printing and saving according to worker 1 count">
-      <created>1526506805973</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
+    <task id="LOCAL-00101" summary="Printing and saving according to worker 1 count">
+      <created>1526636672697</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
       <option name="project" value="LOCAL" />
-      <updated>1526506805973</updated>
+      <updated>1526636672697</updated>
     </task>
-    <task id="LOCAL-00049" summary="Printing and saving according to worker 1 count">
-      <created>1526506824633</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
+    <task id="LOCAL-00102" summary="Printing and saving according to worker 1 count">
+      <created>1526641444836</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
       <option name="project" value="LOCAL" />
-      <updated>1526506824633</updated>
+      <updated>1526641444836</updated>
     </task>
-    <task id="LOCAL-00050" summary="Printing and saving according to worker 1 count">
-      <created>1526507961956</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
+    <task id="LOCAL-00103" summary="Printing and saving according to worker 1 count">
+      <created>1526641960597</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
       <option name="project" value="LOCAL" />
-      <updated>1526507961957</updated>
+      <updated>1526641960597</updated>
     </task>
-    <task id="LOCAL-00051" summary="Printing and saving according to worker 1 count">
-      <created>1526508289481</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
+    <task id="LOCAL-00104" summary="Printing and saving according to worker 1 count">
+      <created>1526642823083</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
       <option name="project" value="LOCAL" />
-      <updated>1526508289481</updated>
+      <updated>1526642823083</updated>
     </task>
-    <task id="LOCAL-00052" summary="Printing and saving according to worker 1 count">
-      <created>1526551846472</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
+    <task id="LOCAL-00105" summary="Printing and saving according to worker 1 count">
+      <created>1526643282690</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
       <option name="project" value="LOCAL" />
-      <updated>1526551846472</updated>
+      <updated>1526643282690</updated>
     </task>
-    <task id="LOCAL-00053" summary="Printing and saving according to worker 1 count">
-      <created>1526552219210</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
+    <task id="LOCAL-00106" summary="Printing and saving according to worker 1 count">
+      <created>1526643431083</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
       <option name="project" value="LOCAL" />
-      <updated>1526552219210</updated>
+      <updated>1526643431083</updated>
     </task>
-    <task id="LOCAL-00054" summary="Printing and saving according to worker 1 count">
-      <created>1526554805956</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
+    <task id="LOCAL-00107" summary="Printing and saving according to worker 1 count">
+      <created>1526643942868</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
       <option name="project" value="LOCAL" />
-      <updated>1526554805956</updated>
+      <updated>1526643942868</updated>
     </task>
-    <task id="LOCAL-00055" summary="Printing and saving according to worker 1 count">
-      <created>1526556167299</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
+    <task id="LOCAL-00108" summary="Printing and saving according to worker 1 count">
+      <created>1526644134742</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
       <option name="project" value="LOCAL" />
-      <updated>1526556167299</updated>
+      <updated>1526644134742</updated>
     </task>
-    <task id="LOCAL-00056" summary="Printing and saving according to worker 1 count">
-      <created>1526562933954</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
+    <task id="LOCAL-00109" summary="Printing and saving according to worker 1 count">
+      <created>1526644809657</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
       <option name="project" value="LOCAL" />
-      <updated>1526562933954</updated>
+      <updated>1526644809657</updated>
     </task>
-    <task id="LOCAL-00057" summary="Printing and saving according to worker 1 count">
-      <created>1526563452666</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
+    <task id="LOCAL-00110" summary="Printing and saving according to worker 1 count">
+      <created>1526646027641</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
       <option name="project" value="LOCAL" />
-      <updated>1526563452666</updated>
+      <updated>1526646027641</updated>
     </task>
-    <task id="LOCAL-00058" summary="Printing and saving according to worker 1 count">
-      <created>1526564318819</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
+    <task id="LOCAL-00111" summary="Printing and saving according to worker 1 count">
+      <created>1526647352190</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
       <option name="project" value="LOCAL" />
-      <updated>1526564318819</updated>
+      <updated>1526647352190</updated>
     </task>
-    <task id="LOCAL-00059" summary="Printing and saving according to worker 1 count">
-      <created>1526565173430</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
+    <task id="LOCAL-00112" summary="Printing and saving according to worker 1 count">
+      <created>1526647723911</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
       <option name="project" value="LOCAL" />
-      <updated>1526565173430</updated>
+      <updated>1526647723911</updated>
     </task>
-    <task id="LOCAL-00060" summary="Printing and saving according to worker 1 count">
-      <created>1526565453560</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
+    <task id="LOCAL-00113" summary="Printing and saving according to worker 1 count">
+      <created>1526647882015</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
       <option name="project" value="LOCAL" />
-      <updated>1526565453560</updated>
+      <updated>1526647882015</updated>
     </task>
-    <task id="LOCAL-00061" summary="Printing and saving according to worker 1 count">
-      <created>1526566222614</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
+    <task id="LOCAL-00114" summary="Printing and saving according to worker 1 count">
+      <created>1526648327286</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
       <option name="project" value="LOCAL" />
-      <updated>1526566222614</updated>
+      <updated>1526648327286</updated>
     </task>
-    <task id="LOCAL-00062" summary="Small update">
-      <created>1526566866124</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
+    <task id="LOCAL-00115" summary="Printing and saving according to worker 1 count">
+      <created>1526648563239</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
       <option name="project" value="LOCAL" />
-      <updated>1526566866125</updated>
+      <updated>1526648563239</updated>
     </task>
-    <task id="LOCAL-00063" summary="Printing and saving according to worker 1 count">
-      <created>1526567322273</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
+    <task id="LOCAL-00116" summary="Printing and saving according to worker 1 count">
+      <created>1526648971410</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
       <option name="project" value="LOCAL" />
-      <updated>1526567322273</updated>
+      <updated>1526648971410</updated>
     </task>
-    <task id="LOCAL-00064" summary="Printing and saving according to worker 1 count">
-      <created>1526567503240</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
+    <task id="LOCAL-00117" summary="Printing and saving according to worker 1 count">
+      <created>1526649281050</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
       <option name="project" value="LOCAL" />
-      <updated>1526567503240</updated>
+      <updated>1526649281050</updated>
     </task>
-    <task id="LOCAL-00065" summary="Printing and saving according to worker 1 count">
-      <created>1526568657919</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
+    <task id="LOCAL-00118" summary="Printing and saving according to worker 1 count">
+      <created>1526649354727</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
       <option name="project" value="LOCAL" />
-      <updated>1526568657919</updated>
+      <updated>1526649354727</updated>
     </task>
-    <task id="LOCAL-00066" summary="Printing and saving according to worker 1 count">
-      <created>1526571771984</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
+    <task id="LOCAL-00119" summary="Printing and saving according to worker 1 count">
+      <created>1526649669362</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
       <option name="project" value="LOCAL" />
-      <updated>1526571771984</updated>
+      <updated>1526649669362</updated>
     </task>
-    <task id="LOCAL-00067" summary="Printing and saving according to worker 1 count">
-      <created>1526572246578</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
+    <task id="LOCAL-00120" summary="Printing and saving according to worker 1 count">
+      <created>1526649825466</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
       <option name="project" value="LOCAL" />
-      <updated>1526572246578</updated>
+      <updated>1526649825466</updated>
     </task>
-    <task id="LOCAL-00068" summary="Printing and saving according to worker 1 count">
-      <created>1526572736195</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
+    <task id="LOCAL-00121" summary="Printing and saving according to worker 1 count">
+      <created>1526653394351</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
       <option name="project" value="LOCAL" />
-      <updated>1526572736195</updated>
+      <updated>1526653394352</updated>
     </task>
-    <task id="LOCAL-00069" summary="Printing and saving according to worker 1 count">
-      <created>1526572954775</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
+    <task id="LOCAL-00122" summary="Printing and saving according to worker 1 count">
+      <created>1526653585538</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
       <option name="project" value="LOCAL" />
-      <updated>1526572954775</updated>
+      <updated>1526653585538</updated>
     </task>
-    <task id="LOCAL-00070" summary="Printing and saving according to worker 1 count">
-      <created>1526574285896</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
+    <task id="LOCAL-00123" summary="Printing and saving according to worker 1 count">
+      <created>1526654263039</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
       <option name="project" value="LOCAL" />
-      <updated>1526574285896</updated>
+      <updated>1526654263039</updated>
     </task>
-    <task id="LOCAL-00071" summary="Printing and saving according to worker 1 count">
-      <created>1526575215491</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
+    <task id="LOCAL-00124" summary="Printing and saving according to worker 1 count">
+      <created>1526655086104</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
       <option name="project" value="LOCAL" />
-      <updated>1526575215491</updated>
+      <updated>1526655086104</updated>
     </task>
-    <task id="LOCAL-00072" summary="Printing and saving according to worker 1 count">
-      <created>1526575637811</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
+    <task id="LOCAL-00125" summary="Printing and saving according to worker 1 count">
+      <created>1526655897946</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
       <option name="project" value="LOCAL" />
-      <updated>1526575637811</updated>
+      <updated>1526655897946</updated>
     </task>
-    <task id="LOCAL-00073" summary="Printing and saving according to worker 1 count">
-      <created>1526575800658</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
+    <task id="LOCAL-00126" summary="Printing and saving according to worker 1 count">
+      <created>1526655918296</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
       <option name="project" value="LOCAL" />
-      <updated>1526575800658</updated>
+      <updated>1526655918296</updated>
     </task>
-    <task id="LOCAL-00074" summary="Removed monitored session">
-      <created>1526577833912</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
+    <task id="LOCAL-00127" summary="Printing and saving according to worker 1 count">
+      <created>1526656313477</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
       <option name="project" value="LOCAL" />
-      <updated>1526577833912</updated>
+      <updated>1526656313477</updated>
     </task>
-    <task id="LOCAL-00075" summary="Printing and saving according to worker 1 count">
-      <created>1526578807776</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
+    <task id="LOCAL-00128" summary="Printing and saving according to worker 1 count">
+      <created>1526657275678</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
       <option name="project" value="LOCAL" />
-      <updated>1526578807776</updated>
+      <updated>1526657275678</updated>
     </task>
-    <task id="LOCAL-00076" summary="Printing and saving according to worker 1 count">
-      <created>1526579064858</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
+    <task id="LOCAL-00129" summary="Printing and saving according to worker 1 count">
+      <created>1526657368760</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
       <option name="project" value="LOCAL" />
-      <updated>1526579064858</updated>
+      <updated>1526657368760</updated>
     </task>
-    <task id="LOCAL-00077" summary="Printing and saving according to worker 1 count">
-      <created>1526579854194</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
+    <task id="LOCAL-00130" summary="Printing and saving according to worker 1 count">
+      <created>1526657882691</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
       <option name="project" value="LOCAL" />
-      <updated>1526579854194</updated>
+      <updated>1526657882691</updated>
     </task>
-    <task id="LOCAL-00078" summary="Reverting">
-      <created>1526580455611</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
+    <task id="LOCAL-00131" summary="Printing and saving according to worker 1 count">
+      <created>1526658486071</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
       <option name="project" value="LOCAL" />
-      <updated>1526580455611</updated>
+      <updated>1526658486072</updated>
     </task>
-    <task id="LOCAL-00079" summary="Printing and saving according to worker 1 count">
-      <created>1526582068190</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
+    <task id="LOCAL-00132" summary="Printing and saving according to worker 1 count">
+      <created>1526659050794</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
       <option name="project" value="LOCAL" />
-      <updated>1526582068190</updated>
+      <updated>1526659050794</updated>
     </task>
-    <task id="LOCAL-00080" summary="Printing and saving according to worker 1 count">
-      <created>1526582642835</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
+    <task id="LOCAL-00133" summary="Printing and saving according to worker 1 count">
+      <created>1526659337956</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
       <option name="project" value="LOCAL" />
-      <updated>1526582642835</updated>
+      <updated>1526659337956</updated>
     </task>
-    <task id="LOCAL-00081" summary="Printing and saving according to worker 1 count">
-      <created>1526583094722</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
+    <task id="LOCAL-00134" summary="Printing and saving according to worker 1 count">
+      <created>1526660669088</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
       <option name="project" value="LOCAL" />
-      <updated>1526583094722</updated>
+      <updated>1526660669088</updated>
     </task>
-    <task id="LOCAL-00082" summary="Printing and saving according to worker 1 count">
-      <created>1526583320581</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
+    <task id="LOCAL-00135" summary="Printing and saving according to worker 1 count">
+      <created>1526660843397</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
       <option name="project" value="LOCAL" />
-      <updated>1526583320581</updated>
+      <updated>1526660843397</updated>
     </task>
-    <task id="LOCAL-00083" summary="Printing and saving according to worker 1 count">
-      <created>1526583797759</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
+    <task id="LOCAL-00136" summary="Printing and saving according to worker 1 count">
+      <created>1526662940903</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
       <option name="project" value="LOCAL" />
-      <updated>1526583797759</updated>
+      <updated>1526662940903</updated>
     </task>
-    <task id="LOCAL-00084" summary="Printing and saving according to worker 1 count">
-      <created>1526584310544</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
+    <task id="LOCAL-00137" summary="Printing and saving according to worker 1 count">
+      <created>1526664344725</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
       <option name="project" value="LOCAL" />
-      <updated>1526584310544</updated>
+      <updated>1526664344725</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TodoView">
@@ -618,22 +629,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="850" height="900" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33044556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18383405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40024185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40024185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39903265" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39903265" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -700,30 +710,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/A3C/Workers_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A3C/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="33" column="20" lean-forward="true" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/A3C/network.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="37" column="26" lean-forward="false" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -731,9 +721,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="34" column="71" lean-forward="true" selection-start-line="34" selection-start-column="71" selection-end-line="34" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -750,9 +737,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -760,9 +744,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="37" column="26" lean-forward="true" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -770,9 +751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -789,9 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -799,9 +774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -809,9 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -828,9 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -838,9 +804,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="26" column="26" lean-forward="false" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -882,9 +845,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
           <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -892,9 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -902,9 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="747">
           <caret line="81" column="56" lean-forward="false" selection-start-line="81" selection-start-column="56" selection-end-line="81" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -912,9 +866,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -922,9 +873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -932,9 +880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="747">
           <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -942,7 +887,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -950,9 +894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -960,9 +901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#23#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -970,53 +908,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#22#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/mon_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/mon_test.py" />
     <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_1/cluster_example.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_1/network_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1024,32 +923,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="1707" column="4" lean-forward="false" selection-start-line="1707" selection-start-column="4" selection-end-line="1707" selection-end-column="4" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_4_nw/cluster_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_3_not_working/cluster_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="92" column="6" lean-forward="false" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1395">
+          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/A3C_Distributed/worker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="187" column="29" lean-forward="true" selection-start-line="187" selection-start-column="29" selection-end-line="187" selection-end-column="29" />
-          <folding />
+        <state relative-caret-position="357">
+          <caret line="71" column="40" lean-forward="true" selection-start-line="71" selection-start-column="40" selection-end-line="71" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/cluster_example.py">
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_1/network_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="769">
-          <caret line="129" column="20" lean-forward="true" selection-start-line="129" selection-start-column="20" selection-end-line="129" selection-end-column="20" />
+        <state relative-caret-position="150">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/network_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/network_test.py">
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/cluster_example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="600">
+          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
@@ -1058,9 +990,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/A3C_Distributed/worker_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="270">
           <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
