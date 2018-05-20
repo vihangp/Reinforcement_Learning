@@ -98,6 +98,7 @@ class Worker():
                     count += 1
                     sess.run([self.global_network.episode_reward],
                              feed_dict={self.global_network.episode_reward: self.episode_reward})
+                    print(self.episode_reward)
                     self.episode_reward = 0
                     self.reward.append(0)
                     break

@@ -100,6 +100,7 @@ def worker(worker_n):
     with tf.train.MonitoredTrainingSession(master=server.target,
                                            is_chief=(worker_n == 0),
                                            checkpoint_dir=MODEL_DIR, hooks=hooks) as master_session:
+        print("Worker on Node", FLAGS.node_index, "with Task ID", worker_n)
 
         worker_object.play(master_session)
 
