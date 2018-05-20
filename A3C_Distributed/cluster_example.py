@@ -42,10 +42,11 @@ for i, node in enumerate(nodes_address[num_ps:]):
     print(FLAGS.node_index)
     for j in range(workers_per_node):
         if node == str(FLAGS.node_index) and j == FLAGS.task_index:
-            print('Worker Server index')
             worker_n = i * workers_per_node + j
-        print('Worker Server added ' + str(i))
-        workers_list.append("icsnode" + node + ".cluster.net:2222")
+            print(worker_n)
+        print('Worker Server added ' + str(j))
+        print("icsnode" + node + ".cluster.net:222{}".format(j))
+        workers_list.append("icsnode" + node + ".cluster.net:222{}".format(j))
 
 cluster = tf.train.ClusterSpec({
     "worker": workers_list,
