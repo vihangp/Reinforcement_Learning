@@ -15,8 +15,10 @@ class GlobalNetwork():
                                                        cluster=cluster)):
 
             self.global_step = tf.train.get_or_create_global_step()
+            self.b = tf.placeholder()
             self.a = tf.Variable([1.0], dtype=tf.float32)
-            self.assign_double = tf.assign(self.a, 1+ self.a)
+            #self.assign_double = tf.assign(self.a, 1+ self.a)
+            self.assign_double = tf.assign(self.a, self.b)
 
 
 class PolicyValueNetwork():
@@ -24,4 +26,4 @@ class PolicyValueNetwork():
 
         with tf.device("/job:worker/task:%d" % task_id):
             with tf.variable_scope(thread_name):
-                    self.local_var = tf.Variable(50, name='var')
+                    self.local_var = tf.Variable(task_id, name='var')
