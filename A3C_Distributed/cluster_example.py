@@ -30,7 +30,7 @@ for i, node in enumerate(nodes_address[:num_ps]):
         print('Parameter Server index')
         worker_n = i
     print('Parameter Server added ' + str(i))
-    ps_list.append("isnode" + node + ".cluster.net:2222")
+    ps_list.append("icsnode" + node + ".cluster.net:2222")
 
 for i, node in enumerate(nodes_address[num_ps:]):
     print(type(node), node)
@@ -39,7 +39,7 @@ for i, node in enumerate(nodes_address[num_ps:]):
         print('Worker Server index')
         worker_n = i
     print('Worker Server added ' + str(i))
-    workers_list.append("isnode" + node + ".cluster.net:2222")
+    workers_list.append("icsnode" + node + ".cluster.net:2222")
 
 cluster = tf.train.ClusterSpec({
     "worker": workers_list,
