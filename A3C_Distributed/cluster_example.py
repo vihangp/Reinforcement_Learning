@@ -6,12 +6,15 @@ from worker_test import Worker
 import threading
 
 tf.app.flags.DEFINE_string("job_name", "", "Either 'ps' or 'worker'")
-tf.app.flags.DEFINE_integer("task_index", 0, "Index of task within the job")
+tf.app.flags.DEFINE_integer("node_index", 0, "Index of node for the workers")
 tf.app.flags.DEFINE_integer("number_ps", 0, "Number of parameter servers")
+tf.app.flags.DEFINE_integer("task_index", 0, "Index of task within the job")
+tf.app.flags.DEFINE_integer("workers_per_node", 1, "Index of task within the job")
 
 FLAGS = tf.app.flags.FLAGS
 job_name = FLAGS.job_name
 num_ps = FLAGS.number_ps
+workers_per_node = FLAGS.workers_per_node
 
 nodes_address = []
 ps_list = []
@@ -25,21 +28,24 @@ with open('node_list.txt') as nodes:
 total_num_nodes = len(nodes_address)
 for i, node in enumerate(nodes_address[:num_ps]):
     print(type(node), node)
-    print(FLAGS.task_index)
-    if node == str(FLAGS.task_index):
+    print(FLAGS.node_index)
+    if node == str(FLAGS.node_index):
         print('Parameter Server index')
         worker_n = i
     print('Parameter Server added ' + str(i))
     ps_list.append("icsnode" + node + ".cluster.net:2222")
 
+
+
 for i, node in enumerate(nodes_address[num_ps:]):
     print(type(node), node)
-    print(FLAGS.task_index)
-    if node == str(FLAGS.task_index):
-        print('Worker Server index')
-        worker_n = i
-    print('Worker Server added ' + str(i))
-    workers_list.append("icsnode" + node + ".cluster.net:2222")
+    print(FLAGS.node_index)
+    for j in range(workers_per_node):
+        if node == str(FLAGS.node_index) and j == FLAGS.task_index:
+            print('Worker Server index')
+            worker_n = i * 20 + j
+        print('Worker Server added ' + str(i))
+        workers_list.append("icsnode" + node + ".cluster.net:222{}".format(j))
 
 cluster = tf.train.ClusterSpec({
     "worker": workers_list,
@@ -62,7 +68,7 @@ def worker(worker_n):
 
     global_network = GlobalNetwork(cluster, worker_n)
 
-    worker_object = Worker(cluster, worker_n, "worker_{}".format(FLAGS.task_index), global_network)
+    worker_object = Worker(cluster, worker_n, "worker_{}{}".format(FLAGS.node_index,worker_n), global_network)
 
 
     with tf.train.MonitoredTrainingSession(master=server.target,
