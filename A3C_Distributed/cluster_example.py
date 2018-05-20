@@ -90,9 +90,6 @@ def worker(worker_n):
 
     CHECKPOINT_DIR = os.path.join(MODEL_DIR, "checkpoints")
 
-    if not os.path.exists(CHECKPOINT_DIR):
-        os.makedirs(CHECKPOINT_DIR)
-
     global_network = GlobalNetwork(cluster, worker_n, num_actions)
 
     worker_object = Worker(game, worker_n, t_max, num_actions, global_network, gamma,
