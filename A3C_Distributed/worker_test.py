@@ -10,6 +10,7 @@ class Worker():
         self.thread_name = thread_name
         self.global_network = global_network
         self.local_network = PolicyValueNetwork(self.thread_name, task_id)
+        print("Intializing worker obejct:", self.task_id)
 
 
     def play(self, master_session):
