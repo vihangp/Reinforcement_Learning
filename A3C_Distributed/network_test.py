@@ -15,7 +15,7 @@ class GlobalNetwork():
                                                        cluster=cluster)):
 
             self.global_step = tf.train.get_or_create_global_step()
-            self.b = tf.placeholder()
+            self.b = tf.placeholder(dtype=tf.float32)
             self.a = tf.Variable([1.0], dtype=tf.float32)
             #self.assign_double = tf.assign(self.a, 1+ self.a)
             self.assign_double = tf.assign(self.a, self.b)
