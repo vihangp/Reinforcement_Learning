@@ -19,7 +19,8 @@ class Worker():
             feed_dict = {self.global_network.b: b}
             master_session.run(self.global_network.assign_double, feed_dict)
             sleep(1.0)
+            print(self.task_id, ": Here")
 
         var = master_session.run(self.global_network.a)
-        print(self.thread_name, "Value:", var)
+        print(self.task_id, "Value:", var)
 
