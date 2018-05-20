@@ -96,7 +96,8 @@ class Worker():
                 # return the value of the last state
                 if self.done or (c_lives != lives):
                     count += 1
-                    sess.run(self.global_network.episode_reward, feed_dict={self.global_network.episode_reward: self.episode_reward})
+                    sess.run([self.global_network.episode_reward],
+                             feed_dict={self.global_network.episode_reward: self.episode_reward})
                     self.episode_reward = 0
                     self.reward.append(0)
                     break
