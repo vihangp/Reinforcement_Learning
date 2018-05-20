@@ -62,7 +62,7 @@ def worker(worker_n):
 
     global_network = GlobalNetwork(cluster, worker_n)
 
-    worker_object = Worker(cluster, worker_n, "worker_{}{}".format(FLAGS.task_index, i + 1), global_network)
+    worker_object = Worker(cluster, worker_n, "worker_{}".format(FLAGS.task_index), global_network)
 
 
     with tf.train.MonitoredTrainingSession(master=server.target,
