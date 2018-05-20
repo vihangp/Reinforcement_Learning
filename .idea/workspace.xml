@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9e9718d3-ab2c-4942-976b-fa1ae6563222" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C_Distributed/cluster_example.py" afterPath="$PROJECT_DIR$/A3C_Distributed/cluster_example.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C_Distributed/network_test.py" afterPath="$PROJECT_DIR$/A3C_Distributed/network_test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C_Distributed/worker_test.py" afterPath="$PROJECT_DIR$/A3C_Distributed/worker_test.py" />
     </list>
@@ -28,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="worker_test.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="worker_test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/A3C_Distributed/worker_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="64" lean-forward="false" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
+            <state relative-caret-position="210">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -40,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="network_test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="network_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/A3C_Distributed/network_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+            <state relative-caret-position="373">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -266,13 +265,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520163097131</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Printing and saving according to worker 1 count">
-      <created>1526643282690</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1526643282690</updated>
     </task>
     <task id="LOCAL-00106" summary="Printing and saving according to worker 1 count">
       <created>1526643431083</created>
@@ -610,7 +602,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526814654547</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="Printing and saving according to worker 1 count">
+      <created>1526814997763</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1526814997763</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TodoView">
@@ -975,22 +974,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/worker_test.py">
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/network_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="64" lean-forward="false" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
+        <state relative-caret-position="373">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/network_test.py">
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/worker_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+        <state relative-caret-position="210">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>

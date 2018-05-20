@@ -25,5 +25,5 @@ class PolicyValueNetwork():
     def __init__(self, thread_name, task_id):
 
         with tf.device("/job:worker/task:%d" % task_id):
-            with tf.variable_scope(thread_name):
-                    self.local_var = tf.Variable([task_id], name='var')
+            #with tf.variable_scope(thread_name):
+            self.local_var = tf.Variable([task_id], name='var')
