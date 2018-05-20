@@ -17,8 +17,8 @@
       <file leaf-file-name="cluster_example.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/A3C_Distributed/cluster_example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+            <state relative-caret-position="330">
+              <caret line="47" column="65" lean-forward="false" selection-start-line="47" selection-start-column="65" selection-end-line="47" selection-end-column="65" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -264,13 +264,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520163097131</updated>
-    </task>
-    <task id="LOCAL-00094" summary="Printing and saving according to worker 1 count">
-      <created>1526592722124</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1526592722124</updated>
     </task>
     <task id="LOCAL-00095" summary="Printing and saving according to worker 1 count">
       <created>1526592855011</created>
@@ -608,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526808548145</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="Printing and saving according to worker 1 count">
+      <created>1526808833332</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1526808833333</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TodoView">
@@ -624,11 +624,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18383405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5050378" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.49496222" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40024185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -984,8 +985,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/A3C_Distributed/cluster_example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+        <state relative-caret-position="330">
+          <caret line="47" column="65" lean-forward="false" selection-start-line="47" selection-start-column="65" selection-end-line="47" selection-end-column="65" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
