@@ -97,3 +97,5 @@ class GlobalNetwork():
                 self.global_step = tf.contrib.framework.get_or_create_global_step()
                 self.gradients_apply = self.optimizer.apply_gradients(self.gradients,
                                                                       global_step=self.global_step)
+
+            self.summaries = tf.summary.merge_all()
