@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e9718d3-ab2c-4942-976b-fa1ae6563222" name="Default" comment="Printing and saving according to worker 1 count">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C_Distributed/network.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/A3C_Distributed/version_2_not_working/cluster_example.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/A3C_Distributed/version_2_not_working/network_test.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/A3C_Distributed/version_2_not_working/worker_test.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/A3C_Distributed/worker.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C_Distributed/cluster_example.py" afterPath="$PROJECT_DIR$/A3C_Distributed/cluster_example.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A3C_Distributed/network_test.py" afterPath="$PROJECT_DIR$/A3C_Distributed/network_test.py" />
@@ -19,13 +21,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cluster_example.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cluster_example.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/A3C_Distributed/cluster_example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="76" column="43" lean-forward="true" selection-start-line="76" selection-start-column="43" selection-end-line="76" selection-end-column="43" />
+            <state relative-caret-position="674">
+              <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="network_test.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/A3C_Distributed/network_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+                <marker date="1527075727537" expanded="true" signature="70:1019" ph="..." />
               </folding>
             </state>
           </provider>
@@ -34,22 +49,10 @@
       <file leaf-file-name="worker_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/A3C_Distributed/worker_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+            <state relative-caret-position="60">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="network_test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/A3C_Distributed/network_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="97" column="109" lean-forward="false" selection-start-line="97" selection-start-column="109" selection-end-line="97" selection-end-column="109" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -69,6 +72,7 @@
       <find>number_ps</find>
       <find>worker_n</find>
       <find>task_index</find>
+      <find>global_step</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -86,14 +90,15 @@
         <option value="$PROJECT_DIR$/A3C/policy_render.py" />
         <option value="$PROJECT_DIR$/A3C_Distributed/mon_test.py" />
         <option value="$PROJECT_DIR$/A3C_Distributed/train.py" />
+        <option value="$PROJECT_DIR$/A3C_Distributed/worker_test.py" />
         <option value="$PROJECT_DIR$/A3C_Distributed/network_test.py" />
         <option value="$PROJECT_DIR$/A3C_Distributed/cluster_example.py" />
-        <option value="$PROJECT_DIR$/A3C_Distributed/worker_test.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="836" />
+    <option name="x" value="722" />
+    <option name="width" value="718" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -114,6 +119,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -126,18 +132,11 @@
               <item name="Reinforcement_Learning" type="462c0819:PsiDirectoryNode" />
               <item name="A3C_Distributed" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Reinforcement_Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Reinforcement_Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="A3C_Distributed" type="462c0819:PsiDirectoryNode" />
-              <item name="version_1" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -269,90 +268,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520163097131</updated>
-    </task>
-    <task id="LOCAL-00109" summary="Printing and saving according to worker 1 count">
-      <created>1526644809657</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1526644809657</updated>
-    </task>
-    <task id="LOCAL-00110" summary="Printing and saving according to worker 1 count">
-      <created>1526646027641</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1526646027641</updated>
-    </task>
-    <task id="LOCAL-00111" summary="Printing and saving according to worker 1 count">
-      <created>1526647352190</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1526647352190</updated>
-    </task>
-    <task id="LOCAL-00112" summary="Printing and saving according to worker 1 count">
-      <created>1526647723911</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1526647723911</updated>
-    </task>
-    <task id="LOCAL-00113" summary="Printing and saving according to worker 1 count">
-      <created>1526647882015</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1526647882015</updated>
-    </task>
-    <task id="LOCAL-00114" summary="Printing and saving according to worker 1 count">
-      <created>1526648327286</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1526648327286</updated>
-    </task>
-    <task id="LOCAL-00115" summary="Printing and saving according to worker 1 count">
-      <created>1526648563239</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1526648563239</updated>
-    </task>
-    <task id="LOCAL-00116" summary="Printing and saving according to worker 1 count">
-      <created>1526648971410</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1526648971410</updated>
-    </task>
-    <task id="LOCAL-00117" summary="Printing and saving according to worker 1 count">
-      <created>1526649281050</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1526649281050</updated>
-    </task>
-    <task id="LOCAL-00118" summary="Printing and saving according to worker 1 count">
-      <created>1526649354727</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1526649354727</updated>
-    </task>
-    <task id="LOCAL-00119" summary="Printing and saving according to worker 1 count">
-      <created>1526649669362</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1526649669362</updated>
-    </task>
-    <task id="LOCAL-00120" summary="Printing and saving according to worker 1 count">
-      <created>1526649825466</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1526649825466</updated>
     </task>
     <task id="LOCAL-00121" summary="Printing and saving according to worker 1 count">
       <created>1526653394351</created>
@@ -613,7 +528,91 @@
       <option name="project" value="LOCAL" />
       <updated>1526816248161</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="Printing and saving according to worker 1 count">
+      <created>1526832209810</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1526832209810</updated>
+    </task>
+    <task id="LOCAL-00159" summary="Printing and saving according to worker 1 count">
+      <created>1526832508851</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1526832508851</updated>
+    </task>
+    <task id="LOCAL-00160" summary="Printing and saving according to worker 1 count">
+      <created>1526832880025</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1526832880025</updated>
+    </task>
+    <task id="LOCAL-00161" summary="Printing and saving according to worker 1 count">
+      <created>1526833308324</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1526833308324</updated>
+    </task>
+    <task id="LOCAL-00162" summary="Printing and saving according to worker 1 count">
+      <created>1526834317868</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1526834317868</updated>
+    </task>
+    <task id="LOCAL-00163" summary="Printing and saving according to worker 1 count">
+      <created>1526834783829</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1526834783829</updated>
+    </task>
+    <task id="LOCAL-00164" summary="Printing and saving according to worker 1 count">
+      <created>1526835529161</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1526835529161</updated>
+    </task>
+    <task id="LOCAL-00165" summary="Printing and saving according to worker 1 count">
+      <created>1526836318817</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1526836318818</updated>
+    </task>
+    <task id="LOCAL-00166" summary="Printing and saving according to worker 1 count">
+      <created>1526836694167</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1526836694167</updated>
+    </task>
+    <task id="LOCAL-00167" summary="Printing and saving according to worker 1 count">
+      <created>1526838220765</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1526838220765</updated>
+    </task>
+    <task id="LOCAL-00168" summary="Printing and saving according to worker 1 count">
+      <created>1526838307347</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1526838307347</updated>
+    </task>
+    <task id="LOCAL-00169" summary="Printing and saving according to worker 1 count">
+      <created>1526897463949</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1526897463949</updated>
+    </task>
+    <option name="localTasksCounter" value="170" />
     <servers />
   </component>
   <component name="TodoView">
@@ -628,18 +627,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="643" y="0" width="797" height="900" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18286446" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23841059" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5050378" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40024185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.49496222" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40024185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39903265" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -834,13 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A3C/worker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="81" column="56" lean-forward="false" selection-start-line="81" selection-start-column="56" selection-end-line="81" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/A3C/policy_render.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -869,20 +861,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_2_not_working/network_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_2_not_working/cluster_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_2_not_working/network_test.py" />
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_2_not_working/cluster_example.py" />
     <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_1/worker_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -905,27 +885,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_4_nw/cluster_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_3_not_working/cluster_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="92" column="6" lean-forward="false" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_4_nw/cluster_example.py" />
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/version_3_not_working/cluster_example.py" />
     <entry file="file://$PROJECT_DIR$/A3C_Distributed/train.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -947,32 +908,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/A3C/worker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2355">
+          <caret line="163" column="7" lean-forward="false" selection-start-line="163" selection-start-column="7" selection-end-line="163" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="73" column="32" lean-forward="false" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/A3C_Distributed/worker_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/network_test.py">
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/cluster_example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="109" lean-forward="false" selection-start-line="97" selection-start-column="109" selection-end-line="97" selection-end-column="109" />
+        <state relative-caret-position="674">
+          <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/A3C_Distributed/cluster_example.py">
+    <entry file="file://$PROJECT_DIR$/A3C_Distributed/network_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="76" column="43" lean-forward="true" selection-start-line="76" selection-start-column="43" selection-end-line="76" selection-end-column="43" />
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+            <marker date="1527075727537" expanded="true" signature="70:1019" ph="..." />
           </folding>
         </state>
       </provider>

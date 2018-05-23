@@ -3,9 +3,7 @@ import multiprocessing
 from time import sleep
 from network_test import GlobalNetwork
 from worker_test import Worker
-import os
-import math
-import gym
+import threading
 
 tf.app.flags.DEFINE_string("job_name", "", "Either 'ps' or 'worker'")
 tf.app.flags.DEFINE_integer("node_index", 0, "Index of node for the workers")
@@ -35,6 +33,8 @@ for i, node in enumerate(nodes_address[:num_ps]):
         worker_n = i
     ps_list.append("icsnode" + node + ".cluster.net:2222")
 
+
+
 for i, node in enumerate(nodes_address[num_ps:]):
     print(type(node), node)
     print(FLAGS.node_index)
@@ -54,13 +54,6 @@ server = tf.train.Server(
     task_index=worker_n)
 
 
-def log_uniform(lo, hi, rate):
-    log_lo = math.log(lo)
-    log_hi = math.log(hi)
-    v = log_lo * (1 - rate) + log_hi * rate
-    return math.exp(v)
-
-
 def parameter_server():
 
     print("Parameter server: blocking...")
@@ -68,42 +61,18 @@ def parameter_server():
 
 
 def worker(worker_n):
-    game = "Qbert-v0"
 
-    env = gym.make(game)
-    num_actions = env.action_space.n
-    env.close()
+    global_network = GlobalNetwork(cluster, worker_n)
 
-    num_cores = multiprocessing.cpu_count()
-    t_max = 20
-    print("Num Cores", num_cores)
-    gamma = 0.99
-    DIR = "/A3C/"
-    max_global_time_step = 16000  # 320 * 1000000
-    alpha_low = 1e-4
-    alpha_high = 1e-2
-    alpha_log_rate = 0.4226
-    clip_norm = 40.0
-    initial_learning_rate = log_uniform(alpha_low, alpha_high, alpha_log_rate)
+    worker_object = Worker(cluster, worker_n, "worker_{}{}".format(FLAGS.node_index,worker_n), global_network)
 
-    MODEL_DIR = 'experiments/exp8'
-
-    CHECKPOINT_DIR = os.path.join(MODEL_DIR, "checkpoints")
-
-    global_network = GlobalNetwork(cluster, worker_n, num_actions)
-
-    worker_object = Worker(game, worker_n, t_max, num_actions, global_network, gamma,
-                   initial_learning_rate, max_global_time_step, clip_norm)
-
-    stop_hook = tf.train.StopAtStepHook(last_step=5000000)
-    summary_hook = tf.train.SummarySaverHook(save_steps=10, output_dir=MODEL_DIR, summary_op=global_network.summaries)
 
     with tf.train.MonitoredTrainingSession(master=server.target,
-                                           is_chief=(worker_n == 0),
-                                           checkpoint_dir=MODEL_DIR, hooks=[stop_hook, summary_hook]) as master_session:
-        print("Worker on Node", FLAGS.node_index, "with Task ID", worker_n)
+                                           is_chief=(worker_n == 0)) as master_session:
 
-        worker_object.play(master_session)
+        while not master_session.should_stop():
+
+            worker_object.play(master_session)
 
 if job_name == 'ps':
     print('parameter server')
