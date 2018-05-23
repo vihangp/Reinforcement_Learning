@@ -62,7 +62,9 @@ def parameter_server():
 
 def worker(worker_n):
 
-    global_network = GlobalNetwork(cluster, worker_n)
+    with tf.device(tf.train.replica_device_setter(worker_device="/job:worker/task:%d" % worker_n,
+                                                  cluster=cluster)):
+        global_network = GlobalNetwork(cluster, worker_n)
 
     worker_object = Worker(cluster, worker_n, "worker_{}{}".format(FLAGS.node_index,worker_n), global_network)
 
